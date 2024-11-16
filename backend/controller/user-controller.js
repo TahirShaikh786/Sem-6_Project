@@ -4,19 +4,50 @@ import * as auth from "../middleware/auth.js";
 
 // Public Controller
 const register = async (req, res) => {
-  const { userName, email, password, image } = req.body;
   try {
-    const userExist = await User.findOne({ email });
-    if (userExist) {
-      res.status(201).json({ message: "Email Already Registered!" });
+    const { userName, email, password, image } = req.body;
+
+    if (!email || !password || !userName) {
+      return res
+        .status(400)
+        .json({ success: false, message: "All Fields are required" });
     }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ success: false, message: "Invalid Email" });
+    }
+    if (password.length < 7) {
+      return res.status(400).json({
+        success: false,
+        message: "Password must be atleast 7 Characters long",
+      });
+    }
+
+    const emailExist = await User.findOne({ email: email });
+    if (emailExist) {
+      res
+        .status(201)
+        .json({ success: false, message: "Email Already Registered!" });
+    }
+    const userExist = await User.findOne({ userName: userName });
+    if (userExist) {
+      res
+        .status(201)
+        .json({ success: false, message: "Username Already Registered!" });
+    }
+
+    const PROFILE_PICS = ["/avatar1.png", "/avatar2.png", "/avatar3.png"];
+    const Profile_Image =
+      PROFILE_PICS[Math.floor(Math.random() * PROFILE_PICS.length)];
+
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     const user = await User.create({
       userName,
       email,
       password: hashedPassword,
-      image,
+      image: Profile_Image,
     });
     if (user) {
       res.status(200).json({
@@ -24,6 +55,7 @@ const register = async (req, res) => {
         username: user.userName,
         email: user._email,
         isAdmin: user.isAdmin,
+        image: user.image,
         token: auth.generateToken(user._id),
       });
     } else {

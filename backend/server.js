@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import connectDB from "./utils/db.js";
 import homeRouter from "./routes/home-router.js";
 import userRouter from "./routes/user-router.js";
+import errorHandler from "./middleware/error-middleware.js";
 
 // Configuration
 dotenv.config();
@@ -15,6 +16,9 @@ app.use(express.json());
 // Routes
 app.use("/api/v1", homeRouter);
 app.use("/api/v1/auth", userRouter);
+
+// Middleware
+app.use(errorHandler);
 
 // Server Running
 app.listen(process.env.PORT, () => {

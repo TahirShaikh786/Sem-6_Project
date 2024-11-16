@@ -14,7 +14,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
+    "start": "npm run dev",
     "dev": "nodemon backend/server.js"
   },
   "keywords": [],
