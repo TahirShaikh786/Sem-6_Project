@@ -92,7 +92,12 @@ const login = async (req, res) => {
 
 const logout = async (req, res) => {
   try {
-  } catch (error) {}
+    res.clearCookie("token-CineFilm");
+    res.status(200).json({success: true, message: "Successfully logged out"});
+  } catch (error) {
+    console.log("Error While doing Logout", error.message);
+    res.status(500).json({ success: false, message:"Internal Server Error" });
+  }
 };
 
 // Admin Controller
