@@ -4,25 +4,28 @@ const userSchema = mongoose.Schema(
   {
     userName: {
       type: String,
-      required: [true, "Please add a full Name"],
+      required: true,
     },
     email: {
       type: String,
-      required: [true, "Please add a Email"],
+      required: true,
       unique: true,
-      trim: true,
     },
     password: {
       type: String,
-      required: [true, "Please add a Password"],
-      minlength: [6, "Password must be atleast 6 character long"],
+      required: true,
     },
     image: {
       type: String,
+      default: "",
     },
     isAdmin: {
       type: Boolean,
       default: false,
+    },
+    searchHistory: {
+      type: Array,
+      default: [],
     },
     likedMovies: [
       {
@@ -36,4 +39,5 @@ const userSchema = mongoose.Schema(
   }
 );
 
-export default mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
+export default User;

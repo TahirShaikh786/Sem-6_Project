@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import * as auth from "../middleware/auth.js";
 
 // Public Controller
-const register = async (req, res) => {
+const signUp = async (req, res) => {
   try {
     const { userName, email, password, image } = req.body;
 
@@ -26,13 +26,13 @@ const register = async (req, res) => {
 
     const emailExist = await User.findOne({ email: email });
     if (emailExist) {
-      res
+      return res
         .status(201)
         .json({ success: false, message: "Email Already Registered!" });
     }
     const userExist = await User.findOne({ userName: userName });
     if (userExist) {
-      res
+      return res
         .status(201)
         .json({ success: false, message: "Username Already Registered!" });
     }
@@ -43,27 +43,31 @@ const register = async (req, res) => {
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
+
     const user = await User.create({
       userName,
       email,
       password: hashedPassword,
       image: Profile_Image,
     });
+
     if (user) {
+      const userToken = auth.generateTokenAndSetCookie(user._id, res);
       res.status(200).json({
         _id: user._id,
         username: user.userName,
         email: user._email,
         isAdmin: user.isAdmin,
         image: user.image,
-        token: auth.generateToken(user._id),
+        token: userToken,
       });
     } else {
-      res.status(404);
+      res.status(400);
       throw new Error("Invalid Credentials");
     }
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    console.log("Error in Registering User ", error.message);
+    res.status(500).json({ success: false, message: "Tnternal Server Error" });
   }
 };
 
@@ -117,4 +121,4 @@ const updatedUser = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
-export { register, login, logout, updatedUser };
+export { signUp, login, logout, updatedUser };

@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 
 // Files
-import connectDB from "./utils/db.js";
+import connectDB from "./config/db.js";
 import homeRouter from "./routes/home-router.js";
 import userRouter from "./routes/user-router.js";
 import errorHandler from "./middleware/error-middleware.js";

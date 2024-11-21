@@ -5,7 +5,7 @@ import * as auth from "../middleware/auth.js"
 const router = express.Router();
 
 // Public Routes
-router.post("/register", userController.register);
+router.post("/register", userController.signUp);
 router.post("/login", userController.login);
 router.post("/logout", userController.logout);
 

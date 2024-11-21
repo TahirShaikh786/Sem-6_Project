@@ -1,10 +1,19 @@
 import jwt from "jsonwebtoken";
 import User from "../models/user-model.js";
 
-const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: "1d",
+const generateTokenAndSetCookie = (id, res) => {
+  const token = jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: "15d",
   });
+
+  res.cookie("token-CineFilm", token, {
+    maxAge: 15 * 24 * 60 * 60 * 1000, // 15 in MS
+    httpOnly: true, // prevent XSS attacks & cross-site attacks not accessible by JS
+    sameSite: "strict", // CSRF attacks cross-site request forgery attacks
+    secure: process.env.NODE_ENV !== "development",
+  });
+
+  return token;
 };
 
 const protect = async (req, res, next) => {
@@ -38,4 +47,4 @@ const admin = async (req, res, next) => {
   }
 };
 
-export { generateToken, protect, admin };
+export { generateTokenAndSetCookie, protect, admin };
