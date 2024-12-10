@@ -4,13 +4,19 @@
   line-height: 1.5;
   font-weight: 400;
 
+  /* Colors */
   --white: #ffffff;
   --black: #202020;
   --purple: #9b40e8;
 
+  /* Gradient-Colors */
   --purple-gradient: linear-gradient(to right, #6a11cb, #9b40e8);
 
   color-scheme: light dark;
+  background-color: var(--black);
+
+  /* Font-family */
+  --Roboto: "Roboto Condensed", sans-serif;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
