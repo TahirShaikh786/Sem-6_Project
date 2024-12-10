@@ -24,26 +24,25 @@ const protect = async (req, res, next) => {
     req.headers.authorization.startsWith("Bearer")
   ) {
     try {
-      token = req.headers.authorization.splitz(" ")[1];
+      token = req.headers.authorization.split(" ")[1];
       const decode = jwt.verify(token, process.env.JWT_SECRET);
+
       req.user = await User.findById(decode.id).select("-password");
-      next();
+      return next();
     } catch (error) {
-      res.status(400).json({ message: error.message });
+      res.status(400).json({ success: false, message: "Not authorized, token Invalid" });
     }
   }
   if (!token) {
-    res.status(401);
-    throw new Error("Not authorized, no token");
+    res.status(401).json({success: false, message: "Not authorized, no token"});
   }
 };
 
 const admin = async (req, res, next) => {
   if (req.user && req.user.isAdmin) {
-    next();
+    return next();
   } else {
-    res.status(400);
-    throw new Error("Not authorized as an admin");
+    res.status(400).json({sucess: false, message:"Not authorized as an admin"});
   }
 };
 

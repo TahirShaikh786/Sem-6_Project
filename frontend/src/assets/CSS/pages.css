@@ -1,0 +1,14 @@
+.mainBody{
+    background-color: black;
+}
+
+aside{
+    right: 0;
+    bottom: 20px;
+    position: fixed;
+}
+
+aside img{
+    width: 100px;
+    height: 100px;
+}

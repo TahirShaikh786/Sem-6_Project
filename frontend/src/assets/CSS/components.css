@@ -1,0 +1,76 @@
+header {
+  background: transparent;
+}
+
+.navbar-toggler {
+  background-color: var(--black) !important;
+}
+
+.navLogo img {
+  width: 100px;
+  height: 90px;
+  border-radius: 2rem;
+}
+
+.links {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 700;
+  padding: 0.2rem;
+  border-radius: 0.5rem;
+  transition: all ease-in-out 0.5s;
+}
+
+.links:hover {
+  background: var(--purple-gradient);
+}
+
+.links:focus{
+    background: var(--purple-gradient);
+}
+
+.drop_Links {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.navbar-toggle-custom {
+  background: var(--purple-gradient);
+}
+
+.nav-dropdown {
+  border-radius: 1rem;
+  background: var(--purple-gradient);
+}
+
+/* Change dropdown background color */
+.nav-dropdown .dropdown-menu {
+  background-color: var(--black);
+  border: 2px solid var(--white);
+}
+
+.nav-dropdown .dropdown-item:hover {
+  background-color: #4a148c;
+  color: white;
+}
+
+/* Optional: Style the button */
+.nav-dropdown .btn-danger {
+  background-color: #d32f2f; /* Red shade */
+  border: none;
+}
+
+video{
+  width: 100%;
+  height: 50vh;
+}
+
+@media only screen and (max-width: 992px) {
+  .links {
+    width: 100px;
+    padding: 0.5rem;
+    text-align: center;
+    border-radius: 0.5rem;
+    background: var(--purple-gradient);
+  }
+}
