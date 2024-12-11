@@ -2,6 +2,25 @@
     background-color: black;
 }
 
+.allVideosHead h2{
+    font-family: "Yuji Mai", serif;
+    color: var(--white);
+    font-weight: 700;
+}
+
+.movieCards{
+    width: 10rem !important;
+    height: 10rem !important;
+    padding: 1rem;
+    margin: 0.5rem;
+    background: var(--purple-gradient);
+}
+
+.movieCards img{
+    width: 100%;
+    aspect-ratio: 2/1;
+}
+
 aside{
     right: 10px;
     bottom: 20px;

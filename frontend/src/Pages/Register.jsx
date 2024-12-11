@@ -14,7 +14,7 @@ const Register = () => {
 
   const navigate = useNavigate();
 
-  const { storetokenInLS, backendURL } = useAuth();
+  const { storeTokenInLS, backendURL } = useAuth();
 
   const [step, setStep] = useState(1);
 
@@ -50,7 +50,7 @@ const Register = () => {
       const data = await response.json();
 
       if (response.ok) {
-        storetokenInLS(data.token);
+        storeTokenInLS(data.message.token);
         navigate("/");
         toast.success("User registered successfully!");
       } else {
@@ -152,7 +152,7 @@ const Register = () => {
                       Next
                     </button>
                   ) : (
-                    <button type="submit" className="btn btn-success">
+                    <button onClick={handleSubmit} type="submit" className="btn btn-success">
                       Submit
                     </button>
                   )}
