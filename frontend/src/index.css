@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Yuji+Mai&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Yuji+Mai&display=swap");
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -37,29 +37,29 @@
   font-family: "Roboto Condensed", sans-serif;
 }
 
-li{
+li {
   list-style-type: none;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
-.typeText{
+.typeText {
   font-weight: 700;
   color: var(--purple);
 }
 
-.bg-light-black{
+.bg-light-black {
   color: var(--white);
   background-color: rgba(18, 18, 18, 0.775);
 }
 
-.bg-black{
+.bg-black {
   background-color: var(--black);
 }
 
-.center{
+.center {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,4 +70,25 @@ a{
   background-size: cover;
   background-repeat: no-repeat;
   background-image: url("./assets/img/LoginBG.png");
+}
+
+.slick-next, .slick-prev{
+  z-index: 10;
+}
+
+.slick-prev:hover:before, .slick-next:hover:before{
+  opacity: 1;
+}
+
+.slick-prev:focus:before, .slick-next:focus:before {
+  opacity: 1;
+}
+
+.slick-next:before, .slick-prev:before {
+  content: "→";
+  font-size: 1.5rem !important;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background: var(--purple-gradient);
+  transition: all ease-in-out 0.5s;
 }

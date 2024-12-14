@@ -7,6 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState(null);
   const [film, setFilm] = useState(null);
+  const [movies, setMovies] = useState(null);
   const [loading, setLoading] = useState(true);
   const authorizationToken = `Bearer ${token}`;
   const backendURL = import.meta.env.VITE_BACKEND_URL;
@@ -88,10 +89,31 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const getAllMovies = async () => {
+    try {
+      const response = await fetch(`${backendURL}/movie/all`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (response.ok) {
+        const moviesa = await response.json();
+        setMovies(moviesa);
+      } else {
+        toast.error("Failed to fetch movie data.");
+      }
+    } catch (error) {
+      console.log("Error fetching movie data:", error.message);
+      toast.error("An error occurred. Please try again later.");
+    }
+  };
+
   useEffect(() => {
     if (token) {
       userAuthentication();
       getRandomMovies();
+      getAllMovies();
     } else {
       setLoading(false);
     }
@@ -105,6 +127,7 @@ export const AuthProvider = ({ children }) => {
         backendURL,
         storeTokenInLS,
         film,
+        movies,
         authorizationToken,
         loading,
       }}

@@ -15,6 +15,16 @@ const addMoviesToDB = async (req, res) => {
   }
 };
 
+const getAllMovies = async (req, res) => {
+  try {
+    const movies = await Movie.find({});
+    res.status(200).json({ success: true, message: movies });
+  } catch (error) {
+    console.log("Error while getting movies");
+    res.status(500).json({ success: true, message: "Internal Server Error" });
+  }
+}
+
 const getMovies = async (req, res) => {
   try {
     const { category, time, language, rate, year, search } = req.query;
@@ -85,7 +95,8 @@ const getTopRatedMovies = async (req, res) => {
 
 const getRandomMovies = async (req, res) => {
   try {
-    const movies = await Movie.aggregate([{ $sample: { size: 8 } }]);
+    const movies = await Movie.aggregate([{ $sample: { size: 10 } }]);
+    // const movies = await Movie.find({});
     res.status(200).json({ success: true, message: movies });
   } catch (error) {
     console.log("Error While Getting Random Movies:", error.message);
@@ -97,43 +108,66 @@ const getRandomMovies = async (req, res) => {
 
 // Private Controller
 const createMovieReview = async (req, res) => {
-  const { rating, comment } = req.body;
+  const { rating, comment, image } = req.body; // Destructure the body
+  if (!rating || !comment) {
+    return res.status(400).json({
+      success: false,
+      message: "Rating and comment are required",
+    });
+  }
+
   try {
     const movie = await Movie.findById(req.params.id);
-    if (movie) {
-      const alreadyReviewed = movie.reviews.find(
-        (r) => r.userId.toString() === req.user._id.toString()
-      );
 
-      if (alreadyReviewed) {
-        return res.status(400).json({
-          success: false,
-          message: "You have already reviewed this movie",
-        });
-      }
-
-      const review = {
-        userName: req.user.userName,
-        userId: req.user._id,
-        userImage: req.body.image,
-        rating: Number(rating),
-        comment,
-      };
-
-      movie.reviews.push(review);
-      movie.numOfReviews = movie.reviews.length;
-
-      movie.rate =
-        movie.reviews.reduce((acc, item) => item.rating + acc, 0) /
-        movie.reviews.length;
-      await movie.save();
-    } else {
-      return res
-        .status(400)
-        .json({ success: false, message: "Movie Not Found" });
+    if (!movie) {
+      return res.status(404).json({
+        success: false,
+        message: "Movie Not Found",
+      });
     }
+
+    const alreadyReviewed = movie.reviews.find(
+      (r) => r.userId.toString() === req.user._id.toString()
+    );
+
+    if (alreadyReviewed) {
+      return res.status(400).json({
+        success: false,
+        message: "You have already reviewed this movie",
+      });
+    }
+
+    const review = {
+      userName: req.user.userName,
+      userId: req.user._id,
+      userImage: image || null, // Allow `userImage` to be optional
+      rating: Number(rating),
+      comment,
+    };
+
+    // Add the review to the movie
+    movie.reviews.push(review);
+
+    // Update the number of reviews
+    movie.numOfReviews = movie.reviews.length;
+
+    // Update the average rating
+    movie.rate =
+      movie.reviews.reduce((acc, item) => item.rating + acc, 0) /
+      movie.reviews.length;
+
+    // Save the movie with the new review
+    await movie.save();
+
+    res.status(201).json({
+      success: true,
+      message: "Review added successfully",
+      reviews: movie.reviews, // Return updated reviews
+      rate: movie.rate, // Return the updated average rating
+      numOfReviews: movie.numOfReviews, // Return updated number of reviews
+    });
   } catch (error) {
-    console.log("Error while Creating Movie Review", error.message);
+    console.error("Error while creating movie review:", error.message);
     return res
       .status(500)
       .json({ success: false, message: "Internal Server Error" });
@@ -281,4 +315,5 @@ export {
   deleteMovie,
   deleteAllMovie,
   createMovie,
+  getAllMovies
 };

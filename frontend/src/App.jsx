@@ -4,6 +4,8 @@ import Register from "./Pages/Register";
 import ProtectRoutes from "./Service/ProtectRoutes";
 import Dashboard from "./Pages/Dashboard";
 import Error from "./Pages/Error";
+import MoreInfo from "./Pages/MoreInfo";
+import AllVideo from "./Pages/AllVideo";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
 
           <Route element={<ProtectRoutes />}>
             <Route path="/home" element={<Dashboard />} />
+            <Route path="/Watch/:id" element={<MoreInfo />} />
+            <Route path="/allVideo" element={<AllVideo />} />
           </Route>
 
           <Route path="*" element={<Error />} />

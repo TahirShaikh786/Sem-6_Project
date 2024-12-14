@@ -4,10 +4,12 @@ import { useAuth } from "../Service/auth.jsx";
 import ReactPlayer from "react-player";
 import { Button } from "react-bootstrap";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
+import { useNavigate } from "react-router-dom";
 
 const HeroVideo = () => {
   const [volume, setVolume] = useState(true);
   const { film } = useAuth();
+  const navigate = useNavigate();
 
   const [text] = useTypewriter({
     words: film?.message?.length > 0 ? [film.message[0].name] : ["Loading..."],
@@ -18,9 +20,8 @@ const HeroVideo = () => {
     setVolume(!volume);
   };
 
-  const handleInfo = (id) => {
-    const response = id;
-    console.log("Response", response);
+  const handleVideo = () => {
+    navigate("/allVideo");
   };
 
   return (
@@ -47,8 +48,8 @@ const HeroVideo = () => {
             </h1>
             <p>{film.message[0].desc}</p>
             <div className="buttons d-flex justify-content-between">
-              <Button className="bg-dark bg-gradient" onClick={handleInfo(film.message[0]._id)}>
-                <i className="bi bi-info-circle-fill"></i> More Info
+              <Button className="bg-dark bg-gradient" onClick={handleVideo}>
+                <i className="bi bi-info-circle-fill"></i> Watch More
               </Button>
               <Button className="bg-dark bg-gradient" onClick={handleSound}>
                 {volume ? (

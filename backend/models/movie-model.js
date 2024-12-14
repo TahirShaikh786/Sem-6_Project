@@ -58,6 +58,23 @@ const movieSchema = mongoose.Schema(
     video: {
       type: String,
     },
+    director: {
+      type: String,
+      required: true,
+    },
+    casts: [
+      {
+        name: String,
+      },
+    ],
+    platform: {
+      type: String,
+      required: true,
+    },
+    platformIcon: {
+      type: String,
+      required: true,
+    },
     rate: {
       type: Number,
       required: true,
@@ -69,12 +86,6 @@ const movieSchema = mongoose.Schema(
       default: 0,
     },
     reviews: [reviewSchema],
-    casts: [
-      {
-        name: { type: String, required: true },
-        image: { type: String, required: true },
-      },
-    ],
   },
   {
     timestamps: true,
