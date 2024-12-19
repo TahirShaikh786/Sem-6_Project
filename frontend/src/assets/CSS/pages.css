@@ -11,7 +11,7 @@
 .movieCards {
   width: 110%;
   height: 9rem !important;
-  margin: 0 auto;
+  margin: 1rem auto;
   padding: 0 1rem;
   position: relative;
   background: transparent !important;
@@ -24,12 +24,33 @@
   margin: 0 1rem;
   border: 2px solid var(--purple);
   border-radius: 1rem;
+  transition: transform 0.3s ease; /* Smooth transition for scaling */
+}
+
+.movieCards:hover img {
+  transform: scale(1.1); /* Zoom effect on hover */
+}
+
+.movieCards:hover {
+  height: 500px;
+  perspective: 200px;
+}
+
+.watchHead{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 0;
+}
+
+.watchHead a{
+  color: var(--white);
+  text-decoration: none;
 }
 
 .watchHead h1 {
   font-style: italic;
   font-weight: 700;
-  padding: 1rem;
   text-wrap: wrap;
   text-decoration: underline;
   color: var(--purple);
@@ -78,7 +99,7 @@
 }
 
 .descBox {
-  padding:  1rem 15rem;
+  padding: 1rem 15rem;
   color: var(--white);
 }
 
@@ -87,11 +108,11 @@
   justify-content: space-around;
 }
 
-.descBox span{
+.descBox span {
   color: var(--purple);
 }
 
-.descBox img{
+.descBox img {
   width: 100px;
   height: 100px;
   border-radius: 10px;
@@ -107,33 +128,37 @@
   background-color: var(--white);
 }
 
-.descBox input:focus{
-    border: 1px solid var(--purple);
+.descBox input:focus {
+  border: 1px solid var(--purple);
 }
 
-.reviewAdd h5{
-  color: var(--white);
-  font-weight: 700;
-  font-style: italic;
-  text-decoration: underline;
-}
-
-.reviewAdd input{
+.reviewAdd input {
   width: 80%;
   font-weight: 600;
-  color: var(--black);
+  color: var(--white);
   outline: none;
   border: 0;
   padding: 0.5rem 1rem;
-  background-color: var(--white);
-  border-radius: 0.8rem 0 0 0.8rem;
+  background: transparent;
+  border-radius: 0rem;
+  transition: all linear 0.2s;
 }
 
-.reviewAdd button{
+.reviewAdd input:focus{
+  border-bottom: 2px solid var(--purple);
+}
+
+.reviewAdd button {
   border: 0;
+  display: none;
   padding: 0.5rem 1rem;
-  border-radius: 0 0.8rem 0.8rem 0;
+  border-radius: 0.5rem;
   background: var(--purple-gradient);
+  transition: all linear 0.2s;
+}
+
+.reviewAdd input:focus + button{
+  display: block;
 }
 
 .star {
@@ -157,6 +182,38 @@
 
 .star .bi-star {
   color: #ddd;
+}
+
+.reviewsDisplay img{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.reviewsDisplay h5{
+  font-weight: 700;
+  font-style: italic;
+  color: var(--white);
+  text-align: center;
+}
+
+.reviewsDisplay h6{
+  color: var(--white);
+}
+
+.reviewsDisplay h6:first-child{
+  text-transform: capitalize;
+}
+
+.reviewsDisplay p{
+  margin: 0;
+  padding: 0;
+  color: var(--purple);
+}
+
+footer {
+  color: var(--white);
+  background-color: var(--black);
 }
 
 aside {

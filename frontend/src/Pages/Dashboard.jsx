@@ -8,13 +8,13 @@ import HeroVideo from "../Components/HeroVideo";
 import { useAuth } from "../Service/auth.jsx";
 import { Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import Footer from "../Components/Footer.jsx";
+import ReactPlayer from "react-player";
 
 const Dashboard = () => {
   const { film } = useAuth();
   const navigate = useNavigate();
   const handleInfo = (id) => {
-    console.log("ID: " + id);
-
     navigate(`/Watch/${id}`);
   };
 
@@ -94,6 +94,8 @@ const Dashboard = () => {
       <aside>
         <img src={microphone} alt="microphone" />
       </aside>
+
+      <Footer />
     </>
   );
 };

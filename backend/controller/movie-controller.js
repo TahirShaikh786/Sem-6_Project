@@ -23,7 +23,7 @@ const getAllMovies = async (req, res) => {
     console.log("Error while getting movies");
     res.status(500).json({ success: true, message: "Internal Server Error" });
   }
-}
+};
 
 const getMovies = async (req, res) => {
   try {
@@ -106,6 +106,23 @@ const getRandomMovies = async (req, res) => {
   }
 };
 
+const getMovieReviews = async (req, res) => {
+  try {
+    const movie = await Movie.findById(req.params.id);
+    if (movie) {
+      return res.status(200).json({ success: true, message: movie.reviews });
+    } else {
+      return res
+        .status(400)
+        .json({ success: false, message: "Movie Not Found" });
+    }
+  } catch (error) {
+    return res
+      .status(400)
+      .json({ success: false, message: "Internal Server Error" });
+  }
+};
+
 // Private Controller
 const createMovieReview = async (req, res) => {
   const { rating, comment, image } = req.body; // Destructure the body
@@ -117,6 +134,7 @@ const createMovieReview = async (req, res) => {
   }
 
   try {
+    // Find the movie by ID
     const movie = await Movie.findById(req.params.id);
 
     if (!movie) {
@@ -126,8 +144,14 @@ const createMovieReview = async (req, res) => {
       });
     }
 
+    // Ensure reviews array exists
+    if (!movie.reviews) {
+      movie.reviews = [];
+    }
+
+    // Check if the user has already reviewed the movie
     const alreadyReviewed = movie.reviews.find(
-      (r) => r.userId.toString() === req.user._id.toString()
+      (r) => String(r.userId) === String(req.user._id)
     );
 
     if (alreadyReviewed) {
@@ -137,6 +161,7 @@ const createMovieReview = async (req, res) => {
       });
     }
 
+    // Create a new review
     const review = {
       userName: req.user.userName,
       userId: req.user._id,
@@ -156,7 +181,7 @@ const createMovieReview = async (req, res) => {
       movie.reviews.reduce((acc, item) => item.rating + acc, 0) /
       movie.reviews.length;
 
-    // Save the movie with the new review
+    // Save the updated movie
     await movie.save();
 
     res.status(201).json({
@@ -315,5 +340,6 @@ export {
   deleteMovie,
   deleteAllMovie,
   createMovie,
-  getAllMovies
+  getAllMovies,
+  getMovieReviews,
 };

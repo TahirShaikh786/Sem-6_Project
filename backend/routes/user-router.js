@@ -17,6 +17,7 @@ router.delete("/:id", auth.protect, userController.deleteUser);
 router.get("/favourites", auth.protect, userController.getLikedMovies);
 router.post("/favourites", auth.protect, userController.addLikedMovies);
 router.delete("/favourites/empty", auth.protect, userController.emptyFavourites);
+router.post("/:id/search", auth.protect, userController.searchData);
 
 // Admin Routes
 router.get("/admin", auth.protect, auth.admin, userController.getUsers);

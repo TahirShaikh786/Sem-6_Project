@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../assets/CSS/pages.css";
 import { useAuth } from "../Service/auth.jsx";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Header from "../Components/Header.jsx";
 import { Helmet } from "react-helmet";
 import ReactPlayer from "react-player";
@@ -11,25 +11,32 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
 
 const MoreInfo = () => {
-  const [volume, setVolume] = useState(false);
+  const [volume, setVolume] = useState(true);
   const [play, setPlay] = useState(true);
-  const [comment, setComment] = useState(null);
+  const [like, setLike] = useState(false);
+  const [comment, setComment] = useState([]);
+  const [film, setFilm] = useState(null);
   const [review, setReview] = useState({
     comment: "",
     rating: 0,
   });
 
   const { id } = useParams();
-  const { movies, backendURL, authorizationToken } = useAuth();
+  const { user, movies, userAuthentication, backendURL, authorizationToken } =
+    useAuth();
   const movie = movies.message.find((m) => m._id === id);
 
-  const handleVolume = () => {
-    setVolume(!volume);
-  };
+  useEffect(() => {
+    if (movie && user) {
+      setComment(movie.reviews || []);
+    }
+    if (user.likedMovies.includes(movie._id)) {
+      setLike(true);
+    }
+    fetchMovieDetails();
+  }, 100);
 
-  const handlePlay = () => {
-    setPlay(!play);
-  };
+  // [movie, user, id, like]
 
   const handleInput = (e) => {
     let name = e.target.name;
@@ -48,6 +55,45 @@ const MoreInfo = () => {
     });
   };
 
+  const handleLike = async (id) => {
+    try {
+      const response = await fetch(`${backendURL}/auth/favourites`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `${authorizationToken}`,
+        },
+        body: JSON.stringify({ movieId: id }),
+      });
+
+      if (response.ok) {
+        setLike(true);
+        userAuthentication();
+        toast.success("Added to favourites!");
+      } else {
+        toast.error("Failed to add to favourites.");
+      }
+    } catch (error) {
+      toast.error("Something went wrong. Please try again.");
+    }
+  };
+
+  const fetchMovieDetails = async () => {
+    try {
+      const response = await fetch(`${backendURL}/movie/${id}`);
+      const data = await response.json();
+      if (response.ok) {
+        setFilm(data.message);
+        setComment(data.message.reviews || []); // Update comments from backend
+      } else {
+        toast.error("Failed to fetch movie details.");
+      }
+    } catch (error) {
+      console.error("Error fetching movie:", error);
+      toast.error("Something went wrong.");
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -55,13 +101,12 @@ const MoreInfo = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${authorizationToken}`,
+        Authorization: `${authorizationToken}`,
       },
       body: JSON.stringify(review),
     });
 
     const data = await response.json();
-    setComment(data.reviews);
 
     if (response.ok) {
       setReview({
@@ -69,6 +114,8 @@ const MoreInfo = () => {
         rating: 0,
       });
       toast.success("Review Has been successfully Submitted");
+      setComment(data.reviews);
+      console.log("2", comment);
     } else {
       toast.error("You can Do only 1 Review");
     }
@@ -108,6 +155,7 @@ const MoreInfo = () => {
       },
     ],
   };
+
   return (
     <>
       <Helmet>
@@ -118,6 +166,9 @@ const MoreInfo = () => {
       <section className="bg-black py-5">
         <Container>
           <Row className="watchHead">
+            <Link to="/home">
+              <i className="bi bi-caret-left-fill"></i> Home
+            </Link>
             <h1 className="text-center">{movie.name}</h1>
           </Row>
           <Row className="d-flex flex-wrap justify-content-center">
@@ -143,18 +194,33 @@ const MoreInfo = () => {
                 />
                 <div className="video-overlay"></div>
                 <div className="player-Controls">
-                  <Button onClick={handlePlay}>
+                  <Button
+                    onClick={() => {
+                      setPlay(!play);
+                    }}
+                  >
                     {play ? (
-                      <i class="bi bi-pause-circle"></i>
+                      <i className="bi bi-pause-circle"></i>
                     ) : (
-                      <i class="bi bi-play-circle"></i>
+                      <i className="bi bi-play-circle"></i>
                     )}
                   </Button>
-                  <Button onClick={handleVolume}>
-                    {volume ? (
-                      <i class="bi bi-volume-up"></i>
+                  <Button onClick={() => handleLike(movie._id)}>
+                    {like ? (
+                      <i class="bi bi-suit-heart-fill"></i>
                     ) : (
-                      <i class="bi bi-volume-mute-fill"></i>
+                      <i className="bi bi-heart"></i>
+                    )}
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setVolume(!volume);
+                    }}
+                  >
+                    {volume ? (
+                      <i className="bi bi-volume-up"></i>
+                    ) : (
+                      <i className="bi bi-volume-mute-fill"></i>
                     )}
                   </Button>
                 </div>
@@ -207,12 +273,23 @@ const MoreInfo = () => {
           </Row>
           <Row className="d-flex flex-wrap justify-content-center my-2">
             <Col md={6} className="reviewAdd">
-              <h5>Add Your Review</h5>
               <form
-                class="row my-3 d-flex flex-row justify-content-center"
+                className="row my-3 d-flex flex-row justify-content-center"
                 onSubmit={handleSubmit}
               >
-                <div className="col-12 d-flex justify-content-center">
+                <div className="col-12 d-flex">
+                  <input
+                    type="text"
+                    name="comment"
+                    value={review.comment}
+                    onChange={handleInput}
+                    placeholder="Add Your Review"
+                  />
+                  <button type="submit">
+                    <i className="bi bi-send-fill"></i>
+                  </button>
+                </div>
+                <div className="col-6 d-flex justify-content-start">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <label key={star} className="star">
                       <input
@@ -230,31 +307,23 @@ const MoreInfo = () => {
                     </label>
                   ))}
                 </div>
-                <div className="col-12">
-                  <input
-                    type="text"
-                    name="comment"
-                    value={review.comment}
-                    onChange={handleInput}
-                    placeholder="Add Your Review"
-                  />
-                  <button type="submit">
-                    <i class="bi bi-send-fill"></i>
-                  </button>
-                </div>
               </form>
             </Col>
-            <Col md={6}>
-              <h5>Reviews</h5>
-              {comment.map((review) => (
-                  <div key={review._id} className="reviewBox">
-                    <div className="d-flex justify-content-between">
-                      <h6>{review.userName || "Anonymous"}</h6>
-                      <h6>{"⭐".repeat(Number(review.rating) || 0)}</h6>
+            <Col md={6} className="reviewsDisplay d-flex flex-wrap">
+              {comment.map((review, i) => (
+                <div className="d-flex my-3" key={i}>
+                  <img src={dummy} alt={review.userName} />
+                  <div className="d-flex flex-column px-4">
+                    <h6>{review.userName || "Anonymous"}</h6>
+                    <div className="d-flex flex-column">
+                      <p className="d-flex  ">
+                        Comment:- <h6 className="px-2">{review.comment}</h6>
+                      </p>
+                      <p>{"⭐".repeat(review.rating)}</p>
                     </div>
-                    <p>{review.comment}</p>
                   </div>
-                ))}
+                </div>
+              ))}
             </Col>
           </Row>
         </Container>

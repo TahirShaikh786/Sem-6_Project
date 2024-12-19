@@ -1,19 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import "../assets/CSS/components.css";
 import headerLogo from "../assets/img/titleImg.png";
 import { useAuth } from "../Service/auth.jsx";
 import {
   Button,
   Container,
-  Form,
   Nav,
   Navbar,
   NavDropdown,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import SearchModal from "./SearchModal.jsx";
 
 const Header = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { user, logoutUser } = useAuth();
   const Img = (
     <img
@@ -27,9 +28,14 @@ const Header = () => {
     logoutUser();
   };
 
-  const handleSubmit = (e) => {
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  // Function to handle closing the modal
+  const closeModal = (e) => {
     e.preventDefault();
-    toast.info("Search functionality is not implemented yet!");
+    setIsModalOpen(false);
   };
 
   return (
@@ -39,7 +45,7 @@ const Header = () => {
           <Navbar collapseOnSelect expand="lg" className="headerNavbar">
             <Container>
               <Navbar.Brand className="navLogo">
-                <img src={headerLogo} alt="header Logo" />
+                <Link to="/home"><img src={headerLogo} alt="header Logo" /></Link>
               </Navbar.Brand>
               <Navbar.Toggle aria-controls="responsive-navbar-nav" className="navbar-toggle-custom">
                 <img
@@ -54,10 +60,11 @@ const Header = () => {
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto"></Nav>
                 <Nav className="d-flex flex-md-column flex-lg-row justify-content-center align-items-center">
-                  <Link className="m-2 links">All Movies</Link>
-                  <Link className="m-2 links">Categories</Link>
+                  <Link to="/allVideo" className="m-2 links">All Movies</Link>
+                  <Link to="/categories" className="m-2 links">Categories</Link>
                   <Link className="m-2 links">Reviews</Link>
-                  <Link className="m-2 links">Search</Link>
+                  <Link className="m-2 links" onClick={openModal}>{isModalOpen ? <SearchModal closeModal={closeModal} />: 
+                  <i className='bi bi-search'>{" "} Search</i>}</Link>
                   <Link className="m-2 links d-sm-block d-lg-none">
                     Profile
                   </Link>

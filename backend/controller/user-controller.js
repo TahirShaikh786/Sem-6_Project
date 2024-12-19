@@ -1,7 +1,7 @@
 import User from "../models/user-model.js";
+import Movie from "../models/movie-model.js";
 import bcrypt from "bcryptjs";
 import * as auth from "../middleware/auth.js";
-import mongoose from "mongoose";
 
 // Public Controller
 const signUp = async (req, res) => {
@@ -253,7 +253,7 @@ const addLikedMovies = async (req, res) => {
       await user.save();
       res.json({ success: true, likedMovies: user.likedMovies });
     } else {
-      return res.status(404).json({ message: "User not Found" });
+      return res.status(404).json({ message: "Movie not Found" });
     }
   } catch (error) {
     console.log("Error While adding Favourites", error.message);
@@ -274,6 +274,27 @@ const emptyFavourites = async (req, res) => {
     }
   } catch (error) {
     res.status(400).json({ message: error.message });
+  }
+};
+
+const searchData = async (req, res) => {
+  try {
+    const { query } = req.body;
+    const user = await User.findById(req.params.id);
+    const movies = await Movie.find({
+      name: { $regex: query, $options: "i" },
+    });
+    console.log("Moviee", movies);
+    if (user) {
+        user.searchHistory.push(query);
+        await user.save();
+        return res.status(200).json({ message: movies });
+    } else {
+      return res.status(404).json({ message: "User not found" });
+    }
+  } catch (error) {
+    console.log("Error in search", error.message);
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
@@ -330,4 +351,5 @@ export {
   getLikedMovies,
   addLikedMovies,
   emptyFavourites,
+  searchData,
 };

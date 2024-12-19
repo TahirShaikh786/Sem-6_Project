@@ -14,7 +14,7 @@
   --purple-gradient: linear-gradient(to right, #6a11cb, #9b40e8);
 
   color-scheme: light dark;
-  background-color: var(--black);
+  /* background-color: var(--black); */
 
   /* Font-family */
   --Roboto: "Roboto Condensed", sans-serif;
@@ -68,6 +68,7 @@ a {
 .authBG {
   height: 100vh;
   background-size: cover;
+  /* background-position: center; */
   background-repeat: no-repeat;
   background-image: url("./assets/img/LoginBG.png");
 }

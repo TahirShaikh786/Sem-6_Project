@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import "../assets/CSS/components.css";
 import { useAuth } from "../Service/auth.jsx";
 import ReactPlayer from "react-player";
-import { Button } from "react-bootstrap";
+import { Button, Row } from "react-bootstrap";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const HeroVideo = () => {
   const [volume, setVolume] = useState(true);

@@ -9,6 +9,7 @@ router.post("/import", movieController.addMoviesToDB);
 router.get("/all", movieController.getAllMovies);
 router.get("/", movieController.getMovies);
 router.get("/:id", movieController.getMovieById);
+router.get("/reviews/:id", movieController.getMovieReviews);
 router.get("/top/rated", movieController.getTopRatedMovies);
 router.get("/mix/random", movieController.getRandomMovies);
 

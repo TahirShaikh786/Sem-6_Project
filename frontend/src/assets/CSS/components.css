@@ -113,6 +113,30 @@ header {
   padding: 5px 10px; /* Optional padding inside the text */
 }
 
+.modalBox{
+  display: flex;
+}
+
+.modalBox input{
+  border: none;
+  color: var(--black);
+  font-weight: 500;
+  border-radius: 0.5rem 0 0 0.5rem;
+  padding: 0.3rem;
+  background-color: var(--white);
+}
+
+.modalBox button{
+  border: none;
+  font-weight: 700;
+  padding: 0.3rem 0.5rem;
+  background: var(--purple-gradient);
+}
+
+.modalBox button:last-child{
+  border-radius: 0 0.3rem 0.3rem 0;
+}
+
 @media only screen and (max-width: 992px) {
   .links {
     width: 100px;

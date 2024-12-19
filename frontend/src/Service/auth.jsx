@@ -6,11 +6,11 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState(null);
-  const [film, setFilm] = useState(null);
-  const [movies, setMovies] = useState(null);
+  const [film, setFilm] = useState([]);
+  const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const authorizationToken = `Bearer ${token}`;
-  const backendURL = import.meta.env.VITE_BACKEND_URL;
+  const backendURL = import.meta.env.VITE_BACKEND_URL;  
 
   // Store token in LocalStorage
   const storeTokenInLS = (serverToken) => {
@@ -34,6 +34,7 @@ export const AuthProvider = ({ children }) => {
         setToken("");
         setUser(null);
         localStorage.removeItem("token");
+        localStorage.removeItem("liked");
       } else {
         toast.error(data.message);
       }
@@ -127,6 +128,7 @@ export const AuthProvider = ({ children }) => {
         backendURL,
         storeTokenInLS,
         film,
+        userAuthentication,
         movies,
         authorizationToken,
         loading,

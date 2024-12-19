@@ -1,5 +1,34 @@
 import mongoose from "mongoose";
 
+const viewSchema = mongoose.Schema({
+  movieId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Movies",
+    required: true,
+  },
+  movieName: {
+    type: String,
+    required: true,
+  },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  category: {
+    type: String,
+    required: true,
+  },
+  counter: {
+    type: Number,
+    default: 0,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
 const userSchema = mongoose.Schema(
   {
     userName: {
@@ -27,6 +56,7 @@ const userSchema = mongoose.Schema(
       type: Array,
       default: [],
     },
+    viewMovies: [viewSchema],
     likedMovies: [
       {
         type: mongoose.Schema.Types.ObjectId,
