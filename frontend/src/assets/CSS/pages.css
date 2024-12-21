@@ -36,6 +36,10 @@
   perspective: 200px;
 }
 
+.movieContainer{
+  /* display: flex; */
+}
+
 .watchHead{
   display: flex;
   justify-content: center;

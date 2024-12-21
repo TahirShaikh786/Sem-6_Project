@@ -2,19 +2,10 @@ import React, { useState } from "react";
 import "../assets/CSS/components.css";
 import headerLogo from "../assets/img/titleImg.png";
 import { useAuth } from "../Service/auth.jsx";
-import {
-  Button,
-  Container,
-  Nav,
-  Navbar,
-  NavDropdown,
-} from "react-bootstrap";
+import { Button, Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
-import SearchModal from "./SearchModal.jsx";
 
 const Header = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const { user, logoutUser } = useAuth();
   const Img = (
     <img
@@ -28,16 +19,6 @@ const Header = () => {
     logoutUser();
   };
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  // Function to handle closing the modal
-  const closeModal = (e) => {
-    e.preventDefault();
-    setIsModalOpen(false);
-  };
-
   return (
     <>
       <header>
@@ -45,9 +26,14 @@ const Header = () => {
           <Navbar collapseOnSelect expand="lg" className="headerNavbar">
             <Container>
               <Navbar.Brand className="navLogo">
-                <Link to="/home"><img src={headerLogo} alt="header Logo" /></Link>
+                <Link to="/home">
+                  <img src={headerLogo} alt="header Logo" />
+                </Link>
               </Navbar.Brand>
-              <Navbar.Toggle aria-controls="responsive-navbar-nav" className="navbar-toggle-custom">
+              <Navbar.Toggle
+                aria-controls="responsive-navbar-nav"
+                className="navbar-toggle-custom"
+              >
                 <img
                   src={user.image}
                   alt="custom-icon"
@@ -60,11 +46,16 @@ const Header = () => {
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto"></Nav>
                 <Nav className="d-flex flex-md-column flex-lg-row justify-content-center align-items-center">
-                  <Link to="/allVideo" className="m-2 links">All Movies</Link>
-                  <Link to="/categories" className="m-2 links">Categories</Link>
+                  <Link to="/allVideo" className="m-2 links">
+                    All Movies
+                  </Link>
+                  <Link to="/categories" className="m-2 links">
+                    Categories
+                  </Link>
                   <Link className="m-2 links">Reviews</Link>
-                  <Link className="m-2 links" onClick={openModal}>{isModalOpen ? <SearchModal closeModal={closeModal} />: 
-                  <i className='bi bi-search'>{" "} Search</i>}</Link>
+                  <Link to="/search" className="m-2 links">
+                    Search
+                  </Link>
                   <Link className="m-2 links d-sm-block d-lg-none">
                     Profile
                   </Link>

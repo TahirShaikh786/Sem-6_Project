@@ -38,7 +38,7 @@ const getMovies = async (req, res) => {
     };
 
     const page = Number(req.query.pageNumber) || 1;
-    const limit = 2;
+    const limit = 6;
     const skip = (page - 1) * limit;
 
     const movies = await Movie.find(query)
@@ -187,9 +187,9 @@ const createMovieReview = async (req, res) => {
     res.status(201).json({
       success: true,
       message: "Review added successfully",
-      reviews: movie.reviews, // Return updated reviews
-      rate: movie.rate, // Return the updated average rating
-      numOfReviews: movie.numOfReviews, // Return updated number of reviews
+      reviews: movie.reviews,
+      rate: movie.rate,
+      numOfReviews: movie.numOfReviews,
     });
   } catch (error) {
     console.error("Error while creating movie review:", error.message);

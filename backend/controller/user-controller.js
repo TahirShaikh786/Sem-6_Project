@@ -286,9 +286,12 @@ const searchData = async (req, res) => {
     });
     console.log("Moviee", movies);
     if (user) {
-        user.searchHistory.push(query);
+      if (movies.length > 0 && !user.searchHistory.includes(movies[0].name)) {
+        user.searchHistory.push(movies[0].name);
         await user.save();
         return res.status(200).json({ message: movies });
+      }
+      return res.status(200).json({ message: movies });
     } else {
       return res.status(404).json({ message: "User not found" });
     }
