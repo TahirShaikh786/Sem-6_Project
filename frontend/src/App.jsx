@@ -7,8 +7,8 @@ import Error from "./Pages/Error";
 import MoreInfo from "./Pages/MoreInfo";
 import AllVideo from "./Pages/AllVideo";
 import Categories from "./Pages/Categories";
-import Action from "./Pages/Action";
 import Search from "./Pages/Search";
+import Profile from "./Pages/Profile";
 
 function App() {
   return (
@@ -22,10 +22,9 @@ function App() {
             <Route path="/home" element={<Dashboard />} />
             <Route path="/Watch/:id" element={<MoreInfo />} />
             <Route path="/allVideo" element={<AllVideo />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/search" element={<Search />} />
-            <Route path="/categories" element={<Categories />}>
-              <Route path="action" element={<Action />} />
-            </Route>
+            <Route path="/categories" element={<Categories />} />
           </Route>
 
           <Route path="*" element={<Error />} />

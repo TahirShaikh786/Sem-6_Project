@@ -56,7 +56,7 @@ const Header = () => {
                   <Link to="/search" className="m-2 links">
                     Search
                   </Link>
-                  <Link className="m-2 links d-sm-block d-lg-none">
+                  <Link to='/profile' className="m-2 links d-sm-block d-lg-none">
                     Profile
                   </Link>
                   <Button
@@ -71,7 +71,7 @@ const Header = () => {
                     id="collapsible-nav-dropdown"
                   >
                     <NavDropdown.Item className="text-center">
-                      <Link className="drop_Links">
+                      <Link to="/profile" className="drop_Links">
                         <i class="bi bi-file-earmark-person"></i> Profile
                       </Link>
                     </NavDropdown.Item>

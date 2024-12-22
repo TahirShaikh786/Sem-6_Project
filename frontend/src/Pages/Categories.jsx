@@ -6,43 +6,36 @@ import Footer from "../Components/Footer";
 import Videos from "../Components/Videos";
 import { useAuth } from "../Service/auth.jsx";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const Categories = () => {
   const [movie, setMovie] = useState([]);
-  const [currentPage, setCurrentPage] = useState(2);
+  const [category, setCategory] = useState("");
 
   const { backendURL } = useAuth();
+  const navigate = useNavigate();
 
   const handleMovie = async (name) => {
-    const response = await fetch(
-      `${backendURL}/movie?category=${name}&pageNumber=${currentPage}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    setCategory(name);
+    const response = await fetch(`${backendURL}/movie?category=${name}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     const data = await response.json();
-    console.log("");
+    console.log("Data", data.message.movies);
 
     if (response.ok) {
       setMovie(data.message.movies);
     }
   };
 
-  console.log("Moive", movie);
+  const handleWatch = (id) => {
+    navigate(`/Watch/${id}`);
+  }
 
-  const nextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-    handleMovie("action");
-  };
-
-  const prevPage = () => {
-    setCurrentPage((prevPage) => (prevPage > 1 ? prevPage - 1 : 1));
-    handleMovie("action");
-  };
   return (
     <>
       <Helmet>
@@ -54,7 +47,7 @@ const Categories = () => {
       <section className="bg-black pt-5">
         <Container className="pt-5 mt-5">
           <Row className="d-flex justify-content-center">
-            <div className="d-flex justify-content-evenly">
+            <div className="categoryBtn d-flex justify-content-evenly">
               <Button onClick={() => handleMovie("Action")}>Action</Button>
               <Button onClick={() => handleMovie("Horror")}>Horror</Button>
               <Button onClick={() => handleMovie("Sci-Fi")}>Sci-Fi</Button>
@@ -70,35 +63,30 @@ const Categories = () => {
       </section>
 
       {movie.length > 0 ? (
-        <section className="bg-black">
+        <section className="bg-black py-5">
           <Container>
-            <Row className="d-flex jusitfy-content-center">
-              <Col md={12}>
-                {movie.map((item, i) => {
-                  return (
-                    <div className="movieContainer" key={i}>
-                      <Col
-                        sm={10}
-                        md={6}
-                        lg={3}
-                        className="d-flex justify-content-center"
-                      >
-                        <Card>
-                          <Card.Img variant="top" src={item.titleImage} />
-                          <Card.Body>
-                            <Card.Title>{item.name}</Card.Title>
-                            <Card.Text>
-                              Some quick example text to build on the card title
-                              and make up the bulk of the card's content.
-                            </Card.Text>
-                            <Button variant="primary">Go somewhere</Button>
-                          </Card.Body>
-                        </Card>
-                      </Col>
-                    </div>
-                  );
-                })}
-              </Col>
+            <Row>
+              <h2 className="text-center text-white fst-italic">{category}</h2>
+            </Row>
+            <Row className="d-flex justify-content-center">
+              {movie.map((item, i) => {
+                return (
+                  <Col md={4} sm={6} xs={12} key={i} className="mb-4">
+                    <Card
+                      className="movieCard"
+                      onClick={() => {
+                        handleWatch(item._id);
+                      }}
+                    >
+                      <Card.Img src={item.titleImage} />
+                      <Card.Body>
+                        <Card.Title>{item.name}</Card.Title>
+                        <Card.Text>{item.desc}</Card.Text>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                );
+              })}
             </Row>
           </Container>
         </section>

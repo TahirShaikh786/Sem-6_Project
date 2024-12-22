@@ -427,7 +427,7 @@ export const MoviesData = [
     platform: "Amazon Prime",
     platformIcon: "/prime-video.jpg",
     time: 2.0,
-    video: "https://www.youtube.com/watch?v=SkpTg4TtLvk",
+    video: "https://youtu.be/V6wWKNij_1M?si=5ud0ElhEsZ4h6j9u",
     director: "Ari Aster",
     casts: [
       { name: "Toni Collette" },
@@ -448,7 +448,7 @@ export const MoviesData = [
     platform: "Netflix",
     platformIcon: "/netflix.jpg",
     time: 1.9,
-    video: "https://www.youtube.com/watch?v=k5WQO9bu11g",
+    video: "https://youtu.be/k5WQZzDRVtw?si=xnKYCHfhVoz1gatj",
     director: "Jennifer Kent",
     casts: [
       { name: "Essie Davis" },
@@ -509,7 +509,7 @@ export const MoviesData = [
     platform: "HBO Max",
     platformIcon: "/hbo-max.jpg",
     time: 2.0,
-    video: "https://www.youtube.com/watch?v=iQXmlfR7JqY",
+    video: "https://youtu.be/iQXmlf3Sefg?si=3PHjJncpzt7ebdTp",
     director: "Robert Eggers",
     casts: [
       { name: "Anya Taylor-Joy" },
@@ -530,7 +530,7 @@ export const MoviesData = [
     platform: "Prime Video",
     platformIcon: "/prime-video.jpg",
     time: 1.8,
-    video: "https://www.youtube.com/watch?v=9gkXcL9y5VY",
+    video: "https://youtu.be/uukQ_6szDm8?si=M7FXtJ1MCfr49vCV",
     director: "Gore Verbinski",
     casts: [
       { name: "Naomi Watts" },
@@ -551,7 +551,7 @@ export const MoviesData = [
     platform: "Hulu",
     platformIcon: "/hulu.jpg",
     time: 2.0,
-    video: "https://www.youtube.com/watch?v=7AIdXde6tR8",
+    video: "https://youtu.be/NsIilFNNmkY?si=XX6aW4_6NsR0es7h",
     director: "Drew Goddard",
     casts: [
       { name: "Kristen Connolly" },
@@ -572,7 +572,7 @@ export const MoviesData = [
     platform: "Prime Video",
     platformIcon: "/prime-video.jpg",
     time: 2.5,
-    video: "https://www.youtube.com/watch?v=1Vnghdsz0wU",
+    video: "https://youtu.be/xb-lGS5RV5A?si=yt5ycZGokW3YkPPJ",
     director: "Ari Aster",
     casts: [
       { name: "Florence Pugh" },
@@ -593,7 +593,7 @@ export const MoviesData = [
     platform: "Netflix",
     platformIcon: "/netflix.jpg",
     time: 1.7,
-    video: "https://www.youtube.com/watch?v=5tQvD8iJKlA",
+    video: "https://youtu.be/mO0OuR26IZM?si=xwayRPcuXKGQur8q",
     director: "Sam Hargrave",
     casts: [
       { name: "Chris Hemsworth" },
@@ -614,7 +614,7 @@ export const MoviesData = [
     platform: "Netflix",
     platformIcon: "/netflix.jpg",
     time: 2.2,
-    video: "https://www.youtube.com/watch?v=6akX8uEPtCk",
+    video: "https://youtu.be/BmllggGO4pM?si=akw_KBPEJvmlUgWl",
     director: "Anthony Russo, Joe Russo",
     casts: [
       { name: "Ryan Gosling" },
@@ -635,7 +635,7 @@ export const MoviesData = [
     platform: "Disney+",
     platformIcon: "/disney-plus.jpg",
     time: 2.0,
-    video: "https://www.youtube.com/watch?v=4g3JQk6vRlY",
+    video: "https://youtu.be/cqGjhVJWtEg?si=SXpJrALL07HYh8AK",
     director: "Joaquim Dos Santos, Kemp Powers, Justin K. Thompson",
     casts: [
       { name: "Shameik Moore" },
@@ -656,7 +656,7 @@ export const MoviesData = [
     platform: "Paramount+",
     platformIcon: "/paramount-plus.jpg",
     time: 2.1,
-    video: "https://www.youtube.com/watch?v=giX4xE3gpLk",
+    video: "https://youtu.be/qSqVVswa420?si=rRryqHf0TUq57UtY",
     director: "Joseph Kosinski",
     casts: [
       { name: "Tom Cruise" },
@@ -677,7 +677,7 @@ export const MoviesData = [
     platform: "Prime Video",
     platformIcon: "/prime-video.jpg",
     time: 1.6,
-    video: "https://www.youtube.com/watch?v=JoVdT5rY_vI",
+    video: "https://youtu.be/eHp3MbsCbMg?si=1zPuMIwqc-A2yo8D",
     director: "Ruben Fleischer",
     casts: [
       { name: "Tom Holland" },
@@ -698,7 +698,7 @@ export const MoviesData = [
     platform: "HBO Max",
     platformIcon: "/hbo-max.jpg",
     time: 2.5,
-    video: "https://www.youtube.com/watch?v=MxKHaL_NzTc",
+    video: "https://youtu.be/mqqft2x_Aa4?si=RJlNpdJhv1_ndzTh",
     director: "Matt Reeves",
     casts: [
       { name: "Robert Pattinson" },
@@ -719,7 +719,7 @@ export const MoviesData = [
     platform: "Peacock",
     platformIcon: "/peacock.jpg",
     time: 2.7,
-    video: "https://www.youtube.com/watch?v=RHR7jYfjGfk",
+    video: "https://youtu.be/fb5ELWi-ekk?si=Q28WFPRARib2-62Q",
     director: "Colin Trevorrow",
     casts: [
       { name: "Chris Pratt" },
@@ -740,7 +740,7 @@ export const MoviesData = [
     platform: "Disney+",
     platformIcon: "/disney-plus.jpg",
     time: 2.4,
-    video: "https://www.youtube.com/watch?v=5pm3wF_Xp6I",
+    video: "https://youtu.be/_Z3QKkl1WyM?si=nLyVYsBWQpN-8s7M",
     director: "Ryan Coogler",
     casts: [
       { name: "Letitia Wright" },
@@ -782,7 +782,7 @@ export const MoviesData = [
     platform: "HBO Max",
     platformIcon: "/hbo-max.jpg",
     time: 2.2,
-    video: "https://www.youtube.com/watch?v=TK2pbzRbx2M",
+    video: "https://youtu.be/aSiDu3Ywi8E?si=lOj0lKrCuPdgD7l9",
     director: "Justin Lin",
     casts: [
       { name: "Vin Diesel" },
@@ -803,7 +803,7 @@ export const MoviesData = [
     platform: "HBO Max",
     platformIcon: "/hbo-max.jpg",
     time: 2.5,
-    video: "https://www.youtube.com/watch?v=8gVhXvSaFcs",
+    video: "https://youtu.be/Way9Dexny3w?si=Yp7AMKbf0UvRpO3r",
     director: "Denis Villeneuve",
     casts: [
       { name: "Timothée Chalamet" },
@@ -824,7 +824,7 @@ export const MoviesData = [
     platform: "Hulu",
     platformIcon: "/hulu.jpg",
     time: 2.2,
-    video: "https://www.youtube.com/watch?v=cbZ1v_zUb6w",
+    video: "https://youtu.be/ex3C1-5Dhb8?si=p6Tw0_cQqbN_p32t",
     director: "Gareth Edwards",
     casts: [
       { name: "John David Washington" },
@@ -834,6 +834,7 @@ export const MoviesData = [
     ],
     rate: 4.7,
   },
+
   {
     name: "Guardians of the Galaxy Vol. 3",
     desc: "The Guardians face their biggest challenge yet as they battle an evil entity while exploring Rocket’s mysterious past.",
@@ -845,7 +846,7 @@ export const MoviesData = [
     platform: "Disney+",
     platformIcon: "/disney-plus.jpg",
     time: 2.0,
-    video: "https://www.youtube.com/watch?v=5woIybkfqEo",
+    video: "https://youtu.be/u3V5KDHRQvk?si=r0MEVI9Cy2BsZoOv",
     director: "James Gunn",
     casts: [
       { name: "Chris Pratt" },
@@ -887,7 +888,7 @@ export const MoviesData = [
     platform: "Netflix",
     platformIcon: "/netflix.jpg",
     time: 2.2,
-    video: "https://www.youtube.com/watch?v=R6g7fRlb-Y4",
+    video: "https://youtu.be/RbIxYm3mKzI?si=FPk-LpyIuA5POoPU",
     director: "Adam McKay",
     casts: [
       { name: "Leonardo DiCaprio" },
@@ -908,7 +909,7 @@ export const MoviesData = [
     platform: "HBO Max",
     platformIcon: "/hbo-max.jpg",
     time: 2.0,
-    video: "https://www.youtube.com/watch?v=cRA_hKqqsXI",
+    video: "https://youtu.be/ivIwdQBlS10?si=6N8lKgYCbHUg2fV0",
     director: "Roland Emmerich",
     casts: [
       { name: "Halle Berry" },
@@ -929,7 +930,7 @@ export const MoviesData = [
     platform: "Hulu",
     platformIcon: "/hulu.jpg",
     time: 1.9,
-    video: "https://www.youtube.com/watch?v=I9Bfdn1Xgls",
+    video: "https://youtu.be/wZ7LytagKlc?si=aW6tGT0JmJE1oARD",
     director: "Dan Trachtenberg",
     casts: [
       { name: "Amber Midthunder" },
@@ -950,7 +951,7 @@ export const MoviesData = [
     platform: "Prime Video",
     platformIcon: "/prime-video.jpg",
     time: 2.3,
-    video: "https://www.youtube.com/watch?v=wxNqBvmC_P0",
+    video: "https://youtu.be/wxN1T1uxQ2g?si=EzZpXHVrYVUdyITy",
     director: "Daniel Kwan, Daniel Scheinert",
     casts: [
       { name: "Michelle Yeoh" },
@@ -971,7 +972,7 @@ export const MoviesData = [
     platform: "Netflix",
     platformIcon: "/netflix.jpg",
     time: 2.0,
-    video: "https://www.youtube.com/watch?v=6yD8Y2SFMGo",
+    video: "https://youtu.be/68IrHptBwQs?si=9oTG1OSUqQrRqFJB",
     director: "George Clooney",
     casts: [
       { name: "George Clooney" },
@@ -992,7 +993,7 @@ export const MoviesData = [
     platform: "Netflix",
     platformIcon: "/netflix.jpg",
     time: 1.8,
-    video: "https://www.youtube.com/watch?v=eAeeIu9Vdzs",
+    video: "https://youtu.be/xkvBpKHL99k?si=6HDc9VLP5Q-64tck",
     director: "McG",
     casts: [
       { name: "Jack Gore" },
@@ -1013,7 +1014,7 @@ export const MoviesData = [
     platform: "Hulu",
     platformIcon: "/hulu.jpg",
     time: 1.8,
-    video: "https://www.youtube.com/watch?v=qsHk9xG2E4k",
+    video: "https://youtu.be/nWiQodhMvz4?si=uHQJQHzoO_IZX22c",
     director: "Darren Aronofsky",
     casts: [
       { name: "Brendan Fraser" },
@@ -1034,7 +1035,7 @@ export const MoviesData = [
     platform: "Prime Video",
     platformIcon: "/prime-video.jpg",
     time: 2.5,
-    video: "https://www.youtube.com/watch?v=64pHYocCjcg",
+    video: "https://youtu.be/Na6gA1RehsU?si=CTW5gCaqVcUcQ0mT",
     director: "Todd Field",
     casts: [
       { name: "Cate Blanchett" },
@@ -1055,7 +1056,7 @@ export const MoviesData = [
     platform: "Prime Video",
     platformIcon: "/prime-video.jpg",
     time: 2.0,
-    video: "https://www.youtube.com/watch?v=UzUfhZnZnpM",
+    video: "https://youtu.be/FOzrXqf5pvE?si=bzNWuTWPQVApj_Sb",
     director: "Denzel Washington",
     casts: [
       { name: "Michael B. Jordan" },
@@ -1076,7 +1077,7 @@ export const MoviesData = [
     platform: "Peacock",
     platformIcon: "/peacock.jpg",
     time: 2.3,
-    video: "https://www.youtube.com/watch?v=SkLxNWJXyDk",
+    video: "https://youtu.be/9wAKUa487aw?si=eP3kTCWzB9nMzh_B",
     director: "Steven Spielberg",
     casts: [
       { name: "Gabriel LaBelle" },
@@ -1097,7 +1098,7 @@ export const MoviesData = [
     platform: "Prime Video",
     platformIcon: "/prime-video.jpg",
     time: 2.0,
-    video: "https://www.youtube.com/watch?v=hr95Yd7ch9w",
+    video: "https://youtu.be/rkQi6GBwmSA?si=fqqI0Gd9jWCki5vx",
     director: "Chinonye Chukwu",
     casts: [
       { name: "Danielle Deadwyler" },
@@ -1118,7 +1119,7 @@ export const MoviesData = [
     platform: "Netflix",
     platformIcon: "/netflix.jpg",
     time: 2.0,
-    video: "https://www.youtube.com/watch?v=0aCQQ7i66sI",
+    video: "https://youtu.be/XvbGalkHKPY?si=84iXAh4vJGp_8XAO",
     director: "Marc Forster",
     casts: [
       { name: "Tom Hanks" },
@@ -1139,7 +1140,7 @@ export const MoviesData = [
     platform: "HBO Max",
     platformIcon: "/hbo-max.jpg",
     time: 2.0,
-    video: "https://www.youtube.com/watch?v=KSCM33J45i4",
+    video: "https://youtu.be/2pfB1esUR5c?si=9POQwFC_JcTVZ1Bs",
     director: "Barry Levinson",
     casts: [
       { name: "Ben Foster" },
@@ -1160,7 +1161,7 @@ export const MoviesData = [
     platform: "Netflix",
     platformIcon: "/netflix.jpg",
     time: 2.0,
-    video: "https://www.youtube.com/watch?v=syZ0TeVsJ6o",
+    video: "https://youtu.be/OVo5kLt_-BU?si=7V7-vvIJvA3kq8_t",
     director: "Oliver Hermanus",
     casts: [
       { name: "Bill Nighy" },
@@ -1181,7 +1182,7 @@ export const MoviesData = [
     platform: "Netflix",
     platformIcon: "/netflix.jpg",
     time: 2.0,
-    video: "https://www.youtube.com/watch?v=9Yoy-OoE2tE",
+    video: "https://youtu.be/e0DQevX-GZs?si=IIB3Eb0oWmPjsgar",
     director: "Tobias Lindholm",
     casts: [
       { name: "Jessica Chastain" },
@@ -1202,7 +1203,7 @@ export const MoviesData = [
     platform: "Prime Video",
     platformIcon: "/prime-video.jpg",
     time: 2.0,
-    video: "https://www.youtube.com/watch?v=Q32Y42fF7e0",
+    video: "https://youtu.be/pD0mFhMqDCE?si=i3XrBAxfAQjFtuTZ",
     director: "Sarah Polley",
     casts: [
       { name: "Rooney Mara" },
@@ -1223,7 +1224,7 @@ export const MoviesData = [
     platform: "Hulu",
     platformIcon: "/hulu.jpg",
     time: 2.0,
-    video: "https://www.youtube.com/watch?v=z4PjlGxuS-c",
+    video: "https://youtu.be/N_yfmHCkSB0?si=tEWGtOZH60pkfVgb",
     director: "Matt Ruskin",
     casts: [
       { name: "Keira Knightley" },
@@ -1244,7 +1245,7 @@ export const MoviesData = [
     platform: "Prime Video",
     platformIcon: "/prime-video.jpg",
     time: 2.1,
-    video: "https://www.youtube.com/watch?v=uaX6BvAlkz4",
+    video: "https://youtu.be/yEddsSwweyE?si=LX0kxzJejdYO8zmr",
     director: "Kenneth Branagh",
     casts: [
       { name: "Kenneth Branagh" },
@@ -1265,7 +1266,7 @@ export const MoviesData = [
     platform: "Netflix",
     platformIcon: "/netflix.jpg",
     time: 1.9,
-    video: "https://www.youtube.com/watch?v=JFP7c9w7XhI",
+    video: "https://youtu.be/zgNOS5ofQhw?si=sAOPb3MUn5gEyosG",
     director: "David Fincher",
     casts: [
       { name: "Michael Fassbender" },
@@ -1286,7 +1287,7 @@ export const MoviesData = [
     platform: "Apple TV+",
     platformIcon: "/apple-tv+.jpg",
     time: 1.8,
-    video: "https://www.youtube.com/watch?v=I82wHtyY_Uk",
+    video: "https://youtu.be/9SSHhQRsYcM?si=08-Fzf5_-Tpi6H5U",
     director: "Justin Molotnikov",
     casts: [
       { name: "Charlie Hunnam" },
@@ -1307,7 +1308,7 @@ export const MoviesData = [
     platform: "Netflix",
     platformIcon: "/netflix.jpg",
     time: 1.9,
-    video: "https://www.youtube.com/watch?v=bt9T_lu2Q0s",
+    video: "https://youtu.be/7hxqPxXV27E?si=QFrN37zIZhkeSyG5",
     director: "N/A",
     casts: [
       { name: "Craig Fairbrass" },
@@ -1328,7 +1329,7 @@ export const MoviesData = [
     platform: "Netflix",
     platformIcon: "/netflix.jpg",
     time: 2.1,
-    video: "https://www.youtube.com/watch?v=7rLfX7ktY9E",
+    video: "https://youtu.be/iycLZM7ycbI?si=2tjhcN9h0S7izYUr",
     director: "David Yates",
     casts: [
       { name: "Emily Blunt" },
@@ -1349,7 +1350,7 @@ export const MoviesData = [
     platform: "Netflix",
     platformIcon: "/netflix.jpg",
     time: 2.0,
-    video: "https://www.youtube.com/watch?v=upZQ6McYgo0",
+    video: "https://youtu.be/YDbnY9Obsfs?si=t1xDNyfrNIgJRXrF",
     director: "N/A",
     casts: [
       { name: "Gabriel Basso" },
@@ -1370,7 +1371,7 @@ export const MoviesData = [
     platform: "Prime Video",
     platformIcon: "/prime-video.jpg",
     time: 1.8,
-    video: "https://www.youtube.com/watch?v=O23gnmC-m7E",
+    video: "https://youtu.be/SRiSK1pgfEo?si=4birhn1H8LgCkQRK",
     director: "Tim Story",
     casts: [
       { name: "Grace Byers" },
@@ -1391,7 +1392,7 @@ export const MoviesData = [
     platform: "Netflix",
     platformIcon: "/netflix.jpg",
     time: 2.0,
-    video: "https://www.youtube.com/watch?v=pj85lFjdVA4",
+    video: "https://youtu.be/tlg4BQqhn3I?si=JWLSXJlNwcyuB1wJ",
     director: "N/A",
     casts: [
       { name: "Aml Ameen" },
@@ -1412,7 +1413,7 @@ export const MoviesData = [
     platform: "HBO Max",
     platformIcon: "/hbo-max.jpg",
     time: 2.2,
-    video: "https://www.youtube.com/watch?v=bvPwrZ6z2Ok",
+    video: "https://youtu.be/SeVV0pPD5c8?si=1jNRybULK0OhYpt7",
     director: "Luis Mandoki",
     casts: [
       { name: "Benicio del Toro" },
@@ -1433,7 +1434,7 @@ export const MoviesData = [
     platform: "Netflix",
     platformIcon: "/netflix.jpg",
     time: 1.9,
-    video: "https://youtu.be/zKb9SD7WjZ0?si=6z7BeOIaz-oSZP3r",
+    video: "https://youtu.be/zKb9SD7WjZ0?si=fnU9ao56goEwam9l",
     director: "Gene Stupnitsky",
     casts: [
       { name: "Jennifer Lawrence" },
@@ -1454,7 +1455,7 @@ export const MoviesData = [
     platform: "Peacock",
     platformIcon: "/peacock.jpg",
     time: 1.8,
-    video: "https://www.youtube.com/watch?v=EKhtALQ4ch4",
+    video: "https://youtu.be/BzwOLKTbCUw?si=MGmjh4Sv_-ZgGqus",
     director: "Josh Greenbaum",
     casts: [
       { name: "Will Ferrell" },
@@ -1475,7 +1476,7 @@ export const MoviesData = [
     platform: "Netflix",
     platformIcon: "/netflix.jpg",
     time: 1.7,
-    video: "https://www.youtube.com/watch?v=9J7lgN4S5j8",
+    video: "https://youtu.be/AwDKLEaJxMk?si=vwnlMOFTaWPSL5FW",
     director: "Peter Atencio",
     casts: [
       { name: "Bert Kreischer" },
@@ -1496,7 +1497,7 @@ export const MoviesData = [
     platform: "Amazon Prime Video",
     platformIcon: "/prime-video.jpg",
     time: 1.8,
-    video: "https://www.youtube.com/watch?v=45HQYybLhbs",
+    video: "https://youtu.be/HkujLO17Ez8?si=YqHOwGOD8V__-DPu",
     director: "N/A",
     casts: [
       { name: "Keegan-Michael Key" },
@@ -1517,7 +1518,7 @@ export const MoviesData = [
     platform: "HBO Max",
     platformIcon: "/hbo-max.jpg",
     time: 1.8,
-    video: "https://www.youtube.com/watch?v=9BzJ1b55bcQ",
+    video: "https://youtu.be/pBk4NYhWNMM?si=0B0lA496nRHlNgqO",
     director: "Greta Gerwig",
     casts: [
       { name: "Margot Robbie" },
@@ -1538,7 +1539,7 @@ export const MoviesData = [
     platform: "Prime Video",
     platformIcon: "/prime-video.jpg",
     time: 1.9,
-    video: "https://www.youtube.com/watch?v=6T9z1tHE4Q4",
+    video: "https://youtu.be/9FXCSXuGTF4?si=vDRmDztIMGy0K0lg",
     director: "Wes Anderson",
     casts: [
       { name: "Tom Hanks" },
@@ -1559,7 +1560,7 @@ export const MoviesData = [
     platform: "Amazon Prime Video",
     platformIcon: "/prime-video.jpg",
     time: 1.8,
-    video: "https://www.youtube.com/watch?v=knbQFGp1_GI",
+    video: "https://youtu.be/Ct7E_68pbF4?si=4rXpUoSfzGIVA7Gl",
     director: "Kirk Jones",
     casts: [
       { name: "Nia Vardalos" },
@@ -1580,7 +1581,7 @@ export const MoviesData = [
     platform: "Disney+",
     platformIcon: "/disney+.jpg",
     time: 2.0,
-    video: "https://www.youtube.com/watch?v=Q5w1g5Yhw_Q",
+    video: "https://youtu.be/u3V5KDHRQvk?si=pjkBcU6YAWj5bsXg",
     director: "James Gunn",
     casts: [
       { name: "Chris Pratt" },
@@ -1601,7 +1602,7 @@ export const MoviesData = [
     platform: "Prime Video",
     platformIcon: "/prime-video.jpg",
     time: 1.7,
-    video: "https://www.youtube.com/watch?v=wV6dyYHRoXI",
+    video: "https://youtu.be/nfKO9rYDmE8?si=dGQ1B0EBeC--azfW",
     director: "Aaron and Adam Nee",
     casts: [
       { name: "Sandra Bullock" },
@@ -1622,7 +1623,7 @@ export const MoviesData = [
     platform: "Peacock",
     platformIcon: "/peacock.jpg",
     time: 1.8,
-    video: "https://www.youtube.com/watch?v=fZJFC9Kz-t4",
+    video: "https://youtu.be/hkP4tVTdsz8?si=jffMJfG90GMIBKFP",
     director: "Ol Parker",
     casts: [
       { name: "Julia Roberts" },
@@ -1631,27 +1632,6 @@ export const MoviesData = [
       { name: "Maxime Bouttier" },
     ],
     rate: 4.5,
-  },
-  {
-    name: "Spider-Man: Across the Spider-Verse",
-    desc: "Miles Morales returns for an epic journey across the multiverse, meeting new Spider-People and facing a villain more dangerous than ever.",
-    titleImage: "/spider-man-across-the-spider-verse-title.jpg",
-    image: "spider-man-across-the-spider-verse.jpg",
-    category: "Animation",
-    language: "English",
-    year: 2023,
-    platform: "Netflix",
-    platformIcon: "/netflix.jpg",
-    time: 2.0,
-    video: "https://www.youtube.com/watch?v=btR6fP_Mvho",
-    director: "Joaquim Dos Santos, Kemp Powers, Justin K. Thompson",
-    casts: [
-      { name: "Shameik Moore" },
-      { name: "Hailee Steinfeld" },
-      { name: "Oscar Isaac" },
-      { name: "Jake Johnson" },
-    ],
-    rate: 4.8,
   },
   {
     name: "Elemental",
@@ -1664,7 +1644,7 @@ export const MoviesData = [
     platform: "Disney+",
     platformIcon: "/disney+.jpg",
     time: 1.9,
-    video: "https://www.youtube.com/watch?v=-vAF7s0Ch1Q",
+    video: "https://youtu.be/hXzcyx9V0xw?si=Px6OkwXp2oxkdHXH",
     director: "Peter Sohn",
     casts: [
       { name: "Leah Lewis" },
@@ -1685,7 +1665,7 @@ export const MoviesData = [
     platform: "Netflix",
     platformIcon: "/netflix.jpg",
     time: 1.9,
-    video: "https://www.youtube.com/watch?v=R8kr53omq44",
+    video: "https://youtu.be/f_fuHRyQbOc?si=JCGjLcqjUX83GeqP",
     director: "Nick Bruno, Troy Quane",
     casts: [
       { name: "Chloë Grace Moretz" },
@@ -1706,7 +1686,7 @@ export const MoviesData = [
     platform: "Netflix",
     platformIcon: "/netflix.jpg",
     time: 1.9,
-    video: "https://www.youtube.com/watch?v=px5v18K8AlE",
+    video: "https://youtu.be/P-E-IGQCsPo?si=qcFpFF69ya1ctKgn",
     director: "Chris Williams",
     casts: [
       { name: "Karl Urban" },
@@ -1727,7 +1707,7 @@ export const MoviesData = [
     platform: "Peacock",
     platformIcon: "/peacock.jpg",
     time: 1.8,
-    video: "https://www.youtube.com/watch?v=8h4tExD5O3g",
+    video: "https://youtu.be/1o8GWhoD53I?si=l_eCAHsQ5qfJvr3L",
     director: "Joel Crawford",
     casts: [
       { name: "Antonio Banderas" },
@@ -1748,7 +1728,7 @@ export const MoviesData = [
     platform: "Peacock",
     platformIcon: "/peacock.jpg",
     time: 1.9,
-    video: "https://www.youtube.com/watch?v=TZKAmQLSoI0",
+    video: "https://youtu.be/TnGl01FkMMo?si=h2BMDIAo27unG4ZL",
     director: "Aaron Horvath, Michael Jelenic",
     casts: [
       { name: "Chris Pratt" },
@@ -1769,7 +1749,7 @@ export const MoviesData = [
     platform: "Netflix",
     platformIcon: "/netflix.jpg",
     time: 1.7,
-    video: "https://www.youtube.com/watch?v=w2F8GV8jmHk",
+    video: "https://youtu.be/uWIRyU5fuzU?si=gmWL4_88OJjHH0Cn",
     director: "Chris Appelhans",
     casts: [
       { name: "John Cho" },
@@ -1811,7 +1791,7 @@ export const MoviesData = [
     platform: "Disney+",
     platformIcon: "/disney+.jpg",
     time: 1.8,
-    video: "https://www.youtube.com/watch?v=zYdp8xLhCqY",
+    video: "https://youtu.be/XdKzUbAiswE?si=Jvyw1tAF4p6imHEd",
     director: "Domee Shi",
     casts: [
       { name: "Rosalie Chiang" },
@@ -1832,7 +1812,7 @@ export const MoviesData = [
     platform: "Peacock",
     platformIcon: "/peacock.jpg",
     time: 1.9,
-    video: "https://www.youtube.com/watch?v=Lv9m7D8RxOY",
+    video: "https://youtu.be/6DxjJzmYsXo?si=jS1Ix1HbytY752cm",
     director: "Kyle Balda, Brad Ableson",
     casts: [
       { name: "Steve Carell" },
