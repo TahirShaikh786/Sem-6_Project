@@ -52,21 +52,14 @@ const SearchModal = () => {
 
   return (
     <>
-      <div
-        className="modal-overlay"
-        onClick={() => {
-          setVisible(false);
-        }}
-      >
+      <div className="modal-overlay">
         <div className="modalBox">
           <input
             type="text"
             name="search"
             value={searchQuery}
             onChange={handleInputChange}
-            onFocus={() => {
-              setVisible(true);
-            }}
+            onFocus={() => setVisible(true)}
             placeholder="Enter search term..."
           />
           <button onClick={handleSearch}>
@@ -94,8 +87,8 @@ const SearchModal = () => {
         <Container>
           <Row className="d-flex justify-content-center">
             {sdata.length == 0 ? (
-              <div className="col-12 text-center">
-                <h2 className="text-white fst-italic"></h2>
+              <div className="col-12 text-center ">
+                <h2 className="text-white fst-italic">Search Movie to find</h2>
               </div>
             ) : (
               sdata.map((item, i) => {

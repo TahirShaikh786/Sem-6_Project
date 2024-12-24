@@ -2,17 +2,15 @@ import React from "react";
 import Slider from "react-slick";
 import "../assets/CSS/pages.css";
 import { Helmet } from "react-helmet";
-import microphone from "../assets/img/microphone.png";
 import Header from "../Components/Header";
 import HeroVideo from "../Components/HeroVideo";
 import { useAuth } from "../Service/auth.jsx";
-import { Button, Card } from "react-bootstrap";
+import { Card, Container, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Footer from "../Components/Footer.jsx";
-import ReactPlayer from "react-player";
 
 const Dashboard = () => {
-  const { film } = useAuth();
+  const { film, rated } = useAuth();
   const navigate = useNavigate();
   const handleInfo = (id) => {
     navigate(`/Watch/${id}`);
@@ -65,11 +63,11 @@ const Dashboard = () => {
       </main>
 
       {/* All Videos */}
-      <section className="bg-black p-5">
-        <div className="container m-0 p-0">
-          <div className="row m-0 p-0 allVideosHead">
+      <section className="bg-black pt-5">
+        <Container>
+          <Row className="allVideosHead">
             <h2>All Movies</h2>
-          </div>
+          </Row>
           <div className="slider-container">
             <Slider {...settings}>
               {film.message.map((movie, i) => {
@@ -88,12 +86,36 @@ const Dashboard = () => {
               })}
             </Slider>
           </div>
-        </div>
+        </Container>
       </section>
 
-      <aside>
-        <img src={microphone} alt="microphone" />
-      </aside>
+      {/* Top Rated Movie */}
+      <section className="bg-black">
+        <Container>
+          <Row className="allVideosHead">
+            <h2>Rated </h2>
+          </Row>
+          <div className="slider-container">
+            <Slider {...settings}>
+              {rated.message.map((movie, i) => {
+                return (
+                  <div className="VideosCard" key={i}>
+                    <Card className="movieCards">
+                      <Card.Img
+                        variant="top"
+                        src={movie.titleImage}
+                        alt={movie.name}
+                        onClick={() => handleInfo(movie._id)}
+                      />
+                      <p className="card-rate">{movie.rate}</p>
+                    </Card>
+                  </div>
+                );
+              })}
+            </Slider>
+          </div>
+        </Container>
+      </section>
 
       <Footer />
     </>

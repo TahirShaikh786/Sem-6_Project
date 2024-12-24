@@ -23,9 +23,6 @@ const Videos = ({title}) => {
       <section className="pt-5 bg-black">
         <Container className="py-5">
           <Row className="allVideos">
-            <Link to="/home" className="mt-3">
-              <i className="bi bi-caret-left-fill"></i> Home
-            </Link>
             <h1>{title}</h1>
           </Row>
 
@@ -35,8 +32,8 @@ const Videos = ({title}) => {
                 <Col
                   key={i}
                   sm={10}
-                  md={4}
-                  lg={3}
+                  md={3}
+                  lg={2}
                   className="m-2 d-flex justify-content-center flex-wrap"
                 >
                   <div className="video">

@@ -8,9 +8,10 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [film, setFilm] = useState([]);
   const [movies, setMovies] = useState([]);
+  const [rated, setRated] = useState([]);
   const [loading, setLoading] = useState(true);
   const authorizationToken = `Bearer ${token}`;
-  const backendURL = import.meta.env.VITE_BACKEND_URL;  
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
 
   // Store token in LocalStorage
   const storeTokenInLS = (serverToken) => {
@@ -110,11 +111,23 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const topRated = async () => {
+    const response = await fetch(`${backendURL}/movie/top/rated`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application.json",
+      },
+    });
+    const data = await response.json();
+    setRated(data);
+  };
+
   useEffect(() => {
     if (token) {
       userAuthentication();
       getRandomMovies();
       getAllMovies();
+      topRated();
     } else {
       setLoading(false);
     }
@@ -128,6 +141,7 @@ export const AuthProvider = ({ children }) => {
         backendURL,
         storeTokenInLS,
         film,
+        rated,
         userAuthentication,
         movies,
         authorizationToken,

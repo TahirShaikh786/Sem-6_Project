@@ -143,16 +143,18 @@ header {
 }
 
 .searchHistory {
-  width: 97%;
+  width: 82vw;
   display: flex;
+  position: absolute;
+  color: var(--white);
   flex-direction: column;
   border-radius: 0 0 0.5rem 0.5rem;
-  padding: 0.6rem 1rem 0 0;
-  background-color: var(--white);
+  padding: 0.6rem 0 0 0;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .searchHistory li {
-  border-bottom: 1px solid var(--black);
+  border-bottom: 1px solid var(--white);
 }
 
 .scard {

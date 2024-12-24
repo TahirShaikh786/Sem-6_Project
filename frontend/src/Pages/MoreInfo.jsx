@@ -166,9 +166,6 @@ const MoreInfo = () => {
       <section className="bg-black py-5">
         <Container>
           <Row className="watchHead">
-            <Link to="/home">
-              <i className="bi bi-caret-left-fill"></i> Home
-            </Link>
             <h1 className="text-center">{movie.name}</h1>
           </Row>
           <Row className="d-flex flex-wrap justify-content-center">

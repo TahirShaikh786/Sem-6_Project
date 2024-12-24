@@ -22,18 +22,17 @@
 
 .video {
   position: relative;
-  width: 500px;
-  height: 450px;
+  width: 100%;
+  height: 20vh;
   border-radius: 1rem;
   padding: 0.5rem;
   margin: 1rem 0;
   background-color: var(--white);
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
   overflow: hidden;
-  perspective: 500px; /* Create 3D space */
+  perspective: 500px;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
-/* Hover effect on the video card */
 .video:hover {
   transform: translateY(-10px); /* Move card towards the back */
   box-shadow: 0px 20px 15px var(--purple); /* Add shadow for depth */
@@ -43,7 +42,7 @@
 .video img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensure image covers the area */
+  background-position: center;
   border-radius: 1rem;
 }
 
@@ -54,21 +53,23 @@
   bottom: 4%; /* Position slightly above the bottom */
   left: 0%; /* Align left */
   width: 100%;
-  height: 20%;
+  height: 100%;
   background: var(--purple-gradient);
   border-radius: 1rem;
   display: none; /* Initially hidden */
   justify-content: center;
   align-items: center;
   opacity: 0; /* Invisible initially */
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
   z-index: 2; /* Ensure play button appears above other content */
   box-shadow: -12px -25px 15px var(--black); /* Optional: add depth to the play button */
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .play h5 {
   font-style: italic;
   font-weight: 700;
+  text-wrap: wrap;
+  font-size: 1rem;
   color: var(--white);
 }
 
@@ -84,9 +85,8 @@
     box-shadow: 5px 2px 5px var(--white);
 }
 
-/* On hover, show play button and bring it to the front */
 .video:hover .play {
-  display: flex; /* Make the play button visible */
-  opacity: 1; /* Fade in the play button */
-  transform: translateZ(50px); /* Bring play button closer to the user */
+  display: flex;
+  opacity: 1;
+  transform: translateZ(50px);
 }

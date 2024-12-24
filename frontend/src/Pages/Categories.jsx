@@ -34,7 +34,7 @@ const Categories = () => {
 
   const handleWatch = (id) => {
     navigate(`/Watch/${id}`);
-  }
+  };
 
   return (
     <>
@@ -71,19 +71,22 @@ const Categories = () => {
             <Row className="d-flex justify-content-center">
               {movie.map((item, i) => {
                 return (
-                  <Col md={4} sm={6} xs={12} key={i} className="mb-4">
-                    <Card
-                      className="movieCard"
-                      onClick={() => {
-                        handleWatch(item._id);
-                      }}
-                    >
-                      <Card.Img src={item.titleImage} />
-                      <Card.Body>
-                        <Card.Title>{item.name}</Card.Title>
-                        <Card.Text>{item.desc}</Card.Text>
-                      </Card.Body>
-                    </Card>
+                  <Col
+                    key={i}
+                    sm={10}
+                    md={3}
+                    lg={2}
+                    className="m-2 d-flex justify-content-center flex-wrap"
+                  >
+                    <div className="video">
+                      <img src={item.titleImage} alt={item.name} />
+                      <div className="play d-flex flex-column justify-content-center">
+                        <h5>{item.name}</h5>
+                        <Button onClick={() => handleWatch(item._id)}>
+                          <i className="bi bi-play-circle"></i> Play
+                        </Button>
+                      </div>
+                    </div>
                   </Col>
                 );
               })}

@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import microphone from "./assets/img/microphone.png";
 import { ToastContainer } from "react-toastify";
 
 createRoot(document.getElementById("root")).render(
@@ -19,6 +20,9 @@ createRoot(document.getElementById("root")).render(
         toastStyle={{ backgroundColor: "black" }}
         position="bottom-right"
       />
+      <aside>
+        <img src={microphone} alt="microphone" />
+      </aside>
     </StrictMode>
   </AuthProvider>
 );

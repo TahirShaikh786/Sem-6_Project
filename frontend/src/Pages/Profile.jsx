@@ -4,7 +4,6 @@ import Helmet from "react-helmet"
 import {useAuth} from "../Service/auth"
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
-import UserProfile from '../Components/UserProfile';
 import { Col, Container, Row } from 'react-bootstrap';
 
 const Profile = () => {
@@ -24,7 +23,7 @@ const Profile = () => {
             <Row className='m-0 p-0 d-flex justify-content-center'>
                 <Col md={4}>
                     <div className="profile">
-                        <UserProfile />
+                        
                     </div>
                 </Col>
             </Row>
