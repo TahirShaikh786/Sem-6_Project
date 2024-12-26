@@ -15,6 +15,7 @@ const Dashboard = () => {
   const handleInfo = (id) => {
     navigate(`/Watch/${id}`);
   };
+  
 
   var settings = {
     dots: false,

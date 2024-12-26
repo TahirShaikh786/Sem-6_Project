@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../assets/CSS/components.css";
+import Videos from "./Videos"
 import { toast } from "react-toastify";
 import { useAuth } from "../Service/auth";
 import { Container, Row } from "react-bootstrap";
@@ -88,7 +89,7 @@ const SearchModal = () => {
           <Row className="d-flex justify-content-center">
             {sdata.length == 0 ? (
               <div className="col-12 text-center ">
-                <h2 className="text-white fst-italic">Search Movie to find</h2>
+                <Videos />
               </div>
             ) : (
               sdata.map((item, i) => {
