@@ -1,9 +1,14 @@
 import React from "react";
 import "../assets/CSS/pages.css";
-import { Container, Row, Col, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Container, Row, Col } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Footer() {
+  const navigate = useNavigate();
+
+  const handleCategory = (name) => {
+    navigate(`/categories/${name}`)
+  }
   return (
     <footer className="text-center text-lg-start">
       <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
@@ -60,7 +65,7 @@ export default function Footer() {
                 </a>
               </p>
               <p>
-                <Link to='/home' className="text-reset">
+                <Link to="/home" className="text-reset">
                   Dashboard
                 </Link>
               </p>
@@ -76,27 +81,27 @@ export default function Footer() {
               </p>
             </Col>
 
-            <Col md={3} lg={2} xl={2} className="mx-auto mb-4">
+            <Col md={2} lg={2} xl={2} className="mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">Useful links</h6>
               <p>
-                <Link to="/categories/action" className="text-reset">
+                <li onClick={() => handleCategory("Action")} className="text-reset text-decoration-underline">
                   Action
-                </Link>
+                </li>
               </p>
               <p>
-                <a href="#!" className="text-reset">
+                <li onClick={() => handleCategory("Sci-Fi")} className="text-reset text-decoration-underline">
                   Sci-Fi
-                </a>
+                </li>
               </p>
               <p>
-                <a href="#!" className="text-reset">
+                <li onClick={() => handleCategory("Horror")} className="text-reset text-decoration-underline">
                   Horror
-                </a>
+                </li>
               </p>
               <p>
-                <a href="#!" className="text-reset">
+                <li onClick={() => handleCategory("Drama")} className="text-reset text-decoration-underline">
                   Drama
-                </a>
+                </li>
               </p>
             </Col>
 

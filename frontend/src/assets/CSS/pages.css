@@ -10,56 +10,39 @@
 }
 
 .profile{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem 0;
-}
-
-.innerProfile{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem;
-  border-radius: 1rem;
-  background: var(--purple);
-}
-
-.innerProfile img{
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-}
-
-.userDetails{
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: start;
+  padding: 2rem 0;
+}
+
+.profile img{
+  user-select: none;
+  border-radius: 50%;
+  height: 50vh;
+}
+
+.details{
+  width: 100%;
   padding: 1rem;
-  margin: 0.5rem 0;
   border-radius: 1rem;
-  background-color: var(--black);
-}
-
-.userDetails h5{
-  font-family: "Playfair Display", serif;
+  background: var(--purple-gradient);
   color: var(--white);
 }
 
-.userDetails span{
+.details h4{
+  text-transform: capitalize;
+}
+
+.details span{
+  text-decoration: underline;
+}
+
+.details a{
+  font-weight: 700;
   color: var(--white);
-  margin-bottom: 0.5rem;
 }
-
-.profileBtn{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  flex-shrink: 2;
-}
-
 
 .movieCards {
   width: 110%;
@@ -96,6 +79,20 @@
   border-radius: 5px 20px 5px 5px; /* Optional: rounded corners */
   z-index: 1;
   transition: all ease-in-out 0.5s;
+}
+
+.favourites h1{
+  text-decoration: underline;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.favourites table{
+  color: var(--white);
+  background-color: var(--black);
+}
+
+.favourites th{
+  padding: 1rem;
 }
 
 .movieCards:hover .card-rate{
@@ -322,4 +319,8 @@ aside {
 aside img {
   width: 100px;
   height: 100px;
+}
+
+footer li{
+  cursor: pointer;
 }

@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
   const storeTokenInLS = (serverToken) => {
     setToken(serverToken);
     localStorage.setItem("token", serverToken);
-  };
+  };  
 
   // Logout user
   const logoutUser = async () => {
@@ -35,7 +35,6 @@ export const AuthProvider = ({ children }) => {
         setToken("");
         setUser(null);
         localStorage.removeItem("token");
-        localStorage.removeItem("liked");
       } else {
         toast.error(data.message);
       }

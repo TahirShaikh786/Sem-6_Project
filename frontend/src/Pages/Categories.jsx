@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../assets/CSS/pages.css";
 import { Helmet } from "react-helmet";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import Videos from "../Components/Videos";
 import { useAuth } from "../Service/auth.jsx";
-import { Button, Card, Col, Container, Row } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Button, Col, Container, Row } from "react-bootstrap";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Categories = () => {
   const [movie, setMovie] = useState([]);
@@ -14,6 +14,16 @@ const Categories = () => {
 
   const { backendURL } = useAuth();
   const navigate = useNavigate();
+
+  const { categoryName  } = useParams();  
+
+  // Trigger movie fetch when categoryName changes
+  useEffect(() => {
+    if (categoryName ) {
+      handleMovie(categoryName );
+    }
+  }, [categoryName ]);
+  
 
   const handleMovie = async (name) => {
     setCategory(name);
@@ -25,7 +35,6 @@ const Categories = () => {
     });
 
     const data = await response.json();
-    console.log("Data", data.message.movies);
 
     if (response.ok) {
       setMovie(data.message.movies);

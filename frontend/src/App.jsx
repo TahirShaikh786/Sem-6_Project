@@ -9,6 +9,7 @@ import AllVideo from "./Pages/AllVideo";
 import Categories from "./Pages/Categories";
 import Search from "./Pages/Search";
 import Profile from "./Pages/Profile";
+import Favourites from "./Pages/Favourites";
 
 function App() {
   return (
@@ -24,7 +25,9 @@ function App() {
             <Route path="/allVideo" element={<AllVideo />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/search" element={<Search />} />
+            <Route path="/favourites" element={<Favourites />} />
             <Route path="/categories" element={<Categories />} />
+            <Route path="/categories/:categoryName" element={<Categories />} />
           </Route>
 
           <Route path="*" element={<Error />} />

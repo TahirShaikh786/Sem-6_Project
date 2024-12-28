@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../assets/CSS/components.css";
-import Videos from "./Videos"
+import Videos from "./Videos";
 import { toast } from "react-toastify";
 import { useAuth } from "../Service/auth";
 import { Container, Row } from "react-bootstrap";
@@ -11,7 +11,7 @@ const SearchModal = () => {
   const [visible, setVisible] = useState(false);
   const [sdata, setSdata] = useState([]);
   const [history, setHistory] = useState([]);
-  const { backendURL, user, authorizationToken, userAuthentication } =
+  const { backendURL, user, movies, authorizationToken, userAuthentication } =
     useAuth();
 
   const navigate = useNavigate();
@@ -47,6 +47,17 @@ const SearchModal = () => {
     }
   };
 
+  const handleHistory = async (item) => {
+    const foundMovie = movies.message.find(
+      (movie) => movie.name.toLowerCase() === item.toLowerCase()
+    );
+    if (foundMovie) {
+      handleMovie(foundMovie._id);
+    } else {
+      toast.error("No movie found with this name.");
+    }
+  };
+
   const handleMovie = (id) => {
     navigate(`/Watch/${id}`);
   };
@@ -67,21 +78,25 @@ const SearchModal = () => {
             <i className="bi bi-search"></i>
           </button>
         </div>
-        {visible ? (
-          <div className="searchHistory ">
-            {history.map((item, i) => {
-              return (
-                <div key={i}>
-                  <ul>
-                    <li>{item}</li>
-                  </ul>
-                </div>
-              );
-            })}
-          </div>
-        ) : (
-          ""
-        )}
+        <div className="d-flex justify-content-center">
+          {visible ? (
+            <div className="searchHistory">
+              {history.map((item, i) => {
+                return (
+                  <div key={i}>
+                    <ul>
+                      <li onClick={() => handleHistory(item)}>
+                        <i class="bi bi-clock-history"></i> {item}
+                      </li>
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
 
       <section>
