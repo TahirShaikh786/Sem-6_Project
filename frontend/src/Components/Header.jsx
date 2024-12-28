@@ -75,9 +75,15 @@ const Header = () => {
                         <i class="bi bi-file-earmark-person"></i> Profile
                       </Link>
                     </NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item className="d-flex justify-content-center">
-                      <Button className="bg-danger" onClick={handleLogout}>
+                    <hr className="text-white m-0 p-0" />
+                    <NavDropdown.Item className="text-center">
+                      <Link to="/favourites" className="drop_Links">
+                      <i class="bi bi-heart-fill"></i> Favourites
+                      </Link>
+                    </NavDropdown.Item>
+                    <hr className="text-white m-0 p-0" />
+                    <NavDropdown.Item className="m-0 p-0 d-flex justify-content-center">
+                      <Button className="bg-danger w-100" onClick={handleLogout}>
                         Logout
                       </Button>
                     </NavDropdown.Item>

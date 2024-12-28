@@ -4,25 +4,49 @@ import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import { useAuth } from "../Service/auth";
 import { Container, Row } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const Favourites = () => {
-  const favMovie = [];
-  const { user, movies } = useAuth(); // Access user and movies from context or service
+  const { user, movies, backendURL, authorizationToken, userAuthentication } = useAuth(); // Access user and movies from AuthContext
+  const [favMovies, setFavMovies] = useState([]);
 
-  
+  useEffect(() => {
+    if (user && user.likedMovies && movies) {
+      const filteredFavMovies = movies.message.filter((movie) =>
+        user.likedMovies.some(
+          (likedMovieId) => likedMovieId.toString() === movie._id.toString()
+        )
+      );
+      setFavMovies(filteredFavMovies);
+    }
+  }, [user, movies]);
+
+  const handleAllDelete = async () => {
+    const response = await fetch(`${backendURL}/auth/favourites/empty`,{
+      method: 'DELETE',
+      headers:{
+        Authorization: authorizationToken
+      }
+    });
+    if(response.ok){
+      toast.success("Your Favourite List is Empty")
+      userAuthentication();
+    }else{
+      toast.error("Internal Server Error")
+    }
+  }
 
   return (
     <>
       <Header />
-
       <section className="bg-black py-5 favourites">
         <Container>
           <Row>
             <h1 className="text-white text-center">Your Favourites</h1>
           </Row>
           <Row className="my-4">
-            <div className="d-flex justify-content-end">
-              <h1 className="bg-danger text-white text-center fs-2 p-1 rounded">
+            <div className="d-flex justify-content-end favouriteTrah">
+              <h1 className="bg-danger text-white text-center fs-2 p-1 rounded" onClick={() => handleAllDelete()}>
                 <i className="bi bi-trash"></i>
               </h1>
             </div>
@@ -36,8 +60,8 @@ const Favourites = () => {
                 </tr>
               </thead>
               <tbody>
-                {favMovie.length > 0 ? (
-                  favMovie.map((movie, index) => (
+                {favMovies.length > 0 ? (
+                  favMovies.map((movie, index) => (
                     <tr key={movie._id}>
                       <td>{index + 1}</td>
                       <td>{movie.name}</td>
@@ -57,7 +81,6 @@ const Favourites = () => {
           </Row>
         </Container>
       </section>
-
       <Footer />
     </>
   );
