@@ -1,7 +1,9 @@
 import User from "../models/user-model.js";
 import Movie from "../models/movie-model.js";
 import bcrypt from "bcryptjs";
+
 import * as auth from "../middleware/auth.js";
+import { log } from "console";
 
 // Public Controller
 const signUp = async (req, res) => {
@@ -136,18 +138,16 @@ const getCurrentUser = async (req, res) => {
 
 const updatedUser = async (req, res) => {
   try {
-    const { userName, email, image } = req.body;
-    const user = await User.findById(req.params.id);
+    const { userName, email } = req.body;
+    let image = req.file ? `/${req.file.filename}` : undefined; // Get the file path from Multer
+    log
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return res.status(400).json({ success: false, message: "Invalid Email" });
-    }
+    const user = await User.findById(req.params.id);
 
     if (user) {
       user.userName = userName || user.userName;
       user.email = email || user.email;
-      user.image = image || user.image;
+      user.image = image || user.image; // If no new image, keep the old one
 
       const updateUser = await user.save();
 

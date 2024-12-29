@@ -1,4 +1,5 @@
 import express from "express";
+import upload from "../middleware/storage.js";
 import * as userController from "../controller/user-controller.js";
 import * as auth from "../middleware/auth.js"
 
@@ -11,7 +12,7 @@ router.post("/logout", userController.logout);
 
 // Private Routes
 router.get("/user", auth.protect, userController.getCurrentUser);
-router.put("/:id", auth.protect, userController.updatedUser);
+router.put("/:id", upload.single('image'), auth.protect, userController.updatedUser);
 router.put("/password/:id", auth.protect, userController.updatePassword);
 router.delete("/:id", auth.protect, userController.deleteUser);
 router.get("/favourites", auth.protect, userController.getLikedMovies);
