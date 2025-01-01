@@ -6,16 +6,12 @@ import Header from "../Components/Header";
 import HeroVideo from "../Components/HeroVideo";
 import { useAuth } from "../Service/auth.jsx";
 import { Card, Container, Row } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import Footer from "../Components/Footer.jsx";
+import { useNavigateMovies } from "../Service/movies.jsx";
 
 const Dashboard = () => {
   const { film, rated } = useAuth();
-  const navigate = useNavigate();
-  const handleInfo = (id) => {
-    navigate(`/Watch/${id}`);
-  };
-  
+  const { WatchMovies } = useNavigateMovies();
 
   var settings = {
     dots: false,
@@ -79,7 +75,7 @@ const Dashboard = () => {
                         variant="top"
                         src={movie.titleImage}
                         alt={movie.name}
-                        onClick={() => handleInfo(movie._id)}
+                        onClick={() => WatchMovies(movie._id)}
                       />
                     </Card>
                   </div>
@@ -106,7 +102,7 @@ const Dashboard = () => {
                         variant="top"
                         src={movie.titleImage}
                         alt={movie.name}
-                        onClick={() => handleInfo(movie._id)}
+                        onClick={() => WatchMovies(movie._id)}
                       />
                       <p className="card-rate">{movie.rate}</p>
                     </Card>

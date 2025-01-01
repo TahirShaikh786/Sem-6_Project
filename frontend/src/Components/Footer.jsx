@@ -60,9 +60,9 @@ export default function Footer() {
               {/* Links */}
               <h6 className="text-uppercase fw-bold mb-4">Links</h6>
               <p>
-                <a href="#!" className="text-reset">
+                <Link to="/admin" className="text-reset">
                   Admin Login
-                </a>
+                </Link>
               </p>
               <p>
                 <Link to="/home" className="text-reset">

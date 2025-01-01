@@ -6,14 +6,14 @@ import Footer from "../Components/Footer";
 import Videos from "../Components/Videos";
 import { useAuth } from "../Service/auth.jsx";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useNavigateMovies } from "../Service/movies.jsx";
 
 const Categories = () => {
   const [movie, setMovie] = useState([]);
   const [category, setCategory] = useState("");
-
   const { backendURL } = useAuth();
-  const navigate = useNavigate();
+  const {WatchMovies} = useNavigateMovies();
 
   const { categoryName  } = useParams();  
 
@@ -41,10 +41,6 @@ const Categories = () => {
     }
   };
 
-  const handleWatch = (id) => {
-    navigate(`/Watch/${id}`);
-  };
-
   return (
     <>
       <Helmet>
@@ -56,7 +52,7 @@ const Categories = () => {
       <section className="bg-black pt-5">
         <Container className="pt-5 mt-5">
           <Row className="d-flex justify-content-center">
-            <div className="categoryBtn d-flex justify-content-evenly">
+            <div className="categoryBtn d-flex flex-wrap justify-content-evenly">
               <Button onClick={() => handleMovie("Action")}>Action</Button>
               <Button onClick={() => handleMovie("Horror")}>Horror</Button>
               <Button onClick={() => handleMovie("Sci-Fi")}>Sci-Fi</Button>
@@ -91,7 +87,7 @@ const Categories = () => {
                       <img src={item.titleImage} alt={item.name} />
                       <div className="play d-flex flex-column justify-content-center">
                         <h5>{item.name}</h5>
-                        <Button onClick={() => handleWatch(item._id)}>
+                        <Button onClick={() => WatchMovies(item._id)}>
                           <i className="bi bi-play-circle"></i> Play
                         </Button>
                       </div>

@@ -4,7 +4,7 @@ import Videos from "./Videos";
 import { toast } from "react-toastify";
 import { useAuth } from "../Service/auth";
 import { Container, Row } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useNavigateMovies } from "../Service/movies";
 
 const SearchModal = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -14,7 +14,7 @@ const SearchModal = () => {
   const { backendURL, user, movies, authorizationToken, userAuthentication } =
     useAuth();
 
-  const navigate = useNavigate();
+  const {WatchMovies} = useNavigateMovies();
 
   useEffect(() => {
     if (user.searchHistory) {
@@ -52,14 +52,10 @@ const SearchModal = () => {
       (movie) => movie.name.toLowerCase() === item.toLowerCase()
     );
     if (foundMovie) {
-      handleMovie(foundMovie._id);
+      WatchMovies(foundMovie._id);
     } else {
       toast.error("No movie found with this name.");
     }
-  };
-
-  const handleMovie = (id) => {
-    navigate(`/Watch/${id}`);
   };
 
   return (
@@ -112,7 +108,7 @@ const SearchModal = () => {
                   <div
                     className="col-12 col-md-6 col-lg-4 my-3 d-flex justify-content-center"
                     key={i}
-                    onClick={() => handleMovie(item._id)}
+                    onClick={() => WatchMovies(item._id)}
                   >
                     <div className="scard">
                       <img

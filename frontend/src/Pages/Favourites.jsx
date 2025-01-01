@@ -5,9 +5,10 @@ import Footer from "../Components/Footer";
 import { useAuth } from "../Service/auth";
 import { Container, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 const Favourites = () => {
-  const { user, movies, backendURL, authorizationToken, userAuthentication } = useAuth(); // Access user and movies from AuthContext
+  const { user, movies, backendURL, authorizationToken, userAuthentication } = useAuth();
   const [favMovies, setFavMovies] = useState([]);
 
   useEffect(() => {
@@ -38,7 +39,11 @@ const Favourites = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Favourites - Cine World</title>
+      </Helmet>
       <Header />
+
       <section className="bg-black py-5 favourites">
         <Container>
           <Row>
@@ -81,6 +86,7 @@ const Favourites = () => {
           </Row>
         </Container>
       </section>
+
       <Footer />
     </>
   );

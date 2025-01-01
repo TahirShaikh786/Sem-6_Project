@@ -1,14 +1,15 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import { getRandomMovies, getAllMovies, topRated } from "./movies" // Import the functions
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState(null);
-  const [film, setFilm] = useState([]);
-  const [movies, setMovies] = useState([]);
-  const [rated, setRated] = useState([]);
+  const [film, setFilm] = useState([]); // For random movies
+  const [movies, setMovies] = useState([]); // For all movies
+  const [rated, setRated] = useState([]); // For top-rated movies
   const [loading, setLoading] = useState(true);
   const authorizationToken = `Bearer ${token}`;
   const backendURL = import.meta.env.VITE_BACKEND_URL;
@@ -17,7 +18,7 @@ export const AuthProvider = ({ children }) => {
   const storeTokenInLS = (serverToken) => {
     setToken(serverToken);
     localStorage.setItem("token", serverToken);
-  };  
+  };
 
   // Logout user
   const logoutUser = async () => {
@@ -70,63 +71,12 @@ export const AuthProvider = ({ children }) => {
   };
 
   // Fetch Movie data from Server
-  const getRandomMovies = async () => {
-    try {
-      const movie = await fetch(`${backendURL}/movie/mix/random`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      if (movie.ok) {
-        const movies = await movie.json();
-        setFilm(movies);
-      } else {
-        toast.error("Failed to fetch movie data.");
-      }
-    } catch (error) {
-      console.log("Error while fetching movie", error.message);
-      toast.error("Internal Server Error");
-    }
-  };
-
-  const getAllMovies = async () => {
-    try {
-      const response = await fetch(`${backendURL}/movie/all`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      if (response.ok) {
-        const moviesa = await response.json();
-        setMovies(moviesa);
-      } else {
-        toast.error("Failed to fetch movie data.");
-      }
-    } catch (error) {
-      console.log("Error fetching movie data:", error.message);
-      toast.error("An error occurred. Please try again later.");
-    }
-  };
-
-  const topRated = async () => {
-    const response = await fetch(`${backendURL}/movie/top/rated`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application.json",
-      },
-    });
-    const data = await response.json();
-    setRated(data);
-  };
-
   useEffect(() => {
     if (token) {
       userAuthentication();
-      getRandomMovies();
-      getAllMovies();
-      topRated();
+      getRandomMovies(backendURL, setFilm);
+      getAllMovies(backendURL, setMovies);
+      topRated(backendURL, setRated);
     } else {
       setLoading(false);
     }

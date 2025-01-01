@@ -12,6 +12,7 @@ const Profile = () => {
   const [show, setShow] = useState(false);
   const [visible, setVisible] = useState(false);
   const [profile, setProfile] = useState(false);
+  const [password, setPassword] = useState(false);
   const [updateProfile, setUpdateProfile] = useState({
     userName: "",
     email: "",
@@ -26,12 +27,18 @@ const Profile = () => {
   const formattedDate = new Date(user.createdAt).toLocaleDateString();
   const formattedTime = new Date(user.createdAt).toLocaleTimeString();
 
+  const toggleDropdown = () => {
+    setVisible(!visible);
+  };
+
   const handleClose = () => {
     setShow(false);
     setProfile(false);
+    setPassword(false);
   };
   const handleShow = () => setShow(true);
   const handleProfileForm = () => setProfile(true);
+  const handlePasswordForm = () => setPassword(true);
 
   const handleProfile = async () => {
     const formData = new FormData();
@@ -57,6 +64,7 @@ const Profile = () => {
       if (response.ok) {
         toast.success("Your Profile has Been Updated");
         userAuthentication();
+        handleClose();
       } else {
         toast.error(data?.message || "Internal Server Error");
       }
@@ -78,10 +86,11 @@ const Profile = () => {
       });
 
       const data = await response.json();
-      console.log("dat", data);
 
       if (response.ok) {
         toast.success(data.message);
+        handleClose();
+        userAuthentication();
       } else {
         toast.error(data.message);
       }
@@ -107,7 +116,7 @@ const Profile = () => {
   return (
     <>
       <Helmet>
-        <title>{user.userName.toUpperCase()} Profile - Cine World</title>
+        <title>{user.userName} Profile - Cine World</title>
       </Helmet>
 
       <section className="bg-black">
@@ -115,7 +124,7 @@ const Profile = () => {
           <Row className="m-0 p-0 w-100 d-flex flex-wrap justify-content-between">
             <Col lg={3} className="profileSide">
               <div className="btns">
-                <img src={sideImg} alt="sideLogo" />
+                <img src={sideImg} alt="" />
                 <Link to="/home" className="btn bg-white text-black m-2">
                   Home
                 </Link>
@@ -133,7 +142,7 @@ const Profile = () => {
                 </Link>
                 <Link
                   className="btn bg-primary m-2"
-                  onClick={() => handlePassword()}
+                  onClick={() => handlePasswordForm()}
                 >
                   Update Password
                 </Link>
@@ -142,48 +151,42 @@ const Profile = () => {
                 </Link>
               </div>
 
-              <div className="btns-dropdown">
-                <div>
-                  <img src={sideImg} alt="sideLogo" />
-                </div>
-                <div
-                  className={
-                    visible
-                      ? "d-block d-flex flex-column flex-wrap justify-content-center align-items-center"
-                      : "d-none"
-                  }
+              <div className={visible ? "btns-dropdown show" : "btns-dropdown d-none"}>
+                <Link to="/home" className="btn bg-white text-black m-2">
+                  Home
+                </Link>
+                <Link to="/allVideo" className="btn bg-white text-black m-2">
+                  All Movies
+                </Link>
+                <Link to="/categories" className="btn bg-white text-black m-2">
+                  Categories
+                </Link>
+                <Link
+                  className="btn bg-info m-2"
+                  onClick={() => handleProfileForm()}
                 >
-                  <Link
-                    to="/categories"
-                    className="btn bg-white text-black m-2"
-                  >
-                    Categories
-                  </Link>
-                  <Link
-                    className="btn bg-info m-2"
-                    onClick={() => handleProfileForm()}
-                  >
-                    Update Profile
-                  </Link>
-                  <Link
-                    className="btn bg-primary m-2"
-                    onClick={() => handlePassword()}
-                  >
-                    Update Password
-                  </Link>
-                  <Link to="/favourites" className="btn bg-success m-2">
-                    Favourites
-                  </Link>
-                </div>
-                <Button onClick={() => setVisible(!visible)}>
-                  {visible ? (
-                    <i className="bi bi-x-octagon"></i>
-                  ) : (
-                    <i className="bi bi-list"></i>
-                  )}
-                </Button>
+                  Update Profile
+                </Link>
+                <Link
+                  className="btn bg-primary m-2"
+                  onClick={() => handlePasswordForm()}
+                >
+                  Update Password
+                </Link>
+                <Link to="/favourites" className="btn bg-success m-2">
+                  Favourites
+                </Link>
               </div>
+
+              <Button className="proBtn" onClick={toggleDropdown}>
+                {visible ? (
+                  <i className="bi bi-x-octagon"></i>
+                ) : (
+                  <i className="bi bi-list"></i>
+                )}
+              </Button>
             </Col>
+
             <Col lg={8} className="m-2 d-flex justify-content-center">
               <div className="details">
                 <div className="w-100 d-flex justify-content-end">
@@ -196,10 +199,10 @@ const Profile = () => {
                   Email:- <span>{user.email}</span>
                 </h2>
                 <h2>
-                  Joined On :- <span>{formattedDate}</span>{" , "}
+                  Joined On :- <span>{formattedDate}</span>,{" "}
                   <span>{formattedTime}</span>
                 </h2>
-                <div className=" mt-4 d-flex justify-content-center">
+                <div className="mt-4 d-flex justify-content-center">
                   <Link
                     className="btn bg-danger m-2"
                     onClick={() => handleShow()}
@@ -286,6 +289,53 @@ const Profile = () => {
           </Button>
           <Button variant="success" onClick={() => handleProfile()}>
             Update Profile
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Update Password */}
+      <Modal className="bg-black" show={password} onHide={handleClose} centered>
+        <Modal.Header className="bg-black text-white" closeButton>
+          <Modal.Title>Update Password</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="bg-black text-white">
+          <Form>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Enter Current Password:- </Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Current Password"
+                value={updatePassword.currentPassword}
+                onChange={(e) =>
+                  setUpdatePassword({
+                    ...updatePassword,
+                    currentPassword: e.target.value,
+                  })
+                }
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Enter New Password:- </Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="New Password"
+                value={updatePassword.newPassword}
+                onChange={(e) =>
+                  setUpdatePassword({
+                    ...updatePassword,
+                    newPassword: e.target.value,
+                  })
+                }
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer className="bg-black">
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="success" onClick={() => handlePassword()}>
+            Update Password
           </Button>
         </Modal.Footer>
       </Modal>

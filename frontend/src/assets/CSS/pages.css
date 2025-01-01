@@ -9,7 +9,7 @@
   font-weight: 700;
 }
 
-.details{
+.details {
   width: 100%;
   height: fit-content;
   border-radius: 5rem;
@@ -21,7 +21,7 @@
   color: var(--white);
 }
 
-.details img{
+.details img {
   width: 250px;
   height: 250px;
   border-radius: 5rem;
@@ -29,12 +29,12 @@
   padding: 1rem;
 }
 
-.details h2{
+.details h2 {
   margin: 1rem 0;
   font-family: "Roboto Condensed", sans-serif;
 }
 
-.details span{
+.details span {
   width: 100%;
   font-size: 1.5rem;
   padding: 0.5rem;
@@ -43,17 +43,13 @@
   background-color: var(--black);
 }
 
-.details a{
+.details a {
   font-style: italic;
   color: var(--white);
   font-weight: 600;
 }
 
-.profileSide{
-  margin: 1rem;
-}
-
-.profileSide .btns{
+.profileSide .btns {
   width: 100%;
   height: 100%;
   display: flex;
@@ -63,21 +59,21 @@
   align-items: center;
 }
 
-.profileSide .btns-dropdown{
-  display: none;
-}
-
-.profileSide .btns img{
+.profileSide .btns img {
   width: 150px;
   height: 150px;
   margin: 1rem;
   border-radius: 1rem;
 }
 
-.profileSide .btns a{
+.profileSide .btns a {
   font-weight: 700;
   width: 100%;
   color: var(--white);
+}
+
+.profileSide .proBtn{
+  display: none;
 }
 
 .movieCards {
@@ -117,30 +113,30 @@
   transition: all ease-in-out 0.5s;
 }
 
-.favourites h1{
+.favourites h1 {
   text-decoration: underline;
   font-family: "Roboto Condensed", sans-serif;
 }
 
-.favouriteTrah h1{
+.favouriteTrah h1 {
   cursor: pointer;
 }
 
-.favourites table{
+.favourites table {
   color: var(--white);
   background-color: var(--black);
 }
 
-.favourites th{
+.favourites th {
   padding: 1rem;
 }
 
-.movieCards:hover .card-rate{
+.movieCards:hover .card-rate {
   top: -8px;
   right: -9px;
 }
 
-.card-body{
+.card-body {
   width: 100%;
   padding: 0.3rem;
   height: 10vh;
@@ -148,35 +144,36 @@
   background: var(--purple-gradient) !important;
 }
 
-.movieCard .h5{
+.movieCard .h5 {
   font-size: 1.4rem;
   font-weight: 700;
   text-decoration: underline;
   color: var(--white) !important;
 }
 
-.movieCard p{
+.movieCard p {
   color: var(--white);
 }
 
-.categoryBtn Button{
+.categoryBtn Button {
+  margin: 0.5rem;
   border: 3px solid var(--white);
   background: var(--purple-gradient);
   transition: all linear 0.2s;
 }
 
-.categoryBtn Button:hover{
+.categoryBtn Button:hover {
   border: 3px solid var(--purple);
 }
 
-.watchHead{
+.watchHead {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 4rem 0;
 }
 
-.watchHead a{
+.watchHead a {
   color: var(--white);
   text-decoration: none;
 }
@@ -277,7 +274,7 @@
   transition: all linear 0.2s;
 }
 
-.reviewAdd input:focus{
+.reviewAdd input:focus {
   border-bottom: 2px solid var(--purple);
 }
 
@@ -290,7 +287,7 @@
   transition: all linear 0.2s;
 }
 
-.reviewAdd input:focus + button{
+.reviewAdd input:focus + button {
   display: block;
 }
 
@@ -317,28 +314,28 @@
   color: #ddd;
 }
 
-.reviewsDisplay img{
+.reviewsDisplay img {
   width: 80px;
   height: 80px;
   border-radius: 50%;
 }
 
-.reviewsDisplay h5{
+.reviewsDisplay h5 {
   font-weight: 700;
   font-style: italic;
   color: var(--white);
   text-align: center;
 }
 
-.reviewsDisplay h6{
+.reviewsDisplay h6 {
   color: var(--white);
 }
 
-.reviewsDisplay h6:first-child{
+.reviewsDisplay h6:first-child {
   text-transform: capitalize;
 }
 
-.reviewsDisplay p{
+.reviewsDisplay p {
   margin: 0;
   padding: 0;
   color: var(--purple);
@@ -361,16 +358,16 @@ aside img {
   height: 100px;
 }
 
-footer li{
+footer li {
   cursor: pointer;
 }
 
 @media screen and (max-width: 992px) {
-  .details h1{
+  .details h1 {
     font-size: 1rem;
   }
 
-  .details span{
+  .details span {
     font-size: 0.9rem;
   }
 
@@ -378,35 +375,63 @@ footer li{
     display: none;
   }
 
-  .profileSide .btns-dropdown{
-    width: 90%;
-    height: 20vh;
-    padding: 1rem;
-    display: block;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-  }
-
-  .profileSide .btns-dropdown img{
-    width: 100px;
-    height: 100px;
+  /* For the dropdown menu */
+  .profileSide .btns-dropdown {
     position: fixed;
-    left: 10px;
-    border-radius: 1rem;
-  }
-
-  .profileSide .btns-dropdown a{
+    top: 0;
+    right: 0;
     width: 100%;
-    font-weight: 700;
-    z-index: 10;
-    color: var(--white);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--black);
+    transform: translateX(100%); /* Start off-screen */
+    transition: transform 0.3s ease-in-out;
+    z-index: 100;
   }
 
-  .profileSide .btns-dropdown button{
+  /* When the dropdown is visible, move it into the screen */
+  .profileSide .btns-dropdown.show {
+    transform: translateX(0);
+  }
+
+  /* Style the links inside the dropdown */
+  .profileSide .btns-dropdown a {
+    width: 50%;
+    font-weight: 700;
+    color: var(--white);
+    margin: 0.5rem 0;
+    text-align: center;
+  }
+
+  /* Positioning of the button */
+  .profileSide .proBtn {
+    width: 50px;
+    height: 50px;
+    display: block;
+    color: var(--purple);
+    font-weight: bolder;
     position: fixed;
-    margin: 10px;
+    top: 10px;
     right: 20px;
+    background-size: cover;
+    background-position: center;
+    background-image: url("../img/titleImg.png"); /* Set the button color */
+    border-radius: 50%;
+    transition: all ease-in-out 0.3s;
+    z-index: 200;
+  }
+
+  /* Add hover or active effects to the button */
+  .proBtn:hover {
     background: var(--purple-gradient);
+  }
+
+  /* Button icon */
+  .proBtn i {
+    color: var(--white);
+    font-size: 1.5rem;
   }
 }
