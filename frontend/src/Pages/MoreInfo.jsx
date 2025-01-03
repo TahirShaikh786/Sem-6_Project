@@ -34,9 +34,27 @@ const MoreInfo = () => {
       setLike(true);
     }
     fetchMovieDetails();
+    handleView();
   }, 100);
 
-  // [movie, user, id, like]
+  const handleView = async () => {
+    const response = await fetch(`${backendURL}/auth/viewHistory`,{
+      method: "POST",
+      headers: {
+        "Content-Type" : "application/json",
+        Authorization : authorizationToken,
+      },
+      body: JSON.stringify({
+        userId : user._id,
+        movieId : movie._id,
+        movieName : movie.name,
+        category : movie.category
+      }),
+    })
+    const data = await response.json();
+    console.log("data", data);
+    
+  }
 
   const handleInput = (e) => {
     let name = e.target.name;

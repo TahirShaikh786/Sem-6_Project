@@ -140,7 +140,7 @@ const updatedUser = async (req, res) => {
   try {
     const { userName, email } = req.body;
     let image = req.file ? `/${req.file.filename}` : undefined; // Get the file path from Multer
-    log
+    log;
 
     const user = await User.findById(req.params.id);
 
@@ -301,6 +301,51 @@ const searchData = async (req, res) => {
   }
 };
 
+const viewHistory = async (req, res) => {
+  try {
+    const { userId, movieId, movieName, category } = req.body;
+
+    // Find the user by ID
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Check if the movie already exists in the user's viewMovies array
+    const viewIndex = user.viewMovies.findIndex(
+      (view) => view.movieId.toString() === movieId.toString()
+    );
+
+    if (viewIndex !== -1) {
+      // If movie exists, increment the counter
+      user.viewMovies[viewIndex].counter += 1;
+    } else {
+      // If movie doesn't exist in the array, add a new movie object with counter = 1
+      const newView = {
+        movieId,
+        movieName,
+        userId,
+        category,
+        counter: 1,
+        createdAt: new Date(),
+      };
+      user.viewMovies.push(newView);
+    }
+
+    // Save the user with the updated viewMovies
+    await user.save();
+
+    // Return the updated viewMovies array
+    return res.status(200).json({
+      message: "Movie view history updated successfully",
+      updatedViewMovies: user.viewMovies,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Server error" });
+  }
+};
+
 // Admin Controller
 const getUsers = async (req, res) => {
   try {
@@ -349,6 +394,7 @@ export {
   updatedUser,
   updatePassword,
   deleteUser,
+  viewHistory,
   getUsers,
   deleteUsers,
   getLikedMovies,

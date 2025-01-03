@@ -2,6 +2,7 @@ import React from 'react'
 import { useAuth } from '../Service/auth';
 import { Navigate } from 'react-router-dom';
 import AdminHeader from '../Components/AdminHeader';
+import Footer from '../Components/Footer';
 
 const Admin = () => {
   const {user} = useAuth();
@@ -12,6 +13,8 @@ const Admin = () => {
   return (
     <>
       <AdminHeader />
+
+      <Footer />
     </>
   )
 }
