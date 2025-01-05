@@ -15,7 +15,7 @@ import { log } from "console";
 
 // Configuration
 const corsOption = {
-  origin: "http://localhost:5173",
+  origin: "http://localhost:5174",
   methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
   credential: true,
 };
@@ -33,7 +33,6 @@ const __dirname = dirname(__filename);                // Get the directory name
 app.use("/api/v1", homeRouter);
 app.use("/api/v1/auth", userRouter);
 app.use("/api/v1/movie", movieRouter);
-// app.use('/Images', express.static(path.join(__dirname, 'public', 'Images')));
 
 // Middleware
 app.use(errorHandler);

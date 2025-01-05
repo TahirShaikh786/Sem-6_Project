@@ -116,7 +116,7 @@ const Profile = () => {
   return (
     <>
       <Helmet>
-        <title>{user.userName} Profile - Cine World</title>
+        <title>{user.userName.toUpperCase()} Profile - Cine World</title>
       </Helmet>
 
       <section className="bg-black">
