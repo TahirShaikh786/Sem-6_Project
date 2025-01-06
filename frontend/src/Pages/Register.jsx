@@ -3,12 +3,14 @@ import { Col, Container, Row } from "react-bootstrap";
 import { Helmet } from "react-helmet";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import {useAuth} from "../Service/auth.jsx";
+import { useAuth } from "../Service/auth.jsx";
 
 const Register = () => {
   const [user, setUser] = useState({
     userName: "",
     email: "",
+    phone: "",
+    age: "",
     password: "",
   });
 
@@ -28,7 +30,7 @@ const Register = () => {
 
   const handleNext = (e) => {
     e.preventDefault();
-    if (step < 3) setStep(step + 1);
+    if (step < 5) setStep(step + 1);
   };
 
   const handleBack = (e) => {
@@ -76,7 +78,7 @@ const Register = () => {
 
               <form
                 className="row g-3 needs-validation d-flex flex-column align-items-center"
-                onSubmit={step === 4 ? handleSubmit : handleNext}
+                onSubmit={step === 5 ? handleSubmit : handleNext}
                 noValidate
               >
                 {step === 1 && (
@@ -99,6 +101,42 @@ const Register = () => {
 
                 {step === 2 && (
                   <div className="col-10 my-2">
+                    <label htmlFor="validationCustom04" className="form-label">
+                      Phone:
+                    </label>
+                    <input
+                      type="number"
+                      name="phone"
+                      onChange={handleInput}
+                      value={user.phone}
+                      className="form-control"
+                      id="validationCustom04"
+                      placeholder="Enter Your Phone Number..."
+                      required
+                    />
+                  </div>
+                )}
+
+                {step === 3 && (
+                  <div className="col-10 my-2">
+                    <label htmlFor="validationCustom05" className="form-label">
+                      Age:
+                    </label>
+                    <input
+                      type="number"
+                      name="age"
+                      onChange={handleInput}
+                      value={user.age}
+                      className="form-control"
+                      id="validationCustom05"
+                      placeholder="Enter Your Age..."
+                      required
+                    />
+                  </div>
+                )}
+
+                {step === 4 && (
+                  <div className="col-10 my-2">
                     <label htmlFor="validationCustom02" className="form-label">
                       Email:
                     </label>
@@ -115,7 +153,7 @@ const Register = () => {
                   </div>
                 )}
 
-                {step === 3 && (
+                {step === 5 && (
                   <div className="col-10 my-2">
                     <label htmlFor="validationCustom03" className="form-label">
                       Password:
@@ -143,7 +181,7 @@ const Register = () => {
                       Back
                     </button>
                   )}
-                  {step < 3 ? (
+                  {step < 5 ? (
                     <button
                       type="button"
                       onClick={handleNext}
@@ -152,7 +190,11 @@ const Register = () => {
                       Next
                     </button>
                   ) : (
-                    <button onClick={handleSubmit} type="submit" className="btn btn-success">
+                    <button
+                      onClick={handleSubmit}
+                      type="submit"
+                      className="btn btn-success"
+                    >
                       Submit
                     </button>
                   )}

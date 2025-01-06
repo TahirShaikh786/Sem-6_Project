@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <>
-      <header>
+      <header className="header-fixed">
         <Container className="z-3 pb-1">
           <Navbar collapseOnSelect expand="lg" className="headerNavbar">
             <Container>

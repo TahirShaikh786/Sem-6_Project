@@ -9,6 +9,7 @@ import Slider from "react-slick";
 import dummy from "/dummy.jpg";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
+import Footer from "../Components/Footer.jsx";
 
 const MoreInfo = () => {
   const [volume, setVolume] = useState(true);
@@ -22,7 +23,7 @@ const MoreInfo = () => {
   });
 
   const { id } = useParams();
-  const { user, movies, userAuthentication, backendURL, authorizationToken } =
+  const { user, movies, userAuthentication, backendURL, authorizationToken, getAllUSer } =
     useAuth();
   const movie = movies.message.find((m) => m._id === id);
 
@@ -53,7 +54,7 @@ const MoreInfo = () => {
     })
     const data = await response.json();
     console.log("data", data);
-    
+    getAllUSer();
   }
 
   const handleInput = (e) => {
@@ -343,6 +344,8 @@ const MoreInfo = () => {
           </Row>
         </Container>
       </section>
+
+      <Footer />
     </>
   );
 };

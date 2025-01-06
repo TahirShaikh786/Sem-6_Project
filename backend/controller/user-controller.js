@@ -8,9 +8,9 @@ import { log } from "console";
 // Public Controller
 const signUp = async (req, res) => {
   try {
-    const { userName, email, password, image } = req.body;
+    const { userName, email, password, phone, age, image } = req.body;
 
-    if (!email || !password || !userName) {
+    if (!email || !password || !userName || !phone || !age) {
       return res
         .status(400)
         .json({ success: false, message: "All Fields are required" });
@@ -40,6 +40,11 @@ const signUp = async (req, res) => {
         .json({ success: false, message: "Username Already Registered!" });
     }
 
+    const phoneExist = await User.findOne({ phone: phone });
+    if (phoneExist) {
+      return res.status(400).json({ message: "Phone Number already Exist" });
+    }
+
     const PROFILE_PICS = ["/avatar1.png", "/avatar2.png", "/avatar3.png"];
     const Profile_Image =
       PROFILE_PICS[Math.floor(Math.random() * PROFILE_PICS.length)];
@@ -50,6 +55,8 @@ const signUp = async (req, res) => {
     const user = await User.create({
       userName,
       email,
+      phone,
+      age,
       password: hashedPassword,
       image: Profile_Image,
     });
@@ -138,7 +145,7 @@ const getCurrentUser = async (req, res) => {
 
 const updatedUser = async (req, res) => {
   try {
-    const { userName, email } = req.body;
+    const { userName, email, phone, age } = req.body;
     let image = req.file ? `/${req.file.filename}` : undefined; // Get the file path from Multer
     log;
 
@@ -305,35 +312,35 @@ const viewHistory = async (req, res) => {
   try {
     const { userId, movieId, movieName, category } = req.body;
 
-    // Find the user by ID
-    const user = await User.findById(userId);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    // Check if the movie already exists in the user's viewMovies array
-    const viewIndex = user.viewMovies.findIndex(
-      (view) => view.movieId.toString() === movieId.toString()
+    // Find and update the user document in one atomic operation
+    const user = await User.findOneAndUpdate(
+      { _id: userId, "viewMovies.movieId": { $ne: movieId } }, // Check if movieId is not in the array
+      {
+        $push: {
+          viewMovies: {
+            movieId,
+            movieName,
+            userId,
+            category,
+            counter: 1,
+            createdAt: new Date(),
+          },
+        },
+      },
+      { new: true, upsert: true } // Create a new entry if it doesn't exist
     );
 
-    if (viewIndex !== -1) {
-      // If movie exists, increment the counter
-      user.viewMovies[viewIndex].counter += 1;
-    } else {
-      // If movie doesn't exist in the array, add a new movie object with counter = 1
-      const newView = {
-        movieId,
-        movieName,
-        userId,
-        category,
-        counter: 1,
-        createdAt: new Date(),
-      };
-      user.viewMovies.push(newView);
-    }
+    // If the movie exists in the viewMovies, increment its counter
+    if (user) {
+      const viewIndex = user.viewMovies.findIndex(
+        (view) => view.movieId.toString() === movieId.toString()
+      );
 
-    // Save the user with the updated viewMovies
-    await user.save();
+      if (viewIndex !== -1) {
+        user.viewMovies[viewIndex].counter += 1;
+        await user.save(); // Save the updated user object
+      }
+    }
 
     // Return the updated viewMovies array
     return res.status(200).json({

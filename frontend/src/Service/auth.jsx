@@ -1,15 +1,16 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { getRandomMovies, getAllMovies, topRated } from "./movies" // Import the functions
+import { getRandomMovies, getAllMovies, topRated } from "./movies";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState(null);
-  const [film, setFilm] = useState([]); // For random movies
-  const [movies, setMovies] = useState([]); // For all movies
-  const [rated, setRated] = useState([]); // For top-rated movies
+  const [allUser, setAllUser] = useState(null);
+  const [film, setFilm] = useState([]);
+  const [movies, setMovies] = useState([]);
+  const [rated, setRated] = useState([]);
   const [loading, setLoading] = useState(true);
   const authorizationToken = `Bearer ${token}`;
   const backendURL = import.meta.env.VITE_BACKEND_URL;
@@ -70,10 +71,25 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const getAllUSer = async () => {
+    const response = await fetch(`${backendURL}/auth/admin`, {
+      method: "GET",
+      headers: {
+        Authorization: authorizationToken,
+      },
+    });
+
+    if(response.ok){
+      const data = await response.json();
+      setAllUser(data.message);
+    }
+  };
+
   // Fetch Movie data from Server
   useEffect(() => {
     if (token) {
       userAuthentication();
+      getAllUSer();
       getRandomMovies(backendURL, setFilm);
       getAllMovies(backendURL, setMovies);
       topRated(backendURL, setRated);
@@ -91,6 +107,8 @@ export const AuthProvider = ({ children }) => {
         storeTokenInLS,
         film,
         rated,
+        getAllUSer,
+        allUser,
         userAuthentication,
         movies,
         authorizationToken,

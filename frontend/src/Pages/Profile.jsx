@@ -196,7 +196,13 @@ const Profile = () => {
                   Name:- <span>{user.userName}</span>
                 </h2>
                 <h2>
+                  Age:- <span>{user.age}</span>
+                </h2>
+                <h2>
                   Email:- <span>{user.email}</span>
+                </h2>
+                <h2>
+                  Phone:- <span>{user.phone}</span>
                 </h2>
                 <h2>
                   Joined On :- <span>{formattedDate}</span>,{" "}
