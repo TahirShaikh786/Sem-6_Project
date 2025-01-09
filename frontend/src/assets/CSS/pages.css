@@ -136,7 +136,7 @@
   right: -9px;
 }
 
-.card-body {
+.movieCards .card-body {
   width: 100%;
   padding: 0.3rem;
   height: 10vh;

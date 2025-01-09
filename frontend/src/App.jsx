@@ -11,6 +11,7 @@ import Search from "./Pages/Search";
 import Profile from "./Pages/Profile";
 import Favourites from "./Pages/Favourites";
 import Admin from "./Pages/Admin";
+import User from "./Pages/User";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/categories" element={<Categories />} />
             <Route path="/categories/:categoryName" element={<Categories />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/user/:id" element={<User />} />
           </Route>
 
           <Route path="*" element={<Error />} />
