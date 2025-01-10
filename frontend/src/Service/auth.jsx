@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { getRandomMovies, getAllMovies, topRated } from "./movies";
+import { getRandomMovies, getAllMovies, topRated, historyMovie } from "./movies";
 
 const AuthContext = createContext();
 
@@ -11,6 +11,7 @@ export const AuthProvider = ({ children }) => {
   const [film, setFilm] = useState([]);
   const [movies, setMovies] = useState([]);
   const [rated, setRated] = useState([]);
+  const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const authorizationToken = `Bearer ${token}`;
   const backendURL = import.meta.env.VITE_BACKEND_URL;
@@ -93,6 +94,7 @@ export const AuthProvider = ({ children }) => {
       getRandomMovies(backendURL, setFilm);
       getAllMovies(backendURL, setMovies);
       topRated(backendURL, setRated);
+      historyMovie(setHistory, user, movies);
     } else {
       setLoading(false);
     }
@@ -107,6 +109,7 @@ export const AuthProvider = ({ children }) => {
         storeTokenInLS,
         film,
         rated,
+        history,
         getAllUSer,
         allUser,
         userAuthentication,

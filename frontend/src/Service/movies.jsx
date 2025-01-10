@@ -1,4 +1,3 @@
-// src/Service/movieUtils.js
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -70,5 +69,21 @@ export const topRated = async (backendURL, setRated) => {
   } catch (error) {
     toast.error("An error occurred while fetching top-rated movies.");
     console.log("Error fetching top-rated movies:", error.message);
+  }
+};
+
+export const historyMovie = (setHistory, user, movies) => {
+  // Check if movies.message is an array
+  if (Array.isArray(movies.message)) {
+    // Filter the movies based on whether their name exists in the user's search history
+    const searchHistoryMovies = movies.message.filter(
+      (movie) => user.searchHistory.includes(movie.name)
+    );
+
+    setHistory(searchHistoryMovies);
+    console.log("Search History Movies:", searchHistoryMovies);
+  } else {
+    console.error("movies.message is not an array or is undefined.");
+    setHistory([]); 
   }
 };

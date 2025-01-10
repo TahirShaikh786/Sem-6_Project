@@ -49,8 +49,8 @@ const Header = () => {
                   <Link to="/home" className="m-2 links">
                     Home
                   </Link>
-                  <Link to="/allVideo" className="m-2 links">
-                    Movies
+                  <Link to="/rated" className="m-2 links">
+                    Rated
                   </Link>
                   <Link to="/categories" className="m-2 links">
                     Categories

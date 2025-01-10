@@ -75,8 +75,8 @@ export default function Footer() {
                 </Link>
               </p>
               <p>
-                <Link to="#!" className="text-reset">
-                  News
+                <Link to="/maps" className="text-reset">
+                  Maps
                 </Link>
               </p>
             </Col>

@@ -3,13 +3,15 @@ import "../assets/CSS/pages.css";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import { useAuth } from "../Service/auth";
-import { Container, Row } from "react-bootstrap";
+import { Button, Container, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet";
+import { useNavigateMovies } from "../Service/movies";
 
 const Favourites = () => {
   const { user, movies, backendURL, authorizationToken, userAuthentication } = useAuth();
   const [favMovies, setFavMovies] = useState([]);
+  const {WatchMovies} = useNavigateMovies();
 
   useEffect(() => {
     if (user && user.likedMovies && movies) {
@@ -62,6 +64,7 @@ const Favourites = () => {
                   <th>Movie Name</th>
                   <th>Year</th>
                   <th>Language</th>
+                  <th>View Movie</th>
                 </tr>
               </thead>
               <tbody>
@@ -72,6 +75,7 @@ const Favourites = () => {
                       <td>{movie.name}</td>
                       <td>{movie.year}</td>
                       <td>{movie.language}</td>
+                      <td><Button variant="dark" onClick={() => WatchMovies(movie._id)}>Watch</Button></td>
                     </tr>
                   ))
                 ) : (

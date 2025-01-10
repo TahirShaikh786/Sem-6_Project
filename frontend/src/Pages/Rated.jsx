@@ -1,31 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import Header from "../Components/Header";
+import Footer from "../Components/Footer";
 import { useAuth } from "../Service/auth";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import { useNavigateMovies } from "../Service/movies";
 
-const Videos = ({title}) => {
-  const [film, setFilm] = useState([]);
-  const { movies } = useAuth();
-  const {WatchMovies} = useNavigateMovies();
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (movies) {
-      setFilm(movies.message);
-    }
-  }, [movies]);
+const Rated = () => {
+  const { rated } = useAuth();
+  
   return (
     <>
-      <section className="pt-5 bg-black">
-        <Container className="py-5">
-          <Row className="allVideos">
-            <h1>{title}</h1>
-          </Row>
+      <Header />
 
+      <section className="bg-black">
+        <Container>
+          <Row className="allVideosHead">
+            <h2 className="text-center text-white pt-5">Top Rated </h2>
+          </Row>
           <Row className="my-4 d-flex justify-content-center flex-wrap">
-            {film.map((movies, i) => {
+            {rated.message.map((movies, i) => {
               return (
                 <Col
                   key={i}
@@ -38,7 +30,7 @@ const Videos = ({title}) => {
                     <img src={movies.titleImage} alt={movies.name} />
                     <div className="play d-flex flex-column justify-content-center">
                       <h5>{movies.name}</h5>
-                      <Button onClick={() => WatchMovies(movies._id)}>
+                      <Button onClick={() => handleALlInfo(movies._id)}>
                         <i className="bi bi-play-circle"></i> Play
                       </Button>
                     </div>
@@ -49,8 +41,10 @@ const Videos = ({title}) => {
           </Row>
         </Container>
       </section>
+
+      <Footer />
     </>
   );
 };
 
-export default Videos;
+export default Rated;

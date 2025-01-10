@@ -12,6 +12,8 @@ import Profile from "./Pages/Profile";
 import Favourites from "./Pages/Favourites";
 import Admin from "./Pages/Admin";
 import User from "./Pages/User";
+import Maps from "./Pages/Maps";
+import Rated from "./Pages/Rated";
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/search" element={<Search />} />
             <Route path="/favourites" element={<Favourites />} />
+            <Route path="/maps" element={<Maps />} />
+            <Route path="/rated" element={<Rated />} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/categories/:categoryName" element={<Categories />} />
             <Route path="/admin" element={<Admin />} />
