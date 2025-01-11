@@ -86,33 +86,6 @@ const Dashboard = () => {
         </Container>
       </section>
 
-      {/* History Section */}
-      <section className="bg-black">
-        <Container>
-          <Row className="allVideosHead">
-            <h2>Your History</h2>
-          </Row>
-          <div className="slider-container">
-            <Slider {...settings}>
-              {history.map((movie, i) => {
-                return (
-                  <div className="VideosCard" key={i}>
-                    <Card className="movieCards">
-                      <Card.Img
-                        variant="top"
-                        src={movie.titleImage}
-                        alt={movie.name}
-                        onClick={() => WatchMovies(movie._id)}
-                      />
-                    </Card>
-                  </div>
-                );
-              })}
-            </Slider>
-          </div>
-        </Container>
-      </section>
-
       {/* Top Rated Movie */}
       <section className="bg-black">
         <Container>

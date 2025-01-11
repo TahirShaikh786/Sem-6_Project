@@ -11,7 +11,7 @@ const SearchModal = () => {
   const [visible, setVisible] = useState(false);
   const [sdata, setSdata] = useState([]);
   const [history, setHistory] = useState([]);
-  const { backendURL, user, movies, authorizationToken, userAuthentication } =
+  const { backendURL, user, movies, authorizationToken, userAuthentication, historyMovie } =
     useAuth();
 
   const {WatchMovies} = useNavigateMovies();
@@ -42,6 +42,7 @@ const SearchModal = () => {
 
     if (response.ok) {
       userAuthentication();
+      historyMovie();
     } else {
       toast.error("No search results found.");
     }

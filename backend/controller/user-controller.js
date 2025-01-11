@@ -145,30 +145,39 @@ const getCurrentUser = async (req, res) => {
 
 const updatedUser = async (req, res) => {
   try {
-    const { userName, email, phone, age } = req.body;
-    let image = req.file ? `/${req.file.filename}` : undefined; // Get the file path from Multer
-    log;
+    const { userName, email, phone, age, isAdmin } = req.body;
+    const image = req.file ? `/${req.file.filename}` : undefined; // Get the file path from Multer
 
+    // Find the user by ID
     const user = await User.findById(req.params.id);
 
-    if (user) {
-      user.userName = userName || user.userName;
-      user.email = email || user.email;
-      user.image = image || user.image; // If no new image, keep the old one
-
-      const updateUser = await user.save();
-
-      res.json({
-        userName: updateUser.userName,
-        email: updateUser.email,
-        image: updateUser.image,
-        isAdmin: updateUser.isAdmin,
-      });
-    } else {
-      res.status(404).json({ message: "User Not Found" });
+    if (!user) {
+      return res.status(404).json({ message: "User Not Found" });
     }
+
+    // Update fields if provided
+    user.userName = userName || user.userName;
+    user.email = email || user.email;
+    user.phone = phone || user.phone;
+    user.age = age || user.age;
+    user.isAdmin = isAdmin !== undefined ? isAdmin : user.isAdmin; // Update isAdmin if provided
+    user.image = image || user.image; // Update image if a new file is uploaded
+
+    // Save the updated user
+    const updatedUser = await user.save();
+
+    // Send the updated user data as a response
+    res.json({
+      userName: updatedUser.userName,
+      email: updatedUser.email,
+      phone: updatedUser.phone,
+      age: updatedUser.age,
+      isAdmin: updatedUser.isAdmin,
+      image: updatedUser.image,
+    });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    console.error("Error updating user:", error);
+    res.status(500).json({ message: "An error occurred while updating the user", error: error.message });
   }
 };
 

@@ -3,10 +3,12 @@ import "../assets/CSS/pages.css";
 import Helmet from "react-helmet";
 import { useAuth } from "../Service/auth";
 import Footer from "../Components/Footer";
-import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Form, Modal, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import sideImg from "../assets/img/titleImg.png";
+import Slider from "react-slick";
+import { useNavigateMovies } from "../Service/movies";
 
 const Profile = () => {
   const [show, setShow] = useState(false);
@@ -22,10 +24,12 @@ const Profile = () => {
     currentPassword: "",
     newPassword: "",
   });
-  const { user, backendURL, authorizationToken, userAuthentication } =
+  const { user, backendURL, authorizationToken, userAuthentication, history } =
     useAuth();
   const formattedDate = new Date(user.createdAt).toLocaleDateString();
   const formattedTime = new Date(user.createdAt).toLocaleTimeString();
+
+  const {WatchMovies} = useNavigateMovies();
 
   const toggleDropdown = () => {
     setVisible(!visible);
@@ -113,6 +117,41 @@ const Profile = () => {
     }
   };
 
+  var settings = {
+    dots: false,
+    infinite: true,
+    autoplay: false,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplaySpeed: 2000,
+    pauseOnHover: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
     <>
       <Helmet>
@@ -151,7 +190,11 @@ const Profile = () => {
                 </Link>
               </div>
 
-              <div className={visible ? "btns-dropdown show" : "btns-dropdown d-none"}>
+              <div
+                className={
+                  visible ? "btns-dropdown show" : "btns-dropdown d-none"
+                }
+              >
                 <Link to="/home" className="btn bg-white text-black m-2">
                   Home
                 </Link>
@@ -208,6 +251,34 @@ const Profile = () => {
                   Joined On :- <span>{formattedDate}</span>,{" "}
                   <span>{formattedTime}</span>
                 </h2>
+
+                {/* History Section */}
+                <section>
+                  <Container>
+                    <Row className="allVideosHead">
+                      <h2>Your History</h2>
+                    </Row>
+                    <div className="slider-container">
+                      <Slider {...settings}>
+                        {history.map((movie, i) => {
+                          return (
+                            <div className="VideosCard" key={i}>
+                              <Card className="movieCards">
+                                <Card.Img
+                                  variant="top"
+                                  src={movie.titleImage}
+                                  alt={movie.name}
+                                  onClick={() => WatchMovies(movie._id)}
+                                />
+                              </Card>
+                            </div>
+                          );
+                        })}
+                      </Slider>
+                    </div>
+                  </Container>
+                </section>
+
                 <div className="mt-4 d-flex justify-content-center">
                   <Link
                     className="btn bg-danger m-2"

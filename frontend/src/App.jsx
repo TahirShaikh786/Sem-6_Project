@@ -11,9 +11,10 @@ import Search from "./Pages/Search";
 import Profile from "./Pages/Profile";
 import Favourites from "./Pages/Favourites";
 import Admin from "./Pages/Admin";
-import User from "./Pages/User";
+import UserDetails from "./Pages/UserDetails";
 import Maps from "./Pages/Maps";
 import Rated from "./Pages/Rated";
+import Movies from "./Pages/Movies";
 
 function App() {
   return (
@@ -35,7 +36,8 @@ function App() {
             <Route path="/categories" element={<Categories />} />
             <Route path="/categories/:categoryName" element={<Categories />} />
             <Route path="/admin" element={<Admin />} />
-            <Route path="/admin/user/:id" element={<User />} />
+            <Route path="/admin/user/:id" element={<UserDetails />} />
+            <Route path="/admin/movies" element={<Movies />} />
           </Route>
 
           <Route path="*" element={<Error />} />

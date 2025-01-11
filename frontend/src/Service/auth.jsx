@@ -113,6 +113,7 @@ export const AuthProvider = ({ children }) => {
         getAllUSer,
         allUser,
         userAuthentication,
+        historyMovie,
         movies,
         authorizationToken,
         loading,

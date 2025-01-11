@@ -3,7 +3,7 @@ import { Chart as ChartJS } from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 import { useAuth } from "../Service/auth";
 
-const BarChart = () => {
+const BarChart = ({id}) => {
   const { allUser } = useAuth();
 
   // Create an array of unique categories
@@ -14,7 +14,7 @@ const BarChart = () => {
   ];
 
   // Prepare the data for the chart
-  const userNames = allUser.map((user) => user.userName);
+  const userNames = allUser.map((user) => user._id);
   const categoryCounts = allCategories.map(() => allUser.map((user) => 0)); // Initialize count for each category for each user
 
   // Fill the categoryCounts array with the number of movies viewed per category for each user

@@ -48,7 +48,7 @@ const AdminHeader = () => {
                     Home
                   </Link>
                   <Link to="/allVideo" className="m-2 links">
-                    Movies
+                    Users
                   </Link>
                   <Link to="/categories" className="m-2 links">
                     Categories

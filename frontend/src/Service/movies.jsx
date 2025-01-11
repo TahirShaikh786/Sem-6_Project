@@ -79,11 +79,8 @@ export const historyMovie = (setHistory, user, movies) => {
     const searchHistoryMovies = movies.message.filter(
       (movie) => user.searchHistory.includes(movie.name)
     );
-
     setHistory(searchHistoryMovies);
-    console.log("Search History Movies:", searchHistoryMovies);
   } else {
-    console.error("movies.message is not an array or is undefined.");
     setHistory([]); 
   }
 };

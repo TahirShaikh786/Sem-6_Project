@@ -53,7 +53,10 @@ const MoreInfo = () => {
       }),
     })
     const data = await response.json();
-    getAllUSer();
+    if(response.ok){
+      getAllUSer();
+      userAuthentication();
+    }
   }
 
   const handleInput = (e) => {
