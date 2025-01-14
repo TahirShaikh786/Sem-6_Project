@@ -1,9 +1,9 @@
 import React from "react";
 import { Chart as ChartJS } from "chart.js/auto";
-import { Bar } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
 import { useAuth } from "../Service/auth";
 
-const BarChart = ({ id }) => {
+const PieChart = ({ id }) => {
   const { allUser } = useAuth();
 
   // Find the user based on the passed id
@@ -35,12 +35,17 @@ const BarChart = ({ id }) => {
       {
         label: "Movies Viewed by Category",
         data: categoryCounts,
-        backgroundColor: allCategories.map(() => `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.6)`), // Random colors for each category
+        backgroundColor: allCategories.map(
+          () =>
+            `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(
+              Math.random() * 255
+            )}, ${Math.floor(Math.random() * 255)}, 0.6)`
+        ), // Random colors for each category
       },
     ],
   };
 
-  return <Bar data={chartData} />;
+  return <Pie data={chartData} />;
 };
 
-export default BarChart;
+export default PieChart;

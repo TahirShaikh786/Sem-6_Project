@@ -6,6 +6,8 @@ import Footer from "../Components/Footer";
 import AdminHeader from "../Components/AdminHeader";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useNavigateMovies } from "../Service/movies";
+import BarChart from "../Components/BarChart";
+import PieChart from "../Components/PieChart";
 
 const UserDetails = () => {
   const { id } = useParams();
@@ -144,8 +146,11 @@ const UserDetails = () => {
                   </div>
                 </Col>
                 <Col md={6}>
-                  <Row>
+                  <Row className="userGraph">
                     <BarChart id={matchUser._id} />
+                  </Row>
+                  <Row className="userGraph">
+                    <PieChart id={matchUser._id} />
                   </Row>
                 </Col>
               </Row>

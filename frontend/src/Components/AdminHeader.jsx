@@ -44,11 +44,11 @@ const AdminHeader = () => {
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto"></Nav>
                 <Nav className="d-flex flex-md-column flex-lg-row justify-content-center align-items-center">
-                  <Link to="/home" className="m-2 links">
-                    Home
+                  <Link to="/admin" className="m-2 links">
+                    Dashboard
                   </Link>
-                  <Link to="/allVideo" className="m-2 links">
-                    Users
+                  <Link to="/admin/movies" className="m-2 links">
+                    Movies
                   </Link>
                   <Link to="/categories" className="m-2 links">
                     Categories
