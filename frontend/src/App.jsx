@@ -15,6 +15,7 @@ import UserDetails from "./Pages/UserDetails";
 import Maps from "./Pages/Maps";
 import Rated from "./Pages/Rated";
 import Movies from "./Pages/Movies";
+import Booking from "./Pages/Booking";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
             <Route path="/rated" element={<Rated />} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/categories/:categoryName" element={<Categories />} />
+            <Route path="/booking/:id" element={<Booking />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/user/:id" element={<UserDetails />} />
             <Route path="/admin/movies" element={<Movies />} />

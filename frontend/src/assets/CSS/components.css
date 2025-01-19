@@ -197,6 +197,73 @@
   padding: 2rem;
 }
 
+.bookingContainer{
+  width: 100%;
+  margin: 1rem 0;
+  padding: 2rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--purple-gradient);
+}
+
+.bookingContainer h1, h4{
+  text-align: center;
+  font-style: italic;
+  color: var(--white);
+  text-decoration: underline;
+}
+
+.bookingContainer label{
+  color: var(--white);
+}
+
+.bookingContainer input{
+  width: 100%;
+  color: var(--white);
+  background-color: var(--black);
+}
+
+.bookingContainer input:focus{
+  color: var(--white);
+  background-color: var(--black);
+}
+
+/* Seat styling */
+.seats-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.seat-row {
+  display: flex;
+  justify-content: center;
+  margin: 5px 0;
+}
+
+.seat {
+  display: inline-block;
+  margin: 5px;
+  padding: 10px;
+  background-color: #ccc;
+  border: 1px solid #999;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.seat.selected {
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
+}
+
+.seat:hover {
+  background-color: #ddd;
+}
+
 @media only screen and (max-width: 992px) {
   .links {
     width: 100px;

@@ -1,12 +1,15 @@
-import React, { useState } from "react";
-import "../assets/CSS/components.css";
-import headerLogo from "../assets/img/titleImg.png";
-import { useAuth } from "../Service/auth.jsx";
+import React from "react";
 import { Button, Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import headerLogo from "../assets/img/titleImg.png";
 import { Link } from "react-router-dom";
+import { useAuth } from "../Service/auth";
 
-const Header = () => {
+const FixedHeader = () => {
   const { user, logoutUser } = useAuth();
+
+  const handleLogout = () => {
+    logoutUser();
+  };
   const Img = (
     <img
       src={user.image}
@@ -14,15 +17,10 @@ const Header = () => {
       style={{ width: "30px", height: "30px" }}
     />
   );
-
-  const handleLogout = () => {
-    logoutUser();
-  };
-
   return (
     <>
-      <header className="header-fixed">
-        <Container className="z-3 pb-1">
+      <header className="bg-black">
+        <Container className="pb-1">
           <Navbar collapseOnSelect expand="lg" className="headerNavbar">
             <Container>
               <Navbar.Brand className="navLogo">
@@ -50,13 +48,18 @@ const Header = () => {
                     Home
                   </Link>
                   <Link to="/allVideo" className="m-2 links">
-                    Movie
+                    Movies
                   </Link>
                   <Link to="/categories" className="m-2 links">
                     Categories
                   </Link>
-                  <Link to='/search' className="m-2 links">Search</Link>
-                  <Link to='/profile' className="m-2 links d-sm-block d-lg-none">
+                  <Link to="/search" className="m-2 links">
+                    Search
+                  </Link>
+                  <Link
+                    to="/profile"
+                    className="m-2 links d-sm-block d-lg-none"
+                  >
                     Profile
                   </Link>
                   <Button
@@ -78,12 +81,15 @@ const Header = () => {
                     <hr className="text-white m-0 p-0" />
                     <NavDropdown.Item className="text-center">
                       <Link to="/favourites" className="drop_Links">
-                      <i class="bi bi-heart-fill"></i> Favourites
+                        <i class="bi bi-heart-fill"></i> Favourites
                       </Link>
                     </NavDropdown.Item>
                     <hr className="text-white m-0 p-0" />
                     <NavDropdown.Item className="m-0 p-0 d-flex justify-content-center">
-                      <Button className="bg-danger w-100" onClick={handleLogout}>
+                      <Button
+                        className="bg-danger w-100"
+                        onClick={handleLogout}
+                      >
                         Logout
                       </Button>
                     </NavDropdown.Item>
@@ -98,4 +104,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default FixedHeader;

@@ -11,7 +11,6 @@ import homeRouter from "./routes/home-router.js";
 import userRouter from "./routes/user-router.js";
 import movieRouter from "./routes/movie-router.js";
 import errorHandler from "./middleware/error-middleware.js";
-import { log } from "console";
 
 // Configuration
 const corsOption = {

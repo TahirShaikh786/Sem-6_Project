@@ -29,6 +29,34 @@ const viewSchema = mongoose.Schema({
   },
 });
 
+const bookingSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  movieName: {
+    type: String,
+    required: true,
+  },
+  seatNo: [
+    {
+      number: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
+  location: {
+    type: String,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
 const userSchema = mongoose.Schema(
   {
     userName: {
@@ -65,6 +93,7 @@ const userSchema = mongoose.Schema(
       type: Array,
       default: [],
     },
+    booking: [bookingSchema],
     viewMovies: [viewSchema],
     likedMovies: [
       {
