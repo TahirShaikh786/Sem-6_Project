@@ -1,4 +1,4 @@
-.bar{
+.bar {
   width: 100%;
   height: 50vh;
   padding: 1rem;
@@ -6,7 +6,7 @@
   background: var(--white);
 }
 
-.adminUserCard{
+.adminUserCard {
   width: 100%;
   height: fit-content;
   display: flex;
@@ -16,14 +16,14 @@
   background: var(--purple-gradient);
 }
 
-.adminUserCard img{
+.adminUserCard img {
   width: 5rem;
   height: 5rem;
   padding: 0.5rem;
   border-radius: 1rem;
 }
 
-.adminUserBody{
+.adminUserBody {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -31,4 +31,96 @@
   justify-content: space-between;
   border-radius: 1rem;
   background-color: var(--black);
+}
+
+/* Create Movie Form */
+.movieForm {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  border-radius: 1rem;
+  background: var(--purple-gradient);
+}
+
+.movieForm h1 {
+  font-weight: 700;
+  font-style: italic;
+  text-decoration: underline;
+  font-family: "Roboto";
+  color: var(--white);
+  text-align: center;
+}
+
+.movie-form .grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 20px; /* Spacing between grid items */
+}
+
+.movie-form .grid-container div {
+  display: flex;
+  flex-direction: column;
+}
+
+.movie-form .grid-container .full-width {
+  grid-column: span 3; /* Span across all 3 columns */
+}
+
+.movie-form label {
+  color: var(--white);
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.movie-form input,
+.movie-form textarea,
+.movie-form button {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.movie-form textarea {
+  resize: none;
+}
+
+.full-width button {
+  width: 100%;
+  margin: 0.4rem 0;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Optional: Adjusts spacing between the checkbox and label */
+}
+
+.cast-field {
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.cast-field input {
+  flex: 1;
+  width: 100%;
+}
+
+.submit-button {
+  grid-column: span 3; /* Submit button spans full width */
+  background-color: var(--black);
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  font-weight: 700;
+  color: var(--black);
+  background-color: var(--white);
 }

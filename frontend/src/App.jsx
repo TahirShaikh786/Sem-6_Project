@@ -10,12 +10,12 @@ import Categories from "./Pages/Categories";
 import Search from "./Pages/Search";
 import Profile from "./Pages/Profile";
 import Favourites from "./Pages/Favourites";
-import Admin from "./Pages/Admin";
-import UserDetails from "./Pages/UserDetails";
+import Admin from "./Admin_Pages/Admin";
+import UserDetails from "./Admin_Pages/UserDetails";
 import Maps from "./Pages/Maps";
 import Rated from "./Pages/Rated";
-import Movies from "./Pages/Movies";
 import Booking from "./Pages/Booking";
+import CreateMovieForm from "./Admin_Pages/CreateMovieForm";
 
 function App() {
   return (
@@ -39,7 +39,7 @@ function App() {
             <Route path="/booking/:id" element={<Booking />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/user/:id" element={<UserDetails />} />
-            <Route path="/admin/movies" element={<Movies />} />
+            <Route path="/admin/movies" element={<CreateMovieForm />} />
           </Route>
 
           <Route path="*" element={<Error />} />

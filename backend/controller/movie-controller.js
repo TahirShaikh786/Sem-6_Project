@@ -286,46 +286,51 @@ const createMovie = async (req, res) => {
     const {
       name,
       desc,
-      image,
-      titleImage,
-      rate,
-      numberOfReviews,
       category,
-      time,
       language,
       year,
+      time,
       video,
+      director,
+      platform,
+      rate,
+      numberOfReviews,
+      forChild,
       casts,
     } = req.body;
 
+    // Parse casts JSON (since it's sent as a string from the form)
+    const parsedCasts = casts ? JSON.parse(casts) : [];
+
     const newMovie = new Movie({
+      userID: req.user._id, // Assuming authenticated user is creating the movie
       name,
       desc,
-      image,
-      titleImage,
-      rate,
-      numberOfReviews,
       category,
-      time,
       language,
       year,
+      time,
       video,
-      casts,
+      director,
+      platform,
+      rate,
+      numberOfReviews,
+      forChild: forChild === "true", // Convert string to boolean
+      casts: parsedCasts,
+      image: req.file ? `/${req.file.filename}` : null, // Handle uploaded image
     });
 
-    if (newMovie) {
-      const createMovie = await newMovie.save();
-      res.status(201).json({ success: true, message: createMovie });
-    } else {
-      res
-        .status(400)
-        .json({ success: false, message: "Failed to create movie" });
-    }
+    const createdMovie = await newMovie.save();
+    res
+      .status(201)
+      .json({
+        success: true,
+        message: "Movie created successfully",
+        data: createdMovie,
+      });
   } catch (error) {
-    console.log("Error while Creating Movie", error.message);
-    return res
-      .status(500)
-      .json({ success: false, message: "Internal Server Error" });
+    console.error("Error creating movie:", error.message);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
 

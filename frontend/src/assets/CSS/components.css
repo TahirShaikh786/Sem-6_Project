@@ -244,7 +244,7 @@
   margin: 5px 0;
 }
 
-.seat {
+.seatBtn {
   display: inline-block;
   margin: 5px;
   padding: 10px;
@@ -254,10 +254,12 @@
   cursor: pointer;
 }
 
-.seat.selected {
-  background-color: #28a745;
-  color: white;
-  font-weight: bold;
+.seatBtn.booked {
+  background-color: var(--black);
+  pointer-events: none; /* Disable clicking */
+}
+.seatBtn.selected {
+  background-color: green; /* Customize selected seats */
 }
 
 .seat:hover {

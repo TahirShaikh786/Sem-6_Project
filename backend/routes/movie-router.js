@@ -1,5 +1,6 @@
 import express from "express";
 import * as auth from "../middleware/auth.js";
+import upload from "../middleware/storage.js";
 import * as movieController from "../controller/movie-controller.js";
 
 const router = express.Router();
@@ -20,6 +21,6 @@ router.post("/:id/reviews", auth.protect, movieController.createMovieReview);
 router.put("/:id", auth.protect, auth.admin, movieController.updateMovie);
 router.delete(":id", auth.protect, auth.admin, movieController.deleteMovie);
 router.delete("/", auth.protect, auth.admin, movieController.deleteAllMovie);
-router.post("/", auth.protect, auth.admin, movieController.createMovie);
+router.post("/", upload.single("image"), auth.protect, auth.admin, movieController.createMovie);
 
 export default router;

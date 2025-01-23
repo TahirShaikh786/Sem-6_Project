@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../assets/CSS/pages.css";
 import { useAuth } from "../Service/auth.jsx";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Header from "../Components/Header.jsx";
 import { Helmet } from "react-helmet";
 import ReactPlayer from "react-player";

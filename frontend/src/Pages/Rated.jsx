@@ -27,7 +27,7 @@ const Rated = () => {
                   className="m-2 d-flex justify-content-center flex-wrap"
                 >
                   <div className="video">
-                    <img src={movies.titleImage} alt={movies.name} />
+                    <img src={movies.image} alt={movies.name} />
                     <div className="play d-flex flex-column justify-content-center">
                       <h5>{movies.name}</h5>
                       <Button onClick={() => handleALlInfo(movies._id)}>

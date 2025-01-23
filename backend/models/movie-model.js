@@ -31,10 +31,6 @@ const movieSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    titleImage: {
-      type: String,
-      required: true,
-    },
     image: {
       type: String,
       required: true,
@@ -58,6 +54,10 @@ const movieSchema = mongoose.Schema(
     video: {
       type: String,
     },
+    forChild:{
+      type: Boolean,
+      required: true
+    },
     director: {
       type: String,
       required: true,
@@ -68,10 +68,6 @@ const movieSchema = mongoose.Schema(
       },
     ],
     platform: {
-      type: String,
-      required: true,
-    },
-    platformIcon: {
       type: String,
       required: true,
     },

@@ -5,9 +5,12 @@ import Footer from "../Components/Footer";
 import FixedHeader from "../Components/FixedHeader";
 import { Col, Container, Row, Modal, Button, Form } from "react-bootstrap";
 import { useAuth } from "../Service/auth";
+import { jsPDF } from "jspdf";
+import { toast } from "react-toastify";
 
 const BookingPage = () => {
-  const { user, backendURL, authorizationToken } = useAuth();
+  const { user, backendURL, authorizationToken, allUser, getAllUSer } =
+    useAuth();
   const location = useLocation();
   const theater = location.state?.theater; // Retrieve theater data
   const [showModal, setShowModal] = useState(false); // Modal visibility state
@@ -27,6 +30,17 @@ const BookingPage = () => {
     ["B1", "B2", "B3", "B4", "B5"],
     ["C1", "C2", "C3", "C4", "C5"],
   ];
+
+  const bookedSeats = new Set();
+  allUser.forEach((user) => {
+    user.booking.forEach((booking) => {
+      if (booking.location === theater.display_name) {
+        booking.seatNo.forEach((seat) => {
+          bookedSeats.add(seat.number); // Add booked seat number to the set
+        });
+      }
+    });
+  });
 
   // Handle seat selection
   const handleSeatSelection = (seat) => {
@@ -87,11 +101,11 @@ const BookingPage = () => {
         const result = await response.json();
 
         if (response.ok) {
-          alert("Booking Successful!");
           setShowModal(false); // Close modal
-          // Optionally, redirect or reset states here
+          toast.success("Booking Successful!");
+          generateTicketPDF(bookingData);
         } else {
-          alert(`Booking Failed: ${result.message}`);
+          toast.error(`Booking Failed: ${result.message}`);
         }
       } catch (error) {
         console.error("Error submitting booking:", error);
@@ -100,6 +114,87 @@ const BookingPage = () => {
     } else {
       setErrors(newErrors); // Show validation errors
     }
+  };
+
+  // Function to generate the PDF ticket
+  const generateTicketPDF = (bookingData) => {
+    const { movieName, selectedSeats, theaterName } = bookingData;
+
+    const doc = new jsPDF();
+
+    // Simulating a gradient using rectangles
+    const gradientColors = ["#6a11cb", "#9b40e8"]; // Example gradient colors
+    const steps = 100; // Number of gradient steps
+    const pageHeight = doc.internal.pageSize.height;
+    const pageWidth = doc.internal.pageSize.width;
+    const stepHeight = pageHeight / steps;
+
+    // Draw the gradient background
+    for (let i = 0; i < steps; i++) {
+      const color = interpolateColor(
+        gradientColors[0],
+        gradientColors[1],
+        i / steps
+      );
+      doc.setFillColor(color);
+      doc.rect(0, i * stepHeight, pageWidth, stepHeight, "F");
+    }
+
+    // Set text color to white
+    doc.setTextColor(255, 255, 255);
+
+    // Add Ticket Header
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(20);
+    doc.text("Ticket Booking Confirmation", 60, 20);
+
+    // Add Theater Information
+    doc.setFontSize(12);
+    doc.text(`Theater: ${theaterName}`, 20, 30);
+
+    // Add Movie Inmformation
+    doc.text(`Movie:-  ${movieName}`, 20, 40);
+
+    // Handle selectedSeats: Extract seat numbers
+    const seatNumbers = selectedSeats.map((seat) => {
+      return seat.number;
+    });
+
+    // Add Seat Information
+    const seatsText = seatNumbers.join(", ");
+    doc.text(`Seats: ${seatsText}`, 20, 50);
+
+    // Add Cardholder Name (for demo, this can be modified according to user data)
+    doc.text(`Cardholder: ${formData.cardHolder}`, 20, 60);
+
+    // Add a Thank You note
+    doc.text("Thank you for your booking! Enjoy your movie!", 20, 70);
+
+    // Save the PDF file as a ticket
+    doc.save("movie_ticket.pdf");
+  };
+
+  // Helper function to interpolate between two colors
+  const interpolateColor = (color1, color2, factor) => {
+    const hexToRgb = (hex) => {
+      const bigint = parseInt(hex.replace("#", ""), 16);
+      return [bigint >> 16, (bigint >> 8) & 255, bigint & 255];
+    };
+
+    const rgbToHex = (r, g, b) => {
+      return `#${[r, g, b]
+        .map((x) => x.toString(16).padStart(2, "0"))
+        .join("")}`;
+    };
+
+    const rgb1 = hexToRgb(color1);
+    const rgb2 = hexToRgb(color2);
+
+    const r = Math.round(rgb1[0] + (rgb2[0] - rgb1[0]) * factor);
+    const g = Math.round(rgb1[1] + (rgb2[1] - rgb1[1]) * factor);
+    const b = Math.round(rgb1[2] + (rgb2[2] - rgb1[2]) * factor);
+
+    return rgbToHex(r, g, b);
   };
 
   // Handle Proceed to Payment button click
@@ -192,7 +287,12 @@ const BookingPage = () => {
               <div className="text-danger mb-3">{errors.seats}</div>
             )}
 
-            <Button type="submit" variant="primary" className="w-100">
+            <Button
+              type="submit"
+              onClick={() => getAllUSer()}
+              variant="primary"
+              className="w-100"
+            >
               Submit
             </Button>
           </Form>
@@ -236,13 +336,16 @@ const BookingPage = () => {
                 <div className="seatLayout">
                   {seatLayout.map((row, rowIndex) => (
                     <div key={rowIndex} className="seatRow">
-                      {row.map((seat) => (
+                      {row.map((seat, index) => (
                         <button
-                          key={seat}
-                          className={`seat ${
-                            selectedSeats.includes(seat) ? "selected" : ""
-                          }`}
-                          onClick={() => handleSeatSelection(seat)}
+                          key={index}
+                          className={`seatBtn ${
+                            bookedSeats.has(seat) ? "booked" : ""
+                          } ${selectedSeats.includes(seat) ? "selected" : ""}`}
+                          onClick={() =>
+                            !bookedSeats.has(seat) && handleSeatSelection(seat)
+                          }
+                          disabled={bookedSeats.has(seat)}
                         >
                           {seat}
                         </button>
