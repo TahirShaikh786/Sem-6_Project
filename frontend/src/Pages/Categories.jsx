@@ -84,7 +84,7 @@ const Categories = () => {
                     className="m-2 d-flex justify-content-center flex-wrap"
                   >
                     <div className="video">
-                      <img src={item.titleImage} alt={item.name} />
+                      <img src={item.image} alt={item.name} />
                       <div className="play d-flex flex-column justify-content-center">
                         <h5>{item.name}</h5>
                         <Button onClick={() => WatchMovies(item._id)}>
