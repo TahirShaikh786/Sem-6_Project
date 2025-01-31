@@ -23,8 +23,14 @@ const MoreInfo = () => {
   });
 
   const { id } = useParams();
-  const { user, movies, userAuthentication, backendURL, authorizationToken, getAllUSer } =
-    useAuth();
+  const {
+    user,
+    movies,
+    userAuthentication,
+    backendURL,
+    authorizationToken,
+    getAllUSer,
+  } = useAuth();
   const movie = movies.message.find((m) => m._id === id);
 
   useEffect(() => {
@@ -39,25 +45,25 @@ const MoreInfo = () => {
   }, 100);
 
   const handleView = async () => {
-    const response = await fetch(`${backendURL}/auth/viewHistory`,{
+    const response = await fetch(`${backendURL}/auth/viewHistory`, {
       method: "POST",
       headers: {
-        "Content-Type" : "application/json",
-        Authorization : authorizationToken,
+        "Content-Type": "application/json",
+        Authorization: authorizationToken,
       },
       body: JSON.stringify({
-        userId : user._id,
-        movieId : movie._id,
-        movieName : movie.name,
-        category : movie.category
+        userId: user._id,
+        movieId: movie._id,
+        movieName: movie.name,
+        category: movie.category,
       }),
-    })
+    });
     const data = await response.json();
-    if(response.ok){
+    if (response.ok) {
       getAllUSer();
       userAuthentication();
     }
-  }
+  };
 
   const handleInput = (e) => {
     let name = e.target.name;

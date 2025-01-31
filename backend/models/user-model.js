@@ -23,6 +23,14 @@ const viewSchema = mongoose.Schema({
     type: Number,
     default: 0,
   },
+  watchDuration: {
+    type: Number, // Time in minutes
+    default: 0,
+  },
+  watchTime: {
+    type: Date,
+    default: Date.now, // Stores when the user watched the movie
+  },
   createdAt: {
     type: Date,
     default: Date.now,
@@ -50,6 +58,10 @@ const bookingSchema = new mongoose.Schema({
   location: {
     type: String,
     required: true,
+  },
+  price:{
+    type: Number,
+    required: true
   },
   createdAt: {
     type: Date,

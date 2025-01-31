@@ -281,15 +281,10 @@
 
 .reviewAdd button {
   border: 0;
-  display: none;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   background: var(--purple-gradient);
   transition: all linear 0.2s;
-}
-
-.reviewAdd input:focus + button {
-  display: block;
 }
 
 .star {

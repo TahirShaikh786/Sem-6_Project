@@ -322,36 +322,45 @@ const searchData = async (req, res) => {
 
 const viewHistory = async (req, res) => {
   try {
-    const { userId, movieId, movieName, category } = req.body;
+    const { userId, movieId, movieName, category, watchDuration, watchTime } =
+      req.body;
 
-    // Find and update the user document in one atomic operation
-    const user = await User.findOneAndUpdate(
-      { _id: userId, "viewMovies.movieId": { $ne: movieId } }, // Check if movieId is not in the array
-      {
-        $push: {
-          viewMovies: {
-            movieId,
-            movieName,
-            userId,
-            category,
-            counter: 1,
-            createdAt: new Date(),
-          },
-        },
-      },
-      { new: true, upsert: true } // Create a new entry if it doesn't exist
+    // Find the user and check if the movie exists in viewMovies
+    const user = await User.findOne({ _id: userId });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const viewIndex = user.viewMovies.findIndex(
+      (view) => view.movieId.toString() === movieId.toString()
     );
 
-    // If the movie exists in the viewMovies, increment its counter
-    if (user) {
-      const viewIndex = user.viewMovies.findIndex(
-        (view) => view.movieId.toString() === movieId.toString()
-      );
+    if (viewIndex !== -1) {
+      // If movie exists in history, update counter and watch duration conditionally
+      user.viewMovies[viewIndex].counter += 1;
+      user.viewMovies[viewIndex].watchTime = watchTime || new Date();
 
-      if (viewIndex !== -1) {
-        user.viewMovies[viewIndex].counter += 1;
-        await user.save(); // Save the updated user object
+      // Update watchDuration only if the new watchDuration is greater
+      if (watchDuration > user.viewMovies[viewIndex].watchDuration) {
+        user.viewMovies[viewIndex].watchDuration = watchDuration;
       }
+
+      await user.save();
+    } else {
+      // If movie doesn't exist in history, add a new entry
+      user.viewMovies.push({
+        movieId,
+        movieName,
+        userId,
+        category,
+        counter: 1,
+        watchDuration,
+        watchTime: watchTime || new Date(),
+        createdAt: new Date(),
+      });
+
+      await user.save();
     }
 
     // Return the updated viewMovies array
@@ -362,74 +371,6 @@ const viewHistory = async (req, res) => {
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Server error" });
-  }
-};
-
-const booking = async (req, res) => {
-  const { userId, theaterName, selectedSeats, movieName } = req.body;
-
-  if (
-    !Array.isArray(selectedSeats) ||
-    selectedSeats.some((seat) => typeof seat.number !== "string")
-  ) {
-    return res
-      .status(400)
-      .json({
-        message: "Invalid seat format. Each seat must have a 'number' field.",
-      });
-  }
-
-  // Validate incoming data
-  if (!userId || !theaterName || !selectedSeats.length || !movieName) {
-    return res.status(400).json({ message: "Invalid booking data" });
-  }
-
-  try {
-    // Find the user and check for existing booking with the same movie and location
-    const user = await User.findById(userId);
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    // Check if the booking already exists for the same movie and location
-    const existingBookingIndex = user.booking.findIndex(
-      (booking) =>
-        booking.movieName === movieName && booking.location === theaterName
-    );
-
-    if (existingBookingIndex !== -1) {
-      // If the booking exists, update the seat numbers (prevent duplicates)
-      const existingSeats = user.booking[existingBookingIndex].seatNo.map(
-        (seat) => seat.number
-      );
-
-      const newSeats = selectedSeats.filter(
-        (seat) => !existingSeats.includes(seat.number)
-      );
-
-      user.booking[existingBookingIndex].seatNo.push(...newSeats);
-    } else {
-      // If the booking doesn't exist, add a new entry
-      user.booking.push({
-        userId,
-        movieName,
-        seatNo: selectedSeats,
-        location: theaterName,
-        createdAt: new Date(),
-      });
-    }
-
-    // Save the updated user document
-    await user.save();
-
-    return res.status(200).json({
-      message: "Booking updated successfully",
-      bookings: user.booking,
-    });
-  } catch (error) {
-    console.error("Error updating booking:", error);
-    return res.status(500).json({ message: "Failed to process booking" });
   }
 };
 
@@ -483,7 +424,6 @@ export {
   deleteUser,
   viewHistory,
   getUsers,
-  booking,
   deleteUsers,
   getLikedMovies,
   addLikedMovies,
