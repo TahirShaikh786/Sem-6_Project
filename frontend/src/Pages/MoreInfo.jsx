@@ -17,6 +17,8 @@ const MoreInfo = () => {
   const [like, setLike] = useState(false);
   const [comment, setComment] = useState([]);
   const [film, setFilm] = useState(null);
+  const [watchStartTime, setWatchStartTime] = useState(null);
+  const [watchDuration, setWatchDuration] = useState(0);
   const [review, setReview] = useState({
     comment: "",
     rating: 0,
@@ -41,10 +43,15 @@ const MoreInfo = () => {
       setLike(true);
     }
     fetchMovieDetails();
-    handleView();
-  }, 100);
+    setWatchStartTime(Date.now());
+    return () => handleView();
+  }, []);
 
   const handleView = async () => {
+    const watchEndTime = Date.now();
+    const duration = Math.floor((watchEndTime - watchStartTime) / 1000);
+    setWatchDuration(duration);
+
     const response = await fetch(`${backendURL}/auth/viewHistory`, {
       method: "POST",
       headers: {
@@ -56,9 +63,10 @@ const MoreInfo = () => {
         movieId: movie._id,
         movieName: movie.name,
         category: movie.category,
+        watchDuration: duration,
+        watchTime: new Date().toISOString(),
       }),
     });
-    const data = await response.json();
     if (response.ok) {
       getAllUSer();
       userAuthentication();

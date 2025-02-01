@@ -20,7 +20,6 @@ router.post("/favourites", auth.protect, userController.addLikedMovies);
 router.delete("/favourites/empty", auth.protect, userController.emptyFavourites);
 router.post("/:id/search", auth.protect, userController.searchData);
 router.post("/viewHistory", auth.protect, userController.viewHistory);
-router.post("/booking", auth.protect, userController.booking);
 
 // Admin Routes
 router.get("/admin", auth.protect, auth.admin, userController.getUsers);

@@ -325,30 +325,32 @@ const viewHistory = async (req, res) => {
     const { userId, movieId, movieName, category, watchDuration, watchTime } =
       req.body;
 
-    // Find the user and check if the movie exists in viewMovies
-    const user = await User.findOne({ _id: userId });
-
+    // Find user by ID
+    const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
+    // Check if the movie already exists in user's view history
     const viewIndex = user.viewMovies.findIndex(
       (view) => view.movieId.toString() === movieId.toString()
     );
 
     if (viewIndex !== -1) {
-      // If movie exists in history, update counter and watch duration conditionally
-      user.viewMovies[viewIndex].counter += 1;
-      user.viewMovies[viewIndex].watchTime = watchTime || new Date();
+      // Movie exists, update its details
+      let movieView = user.viewMovies[viewIndex];
+      movieView.counter += 1;
+      movieView.watchTime = watchTime || new Date();
 
-      // Update watchDuration only if the new watchDuration is greater
-      if (watchDuration > user.viewMovies[viewIndex].watchDuration) {
-        user.viewMovies[viewIndex].watchDuration = watchDuration;
+      // Update watchDuration only if the new value is greater
+      if (watchDuration > movieView.watchDuration) {
+        movieView.watchDuration = watchDuration;
       }
 
-      await user.save();
+      // Mark viewMovies array as modified
+      user.markModified("viewMovies");
     } else {
-      // If movie doesn't exist in history, add a new entry
+      // New movie entry
       user.viewMovies.push({
         movieId,
         movieName,
@@ -359,18 +361,20 @@ const viewHistory = async (req, res) => {
         watchTime: watchTime || new Date(),
         createdAt: new Date(),
       });
-
-      await user.save();
     }
 
-    // Return the updated viewMovies array
+    // Save changes to the database
+    await user.save();
+
     return res.status(200).json({
       message: "Movie view history updated successfully",
       updatedViewMovies: user.viewMovies,
     });
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: "Server error" });
+    console.error("Error updating view history:", error);
+    return res
+      .status(500)
+      .json({ message: "Server error", error: error.message });
   }
 };
 
