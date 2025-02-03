@@ -1,7 +1,7 @@
-import User from "../models/user-model";
+import Booking from "../models/booking-model.js";
 
 const booking = async (req, res) => {
-  const { userId, theaterName, selectedSeats, movieName } = req.body;
+  const { userId, movieName, theaterName, amount, selectedSeats } = req.body;
 
   if (
     !Array.isArray(selectedSeats) ||
@@ -13,13 +13,13 @@ const booking = async (req, res) => {
   }
 
   // Validate incoming data
-  if (!userId || !theaterName || !selectedSeats.length || !movieName) {
+  if (!userId || !theaterName || !selectedSeats.length || !movieName || !amount) {
     return res.status(400).json({ message: "Invalid booking data" });
   }
 
   try {
     // Find the user and check for existing booking with the same movie and location
-    const user = await User.findById(userId);
+    const user = await Booking.findById(userId);
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -66,4 +66,4 @@ const booking = async (req, res) => {
   }
 };
 
-export { booking };
+export {booking};

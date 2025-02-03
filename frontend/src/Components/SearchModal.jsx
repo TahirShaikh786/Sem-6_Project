@@ -113,7 +113,7 @@ const SearchModal = () => {
                   >
                     <div className="scard">
                       <img
-                        src={item.titleImage}
+                        src={item.image}
                         alt={item.name}
                         className="card-img-top"
                       />

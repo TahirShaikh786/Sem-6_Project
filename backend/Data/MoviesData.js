@@ -19,7 +19,7 @@ export const MoviesData = [
       { name: "Chris Hemsworth" },
       { name: "Tom Hiddleston" },
     ],
-    rate: 5,
+    rate: 8.0,
   },
   {
     name: "Mad Max: Fury Road",
@@ -38,7 +38,7 @@ export const MoviesData = [
       { name: "Charlize Theron" },
       { name: "Nicholas Hoult" },
     ],
-    rate: 5,
+    rate: 8.1,
   },
   {
     name: "John Wick",
@@ -57,7 +57,7 @@ export const MoviesData = [
       { name: "Michael Nyqvist" },
       { name: "Alfie Allen" },
     ],
-    rate: 5,
+    rate: 7.4,
   },
   {
     name: "The Dark Knight",
@@ -76,7 +76,7 @@ export const MoviesData = [
       { name: "Heath Ledger" },
       { name: "Aaron Eckhart" },
     ],
-    rate: 5,
+    rate: 9.0,
   },
   {
     name: "Guardians of the Galaxy",
@@ -95,7 +95,7 @@ export const MoviesData = [
       { name: "Zoe Saldana" },
       { name: "Dave Bautista" },
     ],
-    rate: 5,
+    rate: 8.0,
   },
   {
     name: "Mission: Impossible - Fallout",
@@ -114,7 +114,7 @@ export const MoviesData = [
       { name: "Henry Cavill" },
       { name: "Simon Pegg" },
     ],
-    rate: 5,
+    rate: 7.7,
   },
   {
     name: "The Matrix",
@@ -133,7 +133,7 @@ export const MoviesData = [
       { name: "Laurence Fishburne" },
       { name: "Carrie-Anne Moss" },
     ],
-    rate: 5,
+    rate: 8.7,
   },
   {
     name: "Spider-Man: No Way Home",
@@ -152,7 +152,7 @@ export const MoviesData = [
       { name: "Zendaya" },
       { name: "Benedict Cumberbatch" },
     ],
-    rate: 5,
+    rate: 8.3,
   },
   {
     name: "Avengers: Endgame",
@@ -171,7 +171,7 @@ export const MoviesData = [
       { name: "Chris Evans" },
       { name: "Mark Ruffalo" },
     ],
-    rate: 5,
+    rate: 8.4,
   },
   {
     name: "Thor: Ragnarok",
@@ -190,7 +190,7 @@ export const MoviesData = [
       { name: "Tom Hiddleston" },
       { name: "Cate Blanchett" },
     ],
-    rate: 5,
+    rate: 7.9,
   },
 
   {

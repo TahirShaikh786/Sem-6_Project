@@ -10,6 +10,7 @@ import connectDB from "./config/db.js";
 import homeRouter from "./routes/home-router.js";
 import userRouter from "./routes/user-router.js";
 import movieRouter from "./routes/movie-router.js";
+import bookRouter from "./routes/booking-route.js";
 import errorHandler from "./middleware/error-middleware.js";
 
 // Configuration
@@ -32,6 +33,7 @@ const __dirname = dirname(__filename);                // Get the directory name
 app.use("/api/v1", homeRouter);
 app.use("/api/v1/auth", userRouter);
 app.use("/api/v1/movie", movieRouter);
+app.use("/api/v1/booking", bookRouter);
 
 // Middleware
 app.use(errorHandler);

@@ -12,19 +12,6 @@ import { toast } from "react-toastify";
 import Footer from "../Components/Footer.jsx";
 
 const MoreInfo = () => {
-  const [volume, setVolume] = useState(true);
-  const [play, setPlay] = useState(true);
-  const [like, setLike] = useState(false);
-  const [comment, setComment] = useState([]);
-  const [film, setFilm] = useState(null);
-  const [watchStartTime, setWatchStartTime] = useState(null);
-  const [watchDuration, setWatchDuration] = useState(0);
-  const [review, setReview] = useState({
-    comment: "",
-    rating: 0,
-  });
-
-  const { id } = useParams();
   const {
     user,
     movies,
@@ -33,6 +20,20 @@ const MoreInfo = () => {
     authorizationToken,
     getAllUSer,
   } = useAuth();
+  const [volume, setVolume] = useState(true);
+  const [play, setPlay] = useState(true);
+  const [like, setLike] = useState(false);
+  const [comment, setComment] = useState([]);
+  const [film, setFilm] = useState(null);
+  const [watchStartTime, setWatchStartTime] = useState(null);
+  const [watchDuration, setWatchDuration] = useState(0);
+  const [review, setReview] = useState({
+    userImage: user.image,
+    comment: "",
+    rating: 0,
+  });
+
+  const { id } = useParams();
   const movie = movies.message.find((m) => m._id === id);
 
   useEffect(() => {
@@ -150,7 +151,6 @@ const MoreInfo = () => {
       });
       toast.success("Review Has been successfully Submitted");
       setComment(data.reviews);
-      console.log("2", comment);
     } else {
       toast.error("You can Do only 1 Review");
     }

@@ -266,7 +266,7 @@ const Profile = () => {
                               <Card className="movieCards">
                                 <Card.Img
                                   variant="top"
-                                  src={movie.titleImage}
+                                  src={movie.image}
                                   alt={movie.name}
                                   onClick={() => WatchMovies(movie._id)}
                                 />

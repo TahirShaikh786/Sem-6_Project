@@ -150,22 +150,22 @@ const createMovieReview = async (req, res) => {
     }
 
     // Check if the user has already reviewed the movie
-    const alreadyReviewed = movie.reviews.find(
-      (r) => String(r.userId) === String(req.user._id)
-    );
+    // const alreadyReviewed = movie.reviews.find(
+    //   (r) => String(r.userId) === String(req.user._id)
+    // );
 
-    if (alreadyReviewed) {
-      return res.status(400).json({
-        success: false,
-        message: "You have already reviewed this movie",
-      });
-    }
+    // if (alreadyReviewed) {
+    //   return res.status(400).json({
+    //     success: false,
+    //     message: "You have already reviewed this movie",
+    //   });
+    // }
 
     // Create a new review
     const review = {
       userName: req.user.userName,
       userId: req.user._id,
-      userImage: image || null, // Allow `userImage` to be optional
+      userImage: req.user.image || null, // Allow `userImage` to be optional
       rating: Number(rating),
       comment,
     };
