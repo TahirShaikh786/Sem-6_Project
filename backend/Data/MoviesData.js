@@ -210,7 +210,7 @@ export const MoviesData = [
       { name: "Patrick Wilson" },
       { name: "Lili Taylor" },
     ],
-    rate: 5,
+    rate: 7.5,
   },
   {
     name: "Hereditary",
@@ -229,7 +229,7 @@ export const MoviesData = [
       { name: "Alex Wolff" },
       { name: "Milly Shapiro" },
     ],
-    rate: 5,
+    rate: 7.3,
   },
   {
     name: "It",
@@ -248,7 +248,7 @@ export const MoviesData = [
       { name: "Jaeden Lieberher" },
       { name: "Finn Wolfhard" },
     ],
-    rate: 5,
+    rate: 7.3,
   },
   {
     name: "Get Out",
@@ -267,7 +267,7 @@ export const MoviesData = [
       { name: "Allison Williams" },
       { name: "Catherine Keener" },
     ],
-    rate: 5,
+    rate: 7.7,
   },
   {
     name: "A Quiet Place",
@@ -286,7 +286,7 @@ export const MoviesData = [
       { name: "John Krasinski" },
       { name: "Millicent Simmonds" },
     ],
-    rate: 5,
+    rate: 7.5,
   },
   {
     name: "The Witch",
@@ -305,7 +305,7 @@ export const MoviesData = [
       { name: "Ralph Ineson" },
       { name: "Kate Dickie" },
     ],
-    rate: 5,
+    rate: 7.0,
   },
   {
     name: "The Ring",
@@ -324,7 +324,7 @@ export const MoviesData = [
       { name: "Martin Henderson" },
       { name: "Brian Cox" },
     ],
-    rate: 5,
+    rate: 7.1,
   },
   {
     name: "Insidious",
@@ -343,7 +343,7 @@ export const MoviesData = [
       { name: "Rose Byrne" },
       { name: "Ty Simpkins" },
     ],
-    rate: 5,
+    rate: 6.8,
   },
   {
     name: "Psycho",
@@ -362,7 +362,7 @@ export const MoviesData = [
       { name: "Janet Leigh" },
       { name: "Vera Miles" },
     ],
-    rate: 5,
+    rate: 8.5,
   },
   {
     name: "The Shining",
@@ -381,7 +381,7 @@ export const MoviesData = [
       { name: "Shelley Duvall" },
       { name: "Danny Lloyd" },
     ],
-    rate: 5,
+    rate: 8.4,
   },
 
   {
@@ -401,7 +401,7 @@ export const MoviesData = [
       { name: "Harrison Ford" },
       { name: "Jared Leto" },
     ],
-    rate: 5,
+    rate: 8,
   },
   {
     name: "Interstellar",
@@ -420,7 +420,7 @@ export const MoviesData = [
       { name: "Anne Hathaway" },
       { name: "Jessica Chastain" },
     ],
-    rate: 5,
+    rate: 8.7,
   },
   {
     name: "The Matrix",
@@ -439,7 +439,7 @@ export const MoviesData = [
       { name: "Laurence Fishburne" },
       { name: "Carrie-Anne Moss" },
     ],
-    rate: 5,
+    rate: 8.7,
   },
   {
     name: "The Martian",
@@ -458,7 +458,7 @@ export const MoviesData = [
       { name: "Jessica Chastain" },
       { name: "Kristen Wiig" },
     ],
-    rate: 5,
+    rate: 8,
   },
   {
     name: "Star Trek: Into Darkness",
@@ -477,7 +477,7 @@ export const MoviesData = [
       { name: "Zachary Quinto" },
       { name: "Benedict Cumberbatch" },
     ],
-    rate: 5,
+    rate: 7.7,
   },
   {
     name: "Ex Machina",
@@ -496,7 +496,7 @@ export const MoviesData = [
       { name: "Domhnall Gleeson" },
       { name: "Oscar Isaac" },
     ],
-    rate: 5,
+    rate: 7.7,
   },
   {
     name: "Elysium",
@@ -515,7 +515,7 @@ export const MoviesData = [
       { name: "Jodie Foster" },
       { name: "Sharlto Copley" },
     ],
-    rate: 5,
+    rate: 6.6,
   },
   {
     name: "Minority Report",
@@ -534,7 +534,7 @@ export const MoviesData = [
       { name: "Colin Farrell" },
       { name: "Samantha Morton" },
     ],
-    rate: 5,
+    rate: 7.6,
   },
   {
     name: "Arrival",
@@ -553,7 +553,7 @@ export const MoviesData = [
       { name: "Jeremy Renner" },
       { name: "Forest Whitaker" },
     ],
-    rate: 5,
+    rate: 7.9,
   },
   {
     name: "Children of Men",
@@ -572,7 +572,7 @@ export const MoviesData = [
       { name: "Julianne Moore" },
       { name: "Michael Caine" },
     ],
-    rate: 5,
+    rate: 7.9,
   },
 
   {
@@ -592,7 +592,7 @@ export const MoviesData = [
       { name: "Morgan Freeman" },
       { name: "Bob Gunton" },
     ],
-    rate: 5,
+    rate: 9.3,
   },
   {
     name: "Forrest Gump",
@@ -611,7 +611,7 @@ export const MoviesData = [
       { name: "Robin Wright" },
       { name: "Gary Sinise" },
     ],
-    rate: 5,
+    rate: 8.8,
   },
   {
     name: "The Godfather",
@@ -630,7 +630,7 @@ export const MoviesData = [
       { name: "Al Pacino" },
       { name: "James Caan" },
     ],
-    rate: 5,
+    rate: 9.2,
   },
   {
     name: "A Beautiful Mind",
@@ -649,7 +649,7 @@ export const MoviesData = [
       { name: "Jennifer Connelly" },
       { name: "Ed Harris" },
     ],
-    rate: 5,
+    rate: 8.2,
   },
   {
     name: "The Pursuit of Happyness",
@@ -668,7 +668,7 @@ export const MoviesData = [
       { name: "Jaden Smith" },
       { name: "Thandie Newton" },
     ],
-    rate: 5,
+    rate: 8,
   },
   {
     name: "The Social Network",
@@ -687,7 +687,7 @@ export const MoviesData = [
       { name: "Andrew Garfield" },
       { name: "Justin Timberlake" },
     ],
-    rate: 5,
+    rate: 7.8,
   },
   {
     name: "Good Will Hunting",
@@ -706,7 +706,7 @@ export const MoviesData = [
       { name: "Robin Williams" },
       { name: "Ben Affleck" },
     ],
-    rate: 5,
+    rate: 8.3,
   },
   {
     name: "12 Years a Slave",
@@ -725,7 +725,7 @@ export const MoviesData = [
       { name: "Michael Fassbender" },
       { name: "Lupita Nyong'o" },
     ],
-    rate: 5,
+    rate: 8.1,
   },
   {
     name: "La La Land",
@@ -744,7 +744,7 @@ export const MoviesData = [
       { name: "Emma Stone" },
       { name: "John Legend" },
     ],
-    rate: 5,
+    rate: 8,
   },
   {
     name: "The Green Mile",
@@ -763,7 +763,7 @@ export const MoviesData = [
       { name: "Michael Clarke Duncan" },
       { name: "David Morse" },
     ],
-    rate: 5,
+    rate: 8.6,
   },
 
   {
@@ -783,7 +783,7 @@ export const MoviesData = [
       { name: "Robert De Niro" },
       { name: "Diane Keaton" },
     ],
-    rate: 5,
+    rate: 9,
   },
   {
     name: "Pulp Fiction",
@@ -802,7 +802,7 @@ export const MoviesData = [
       { name: "Uma Thurman" },
       { name: "Samuel L. Jackson" },
     ],
-    rate: 5,
+    rate: 8.9,
   },
   {
     name: "Goodfellas",
@@ -821,7 +821,7 @@ export const MoviesData = [
       { name: "Ray Liotta" },
       { name: "Joe Pesci" },
     ],
-    rate: 5,
+    rate: 8.7,
   },
   {
     name: "Scarface",
@@ -840,7 +840,7 @@ export const MoviesData = [
       { name: "Michelle Pfeiffer" },
       { name: "Steven Bauer" },
     ],
-    rate: 5,
+    rate: 8.3,
   },
   {
     name: "The Departed",
@@ -859,7 +859,7 @@ export const MoviesData = [
       { name: "Matt Damon" },
       { name: "Jack Nicholson" },
     ],
-    rate: 5,
+    rate: 8.5,
   },
   {
     name: "Casino",
@@ -878,7 +878,7 @@ export const MoviesData = [
       { name: "Sharon Stone" },
       { name: "Joe Pesci" },
     ],
-    rate: 5,
+    rate: 6.1,
   },
   {
     name: "Heat",
@@ -897,7 +897,7 @@ export const MoviesData = [
       { name: "Robert De Niro" },
       { name: "Val Kilmer" },
     ],
-    rate: 5,
+    rate: 8.3,
   },
   {
     name: "L.A. Confidential",
@@ -916,7 +916,7 @@ export const MoviesData = [
       { name: "Russell Crowe" },
       { name: "Guy Pearce" },
     ],
-    rate: 5,
+    rate: 8.2,
   },
   {
     name: "City of God",
@@ -935,7 +935,7 @@ export const MoviesData = [
       { name: "Leandro Firmino" },
       { name: "Phellipe Haagensen" },
     ],
-    rate: 5,
+    rate: 8.6,
   },
   {
     name: "The Usual Suspects",
@@ -954,7 +954,7 @@ export const MoviesData = [
       { name: "Gabriel Byrne" },
       { name: "Stephen Baldwin" },
     ],
-    rate: 5,
+    rate: 8.5,
   },
 
   {
@@ -974,7 +974,7 @@ export const MoviesData = [
       { name: "John Goodman" },
       { name: "Julianne Moore" },
     ],
-    rate: 5,
+    rate: 8.1,
   },
   {
     name: "Superbad",
@@ -993,7 +993,7 @@ export const MoviesData = [
       { name: "Michael Cera" },
       { name: "Seth Rogen" },
     ],
-    rate: 5,
+    rate: 7.6,
   },
   {
     name: "Dumb and Dumber",
@@ -1012,7 +1012,7 @@ export const MoviesData = [
       { name: "Jeff Daniels" },
       { name: "Lauren Holly" },
     ],
-    rate: 5,
+    rate: 7.3,
   },
   {
     name: "Anchorman: The Legend of Ron Burgundy",
@@ -1031,7 +1031,7 @@ export const MoviesData = [
       { name: "Steve Carell" },
       { name: "Paul Rudd" },
     ],
-    rate: 5,
+    rate: 7.1,
   },
   {
     name: "Step Brothers",
@@ -1050,7 +1050,7 @@ export const MoviesData = [
       { name: "John C. Reilly" },
       { name: "Mary Steenburgen" },
     ],
-    rate: 5,
+    rate: 6.9,
   },
   {
     name: "The Hangover",
@@ -1069,7 +1069,7 @@ export const MoviesData = [
       { name: "Zach Galifianakis" },
       { name: "Ed Helms" },
     ],
-    rate: 5,
+    rate: 7.7,
   },
   {
     name: "Groundhog Day",
@@ -1088,7 +1088,7 @@ export const MoviesData = [
       { name: "Andie MacDowell" },
       { name: "Chris Elliott" },
     ],
-    rate: 4,
+    rate: 8,
   },
   {
     name: "Crazy, Stupid, Love",
@@ -1107,7 +1107,7 @@ export const MoviesData = [
       { name: "Ryan Gosling" },
       { name: "Julianne Moore" },
     ],
-    rate: 3.5,
+    rate: 7.4,
   },
   {
     name: "21 Jump Street",
@@ -1126,7 +1126,7 @@ export const MoviesData = [
       { name: "Channing Tatum" },
       { name: "Ice Cube" },
     ],
-    rate: 3,
+    rate: 7.2,
   },
 
   {
@@ -1146,7 +1146,7 @@ export const MoviesData = [
       { name: "Tim Allen" },
       { name: "Don Rickles" },
     ],
-    rate: 4.6,
+    rate: 8.3,
   },
   {
     name: "Finding Nemo",
@@ -1165,7 +1165,7 @@ export const MoviesData = [
       { name: "Ellen DeGeneres" },
       { name: "Alexander Gould" },
     ],
-    rate: 4.5,
+    rate: 8.2,
   },
   {
     name: "Shrek",
@@ -1184,7 +1184,7 @@ export const MoviesData = [
       { name: "Eddie Murphy" },
       { name: "Cameron Diaz" },
     ],
-    rate: 4.4,
+    rate: 7.9,
   },
   {
     name: "The Lion King",
@@ -1203,7 +1203,7 @@ export const MoviesData = [
       { name: "James Earl Jones" },
       { name: "Jeremy Irons" },
     ],
-    rate: 4.5,
+    rate: 6.8,
   },
   {
     name: "Frozen",
@@ -1222,7 +1222,7 @@ export const MoviesData = [
       { name: "Kristen Bell" },
       { name: "Josh Gad" },
     ],
-    rate: 4.5,
+    rate: 7.4,
   },
   {
     name: "Spider-Man: Into the Spider-Verse",
@@ -1241,7 +1241,7 @@ export const MoviesData = [
       { name: "Jake Johnson" },
       { name: "Hailee Steinfeld" },
     ],
-    rate: 4,
+    rate: 8.4,
   },
   {
     name: "Zootopia",
@@ -1260,7 +1260,7 @@ export const MoviesData = [
       { name: "Jason Bateman" },
       { name: "Idris Elba" },
     ],
-    rate: 4,
+    rate: 8,
   },
   {
     name: "Coco",
@@ -1279,7 +1279,7 @@ export const MoviesData = [
       { name: "Gael García Bernal" },
       { name: "Benjamin Bratt" },
     ],
-    rate: 4.5,
+    rate: 8.4,
   },
   {
     name: "Up",
@@ -1298,6 +1298,6 @@ export const MoviesData = [
       { name: "Christopher Plummer" },
       { name: "Jordan Nagai" },
     ],
-    rate: 4,
+    rate: 7.6,
   },
 ];

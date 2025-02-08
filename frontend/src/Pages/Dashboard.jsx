@@ -10,7 +10,7 @@ import Footer from "../Components/Footer.jsx";
 import { useNavigateMovies } from "../Service/movies.jsx";
 
 const Dashboard = () => {
-  const { film, rated, history } = useAuth();
+  const { film, rated, colFilter } = useAuth();
   const { WatchMovies } = useNavigateMovies();
 
   var settings = {
@@ -95,6 +95,34 @@ const Dashboard = () => {
           <div className="slider-container">
             <Slider {...settings}>
               {rated.message.map((movie, i) => {
+                return (
+                  <div className="VideosCard" key={i}>
+                    <Card className="movieCards">
+                      <Card.Img
+                        variant="top"
+                        src={movie.image}
+                        alt={movie.name}
+                        onClick={() => WatchMovies(movie._id)}
+                      />
+                      <p className="card-rate">{movie.rate}</p>
+                    </Card>
+                  </div>
+                );
+              })}
+            </Slider>
+          </div>
+        </Container>
+      </section>
+
+      {/* Recommend Movie */}
+      <section className="bg-black">
+        <Container>
+          <Row className="allVideosHead">
+            <h2>You Might also like this </h2>
+          </Row>
+          <div className="slider-container">
+            <Slider {...settings}>
+              {colFilter.map((movie, i) => {
                 return (
                   <div className="VideosCard" key={i}>
                     <Card className="movieCards">

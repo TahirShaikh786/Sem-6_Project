@@ -3,12 +3,14 @@ from pymongo import MongoClient
 from bson import ObjectId
 import os
 from dotenv import load_dotenv
+from flask_cors import CORS
 from collections import defaultdict, Counter
 
 # Load environment variables from .env file
 load_dotenv()
 
 app = Flask(__name__)
+CORS(app)
 
 # MongoDB connection setup
 DATABASE_URI = os.getenv("MONGO_URI")

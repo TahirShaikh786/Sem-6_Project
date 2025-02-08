@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { getRandomMovies, getAllMovies, topRated, historyMovie } from "./movies";
+import { getRandomMovies, getAllMovies, topRated, historyMovie, collaborativeFilter } from "./movies";
 
 const AuthContext = createContext();
 
@@ -12,9 +12,11 @@ export const AuthProvider = ({ children }) => {
   const [movies, setMovies] = useState([]);
   const [rated, setRated] = useState([]);
   const [history, setHistory] = useState([]);
+  const [colFilter, setColFilter] = useState([]);
   const [loading, setLoading] = useState(true);
   const authorizationToken = `Bearer ${token}`;
   const backendURL = import.meta.env.VITE_BACKEND_URL;
+  const recommendURl = import.meta.env.VITE_RECOMMEND_URL;
 
   // Store token in LocalStorage
   const storeTokenInLS = (serverToken) => {
@@ -95,6 +97,7 @@ export const AuthProvider = ({ children }) => {
       getAllMovies(backendURL, setMovies);
       topRated(backendURL, setRated);
       historyMovie(setHistory, user, movies);
+      collaborativeFilter(recommendURl, setColFilter, user, movies);
     } else {
       setLoading(false);
     }
@@ -108,6 +111,7 @@ export const AuthProvider = ({ children }) => {
         backendURL,
         storeTokenInLS,
         film,
+        colFilter,
         rated,
         history,
         getAllMovies,

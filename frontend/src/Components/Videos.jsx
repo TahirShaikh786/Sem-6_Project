@@ -35,8 +35,6 @@ const Videos = ({title}) => {
                   className="m-2 d-flex justify-content-center flex-wrap"
                 >
                   <div className="video">
-                    {console.log(movies.image)
-                    }
                     <img src={movies.image} alt={movies.name} />
                     <div className="play d-flex flex-column justify-content-center">
                       <h5>{movies.name}</h5>

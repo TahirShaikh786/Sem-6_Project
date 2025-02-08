@@ -84,3 +84,39 @@ export const historyMovie = (setHistory, user, movies) => {
     setHistory([]); 
   }
 };
+
+// export const collaborativeFilter = async (recommendURl, setColFilter, user, movies) => {
+//   const response = await fetch(`${recommendURl}/get_recommended_movies/${user._id}`, {
+//     method: "GET"
+//   })
+
+//   const data = await response.json();
+//   if (response.ok){
+//     console.log("Recomm", data);
+//     setColFilter(data);
+//   }else{
+//     console.log("Error in Recommend",data);
+//   }
+// }
+
+export const collaborativeFilter = async (recommendURl, setColFilter, user, movies) => {
+  try {
+    const response = await fetch(`${recommendURl}/get_recommended_movies/${user._id}`, {
+      method: "GET"
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      // Match recommended movies with the full movie list
+      const matchedMovies = data.map(recMovie => {
+        return movies.message.find(movie => movie._id === recMovie.movieId);
+      }).filter(Boolean); // Remove any undefined results
+      setColFilter(matchedMovies); // Update the state with matched movies
+    } else {
+      console.log("Error in Recommend", data);
+    }
+  } catch (error) {
+    console.error("Error fetching recommendations:", error);
+  }
+};
