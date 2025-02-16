@@ -230,6 +230,11 @@
   background-color: var(--black);
 }
 
+.bookingContainer select{
+  color: var(--white);
+  background-color: var(--black);
+}
+
 /* Seat styling */
 .seats-container {
   display: flex;

@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import sideImg from "../assets/img/titleImg.png";
 import Slider from "react-slick";
 import { useNavigateMovies } from "../Service/movies";
+import MovieSlider from "../Components/MovieSlider";
 
 const Profile = () => {
   const [show, setShow] = useState(false);
@@ -24,7 +25,7 @@ const Profile = () => {
     currentPassword: "",
     newPassword: "",
   });
-  const { user, backendURL, authorizationToken, userAuthentication, history } =
+  const { user, backendURL, authorizationToken, userAuthentication, viewMovies } =
     useAuth();
   const formattedDate = new Date(user.createdAt).toLocaleDateString();
   const formattedTime = new Date(user.createdAt).toLocaleTimeString();
@@ -258,24 +259,7 @@ const Profile = () => {
                     <Row className="allVideosHead">
                       <h2>Your History</h2>
                     </Row>
-                    <div className="slider-container">
-                      <Slider {...settings}>
-                        {history.map((movie, i) => {
-                          return (
-                            <div className="VideosCard" key={i}>
-                              <Card className="movieCards">
-                                <Card.Img
-                                  variant="top"
-                                  src={movie.image}
-                                  alt={movie.name}
-                                  onClick={() => WatchMovies(movie._id)}
-                                />
-                              </Card>
-                            </div>
-                          );
-                        })}
-                      </Slider>
-                    </div>
+                    <MovieSlider movies={viewMovies} />
                   </Container>
                 </section>
 

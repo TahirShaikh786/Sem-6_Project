@@ -9,7 +9,7 @@ const MovieSlider = ({movies}) => {
     <>
       <div className="slider-container">
         <Slider {...settings}>
-          {movies.message.map((movie, i) => {
+          {movies.map((movie, i) => {
             return (
               <div className="VideosCard" key={i}>
                 <Card className="movieCards">

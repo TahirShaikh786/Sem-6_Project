@@ -85,19 +85,16 @@ export const historyMovie = (setHistory, user, movies) => {
   }
 };
 
-// export const collaborativeFilter = async (recommendURl, setColFilter, user, movies) => {
-//   const response = await fetch(`${recommendURl}/get_recommended_movies/${user._id}`, {
-//     method: "GET"
-//   })
+export const userViewMovies = (setViewMovies, user, movies) => {
+   const matchedMovies = movies.message.filter((movie) =>
+    user.viewMovies.some(
+      (viewMovie) => viewMovie.movieId?.toString() === movie._id?.toString()
+    )
+  );
 
-//   const data = await response.json();
-//   if (response.ok){
-//     console.log("Recomm", data);
-//     setColFilter(data);
-//   }else{
-//     console.log("Error in Recommend",data);
-//   }
-// }
+  setViewMovies(matchedMovies);
+};
+
 
 export const collaborativeFilter = async (recommendURl, setColFilter, user, movies) => {
   try {

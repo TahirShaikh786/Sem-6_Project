@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { getRandomMovies, getAllMovies, topRated, historyMovie, collaborativeFilter } from "./movies";
+import { getRandomMovies, getAllMovies, topRated, historyMovie, collaborativeFilter, userViewMovies } from "./movies";
 
 const AuthContext = createContext();
 
@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
   const [rated, setRated] = useState([]);
   const [history, setHistory] = useState([]);
   const [colFilter, setColFilter] = useState([]);
+  const [viewMovies, setViewMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const authorizationToken = `Bearer ${token}`;
   const backendURL = import.meta.env.VITE_BACKEND_URL;
@@ -103,11 +104,24 @@ export const AuthProvider = ({ children }) => {
     }
   }, [token]);
 
+  useEffect(() => {
+  
+    if (user?.viewMovies && movies?.message?.length > 0) {
+      userViewMovies(setViewMovies, user, movies);
+      historyMovie(setHistory, user, movies.message);
+      collaborativeFilter(recommendURl, setColFilter, user, movies.message);
+    } else {
+      console.warn("❌ Skipping userViewMovies - Data not ready");
+    }
+  }, [user, movies]);
+  
+
   return (
     <AuthContext.Provider
       value={{
         user,
         logoutUser,
+        viewMovies,
         backendURL,
         storeTokenInLS,
         film,
