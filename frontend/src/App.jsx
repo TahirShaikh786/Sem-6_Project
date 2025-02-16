@@ -16,6 +16,7 @@ import Maps from "./Pages/Maps";
 import Rated from "./Pages/Rated";
 import Booking from "./Pages/Booking";
 import CreateMovieForm from "./Admin_Pages/CreateMovieForm";
+import Success from "./Pages/Success";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="/categories" element={<Categories />} />
             <Route path="/categories/:categoryName" element={<Categories />} />
             <Route path="/booking/:id" element={<Booking />} />
+            <Route path="/success" element={<Success />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/user/:id" element={<UserDetails />} />
             <Route path="/admin/movies" element={<CreateMovieForm />} />

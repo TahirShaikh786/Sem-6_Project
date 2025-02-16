@@ -3,13 +3,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { useAuth } from "../Service/auth";
 import { toast } from "react-toastify";
+import { loadRazorpay } from "../UsableComponents/payment";
 
 const BookingPage = () => {
   const { user, allUser } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const razorKey = import.meta.env.VITE_RAZOR_KEY;
-  
+
   const theater = location.state?.theater;
   const [selectedMovie, setSelectedMovie] = useState("");
   const [selectedSeats, setSelectedSeats] = useState([]);
@@ -18,6 +19,7 @@ const BookingPage = () => {
     "Avengers End Game": 500,
     "Bagheera": 250,
     "Lucky Baskhar": 350,
+    "IT": 1
   };
 
   const seatLayout = [
@@ -53,19 +55,30 @@ const BookingPage = () => {
       return;
     }
 
+    const res = await loadRazorpay(); // Ensure Razorpay script is loaded
+
+    if (!res) {
+      toast.error(
+        "Razorpay SDK failed to load. Please check your internet connection."
+      );
+      return;
+    }
+
     const options = {
-      key: razorKey,
+      key: import.meta.env.VITE_RAZOR_KEY,
       amount: totalPrice * 100,
       currency: "INR",
       name: "CineWorld",
       description: `Booking for ${selectedMovie}`,
       handler: (response) => {
         toast.success("Payment Successful! Redirecting...");
+
+        // Navigate to success page after payment
         navigate("/success", {
           state: {
-            user: user?.name || "Guest",
+            username: user?.name || "Guest",
             movie: selectedMovie,
-            theater: theater?.display_name,
+            theater: theater.display_name,
             amount: totalPrice,
             seats: selectedSeats,
             paymentId: response.razorpay_payment_id,
