@@ -8,7 +8,7 @@ import { useAuth } from "../Service/auth.jsx";
 import { Card, Container, Row } from "react-bootstrap";
 import Footer from "../Components/Footer.jsx";
 import { useNavigateMovies } from "../Service/movies.jsx";
-import settings from "../UsableComponents/settings.js"
+import {settings} from "../UsableComponents/settings.js"
 import MovieSlider from "../Components/MovieSlider.jsx";
 
 const Dashboard = () => {
